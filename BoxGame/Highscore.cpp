@@ -6,13 +6,16 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <vector>
+#include <algorithm>
 
-#define X_POS 100
-#define Y_POS 0
-#define CHAR_SIZE 35
+#define X_POS 100		//X & Y placement of text
+#define Y_POS 0			
+#define CHAR_SIZE 35	//text size
+#define NUM_SCORES 10	//numeber of highscores to be displayed
 
-Highscore::Highscore(State* previous_state) 
-	: previous_state{previous_state}
+Highscore::Highscore(State* previous_state)
+	: previous_state{ previous_state }
 {
 	sf::Font& font{ Font_Manager::load("Fonts/courier.ttf") };
 	header.setFont(font);
@@ -22,8 +25,8 @@ Highscore::Highscore(State* previous_state)
 	header.setString("highscores");
 
 	bottom = header;
-	bottom.setString("... press enter to return");
-	bottom.setPosition(X_POS, Y_POS + 50 + CHAR_SIZE * 11);
+	bottom.setString("press enter to return...");
+	bottom.setPosition(X_POS, Y_POS + CHAR_SIZE * (NUM_SCORES + 2));
 
 	std::ifstream inFile;
 	inFile.open("highscore.txt");
@@ -34,24 +37,29 @@ Highscore::Highscore(State* previous_state)
 		exit(1);
 	}
 
-	for (int i{}; i < 10; ++i)
+	std::vector< std::pair<std::string, int> > v;
+
+	int score;
+	while (inFile >> score)
 	{
-		sf::Text text;
-
-		text.setFont(font);
-		text.setCharacterSize(CHAR_SIZE);
-		text.setFillColor(sf::Color::Green);
-		text.setPosition( sf::Vector2f(X_POS, static_cast<float>(Y_POS + 50.0 + CHAR_SIZE * i)) );
-
-		size_t score;
-		inFile >> score;
-
 		std::string str;
 		std::getline(inFile, str);
 
+		v.push_back(std::make_pair(str, score));
+	}
+	std::sort(v.begin(), v.end(), [](auto a, auto b) { return a.second > b.second; });
+
+	sf::Text text;
+	text.setFont(font);
+	text.setCharacterSize(CHAR_SIZE);
+	text.setFillColor(sf::Color::Green);
+
+	for (int i{}; i < NUM_SCORES && i < v.size(); ++i)
+	{
 		std::stringstream ss;
-		ss << std::setw(2) << i + 1 << ". " << std::left << std::setw(20) << str << std::right << score;
+		ss << std::setw(2) << i + 1 << "." << std::left << std::setw(20) << std::setfill('.') << v[i].first << std::right << v[i].second;
 		text.setString(ss.str());
+		text.setPosition( sf::Vector2f(X_POS, static_cast<float>(Y_POS + CHAR_SIZE * (i + 1))) );
 
 		scoreVector.push_back(text);
 	}
