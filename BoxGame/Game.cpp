@@ -4,6 +4,11 @@
 #include "Menu.h"
 #include "Quit.h"
 
+Game::Game() 
+{
+
+}
+
 void Game::process_input()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) 
@@ -43,10 +48,9 @@ void Game::process_input()
 
 State * Game::update()
 {
-	/*PREVENTS A BUG*/
+	/*prevent a bug*/
 	deltaTime = clock.restart().asSeconds();
-	if (deltaTime > 1.0f / 20.0f) 
-		deltaTime = 1.0f / 20.0f;
+	if (deltaTime > 1.0f / 20.0f) deltaTime = 1.0f / 20.0f;
 
 	if (option.pause)
 	{
@@ -61,6 +65,9 @@ State * Game::update()
 		return state_ptr.get();
 	}
 
+	player.update(deltaTime);
+	if (player.death_check()) {}
+
 	return nullptr;
 }
 
@@ -73,6 +80,7 @@ void Game::render(sf::RenderWindow & window)
 		case sf::Event::Closed:
 			option.quit = true;
 			break;
+
 		case sf::Event::Resized:
 			float aspectRatio = float(window.getSize().x) / float(window.getSize().y);
 			view.setSize(VIEW_SIZE * aspectRatio, VIEW_SIZE);
@@ -81,6 +89,10 @@ void Game::render(sf::RenderWindow & window)
 	}
 
 	window.clear(sf::Color::Black);
+	
+	player.draw(window);
+
+	window.display();
 	window.setView(view);
 
 	//DRAWS//

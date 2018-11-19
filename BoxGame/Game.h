@@ -2,10 +2,13 @@
 #include <SFML/Graphics.hpp>
 
 #include "State.h"
+#include "Player.h"
 
 class Game : public State
 {
 public:
+	Game();
+
 	virtual void process_input() override;
 	virtual State* update() override;
 	virtual void render(sf::RenderWindow& window) override;
@@ -17,12 +20,16 @@ private:
 	sf::Clock clock;
 	float deltaTime{ 0.0 };
 	
+	Player player;
+
 	struct Options
 	{
+		bool dead{ false };
 		bool pause{ false };
 		bool quit{ false };
 	};
 	Options option;
+
 };
 
 
