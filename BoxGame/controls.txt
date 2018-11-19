@@ -1,0 +1,7 @@
+move : arrow keys
+abilities : Q, W, E
+ultimate : R (avalible from level 6)
+upgrade ability : alt + Q/W/E/R
+show map : TAB
+pause game : Esc
+--
