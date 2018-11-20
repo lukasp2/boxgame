@@ -4,7 +4,7 @@
 class Hero_1 : public Hero
 {
 public:
-	Hero_1() : Hero{ sf::Color::Red, 20, 800 } {}
+	Hero_1();
 
 	void Q() override;
 	void W() override;
@@ -23,6 +23,8 @@ private:
 	int health{ 100 };
 	int speed{ 800 };
 	int size{ 20 };
+
+	sf::RectangleShape projectile;
 
 	int XP{ 0 };
 };

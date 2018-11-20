@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include "Resources.h" 
+#include "Projectile.h"
 
 class Hero
 {
@@ -33,6 +34,8 @@ protected:
 	sf::CircleShape body;
 	int health{ 100 };
 	int speed;
+
+	std::vector<Projectile> playerProjectiles;
 
 	sf::Font& courier_font{ Font_Manager::load("Fonts/courier.ttf") };
 };

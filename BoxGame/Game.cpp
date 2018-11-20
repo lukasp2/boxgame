@@ -56,6 +56,10 @@ void Game::process_input(sf::RenderWindow& window)
 				//show map
 				break;
 
+			case sf::Keyboard::F:
+				//action key
+				break;
+
 			case sf::Keyboard::Escape:
 				option.pause = true;
 				break;
@@ -86,6 +90,8 @@ State * Game::update(sf::RenderWindow& window)
 
 	player.update(deltaTime, window);
 	if (player.death_check()) {}
+
+	
 
 	return nullptr;
 }

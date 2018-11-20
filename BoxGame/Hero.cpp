@@ -44,6 +44,9 @@ void Hero::draw(sf::RenderWindow & window)
 {
 	window.draw(body);	
 	
+	for (Projectile& p : playerProjectiles)
+		p.draw(window);
+
 	sf::Text hero_name;
 	hero_name.setFont(courier_font);
 	hero_name.setCharacterSize(20);

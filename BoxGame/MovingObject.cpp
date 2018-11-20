@@ -13,7 +13,7 @@ void MovingObject::update(float deltaTime)
 	body.move(velocity * deltaTime);
 }
 
-void MovingObject::OnCollision()
+void MovingObject::onCollision()
 {
 	// collision on left
 	if (colDirection.x < 0.0f)

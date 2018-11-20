@@ -11,9 +11,9 @@ public:
 	MovingObject(sf::RectangleShape rs, sf::Vector2f velocity, float angle, sf::Vector2f position);
 
 	void update(float deltaTime);
-	void OnCollision();
+	void onCollision();
 
-	void Draw(sf::RenderWindow& window) { window.draw(body); }
+	void draw(sf::RenderWindow& window) { window.draw(body); }
 	void setPosition(sf::Vector2f pos) { body.setPosition(pos); }
 	sf::Vector2f GetPosition() { return body.getPosition(); }
 	sf::Vector2f& getColDirection() { return colDirection; }

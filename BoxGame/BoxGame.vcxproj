@@ -134,6 +134,7 @@
     <ClCompile Include="MovingObject.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Quit.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collider.h" />
@@ -150,6 +151,7 @@
     <ClInclude Include="Quit.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="controls.txt" />
