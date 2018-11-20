@@ -17,8 +17,8 @@
 Highscore::Highscore(State* previous_state)
 	: previous_state{ previous_state }
 {
-	sf::Font& font{ Font_Manager::load("Fonts/courier.ttf") };
-	header.setFont(font);
+	sf::Font& courier_font{ Font_Manager::load("Fonts/courier.ttf") };
+	header.setFont(courier_font);
 	header.setCharacterSize(CHAR_SIZE);
 	header.setFillColor(sf::Color::Green);
 	header.setPosition(sf::Vector2f(X_POS, Y_POS));
@@ -50,11 +50,11 @@ Highscore::Highscore(State* previous_state)
 	std::sort(v.begin(), v.end(), [](auto a, auto b) { return a.second > b.second; });
 
 	sf::Text text;
-	text.setFont(font);
+	text.setFont(courier_font);
 	text.setCharacterSize(CHAR_SIZE);
 	text.setFillColor(sf::Color::Green);
 
-	for (int i{}; i < NUM_SCORES && i < v.size(); ++i)
+	for (size_t i{}; i < NUM_SCORES && i < v.size(); ++i)
 	{
 		std::stringstream ss;
 		ss << std::setw(2) << i + 1 << "." << std::left << std::setw(20) << std::setfill('.') << v[i].first << std::right << v[i].second;
@@ -67,28 +67,13 @@ Highscore::Highscore(State* previous_state)
 	inFile.close();
 }
 
-void Highscore::process_input()
-{
-	
-}
-
-State* Highscore::update()
-{
-	if (option.quit)
-	{
-		return previous_state.get();
-	}
-
-	return nullptr;
-}
-
-void Highscore::render(sf::RenderWindow & window)
+void Highscore::process_input(sf::RenderWindow& window)
 {
 	while (window.pollEvent(evnt))
 	{
 		switch (evnt.type)
 		{
-		case sf::Event::KeyReleased:
+		case sf::Event::KeyPressed:
 		{
 			switch (evnt.key.code)
 			{
@@ -100,7 +85,20 @@ void Highscore::render(sf::RenderWindow & window)
 		break;
 		}
 	}
+}
 
+State* Highscore::update(sf::RenderWindow& window)
+{
+	if (option.quit)
+	{
+		return previous_state.get();
+	}
+
+	return nullptr;
+}
+
+void Highscore::render(sf::RenderWindow & window)
+{
 	window.clear(sf::Color::Black);
 
 	window.draw(header);

@@ -8,6 +8,7 @@
 int main()
 {
 	sf::RenderWindow window{ sf::VideoMode(900, 900), "Game", sf::Style::Default };
+
 	window.setFramerateLimit(144);
 
 	std::unique_ptr<Menu> mainMenu = std::make_unique<Main_Menu>();
@@ -17,9 +18,9 @@ int main()
 
 	while (true)
 	{
-		currentState->process_input();
+		currentState->process_input(window);
 
-		if (nextState = currentState->update())
+		if (nextState = currentState->update(window))
 			currentState = nextState;
 
 		if (dynamic_cast<Quit*>(currentState))

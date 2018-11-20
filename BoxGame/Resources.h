@@ -47,3 +47,4 @@ T & Resources<T>::load(const std::string & name)
 
 template <typename T>
 std::unordered_map<std::string, std::unique_ptr<T>> Resources<T>::table{ };
+

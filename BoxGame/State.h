@@ -10,8 +10,8 @@ class State
 public:
 	~State() = default;
 
-	virtual void process_input() = 0;
-	virtual State* update() = 0;
+	virtual void process_input(sf::RenderWindow& window) = 0;
+	virtual State* update(sf::RenderWindow& window) = 0;
 	virtual void render(sf::RenderWindow& window) = 0;
 
 protected:

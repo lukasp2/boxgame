@@ -13,8 +13,8 @@
 Controls::Controls(State* previous_state)
 	: previous_state{ previous_state }
 {
-	sf::Font& font{ Font_Manager::load("Fonts/courier.ttf") };
-	header.setFont(font);
+	sf::Font& courier_font{ Font_Manager::load("Fonts/courier.ttf") };
+	header.setFont(courier_font);
 	header.setCharacterSize(CHAR_SIZE);
 	header.setFillColor(sf::Color::Green);
 	header.setPosition(sf::Vector2f(X_POS, Y_POS));
@@ -47,7 +47,7 @@ Controls::Controls(State* previous_state)
 		ss << s;
 	
 		text.setString(ss.str());
-		text.setFont(font);
+		text.setFont(courier_font);
 		text.setCharacterSize(CHAR_SIZE);
 		text.setFillColor(sf::Color::Green);
 		text.setPosition(sf::Vector2f(X_POS, static_cast<float>(Y_POS + CHAR_SIZE * ++i)));
@@ -57,16 +57,16 @@ Controls::Controls(State* previous_state)
 
 	bottom = header;
 	bottom.setString("... press enter to return");
-	bottom.setPosition(X_POS, Y_POS + CHAR_SIZE * ++(++i));
+	bottom.setPosition(float(X_POS), float(Y_POS + CHAR_SIZE * ++(++i)));
 
 	inFile.close();
 }
 
-void Controls::process_input()
+void Controls::process_input(sf::RenderWindow& window)
 {
 }
 
-State * Controls::update()
+State* Controls::update(sf::RenderWindow& window)
 {
 	if (option.quit)
 	{
@@ -76,16 +76,20 @@ State * Controls::update()
 	return nullptr;
 }
 
-void Controls::render(sf::RenderWindow & window)
+void Controls::render(sf::RenderWindow& window)
 {
 	while (window.pollEvent(evnt))
 	{
 		switch (evnt.type)
 		{
-		case sf::Event::KeyReleased:
+		case sf::Event::KeyPressed:
 		{
 			switch (evnt.key.code)
 			{
+			case sf::Event::Closed:
+				option.quit = true;
+				break;
+
 			case sf::Keyboard::Enter:
 				option.quit = true;
 				break;

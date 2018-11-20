@@ -9,44 +9,63 @@ Game::Game()
 
 }
 
-void Game::process_input()
+void Game::process_input(sf::RenderWindow& window)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) 
-		option.pause = true; 
+	while (window.pollEvent(evnt))
+	{
+		switch (evnt.type)
+		{
+		case sf::Event::Closed:
+			option.quit = true;
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q));
-		//player.Q();
+		case sf::Event::Resized:
+			aspectRatio = float(window.getSize().x) / float(window.getSize().y);
+			view.setSize(VIEW_SIZE * aspectRatio, VIEW_SIZE);
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W));
-		//player.W();
+		case sf::Event::KeyPressed:
+			switch (evnt.key.code)
+			{
+			case sf::Keyboard::Q:
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+					player.upgrade_Q();
+				else 
+					player.Q();
+				break;
+			case sf::Keyboard::W:
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+					player.upgrade_W();
+				else
+					player.W();
+				break;
+			case sf::Keyboard::E:
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+					player.upgrade_E();
+				else
+					player.E();
+				break;
+			case sf::Keyboard::R:
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+					player.upgrade_R();
+				else
+					player.R();
+				break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E));
-		//player.E();
+			case sf::Keyboard::Tab:
+				//show map
+				break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R));
-		//player.R();
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt) && sf::Keyboard::isKeyPressed(sf::Keyboard::Q));
-		//player.upgrade_Q();
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt) && sf::Keyboard::isKeyPressed(sf::Keyboard::W));
-		//player.upgrade_W();
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt) && sf::Keyboard::isKeyPressed(sf::Keyboard::E));
-		//player.upgrade_E();
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt) && sf::Keyboard::isKeyPressed(sf::Keyboard::R));
-		//player.upgrade_R();
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab));
-		//show map
-
-	//player.update(); move player
-	//if (player.dead == true)
-	//	return GameOver;
+			case sf::Keyboard::Escape:
+				option.pause = true;
+				break;
+			}
+		break;
+		}
+	}
 }
 
-State * Game::update()
+State * Game::update(sf::RenderWindow& window)
 {
 	/*prevent a bug*/
 	deltaTime = clock.restart().asSeconds();
@@ -65,7 +84,7 @@ State * Game::update()
 		return state_ptr.get();
 	}
 
-	player.update(deltaTime);
+	player.update(deltaTime, window);
 	if (player.death_check()) {}
 
 	return nullptr;
@@ -73,28 +92,10 @@ State * Game::update()
 
 void Game::render(sf::RenderWindow & window)
 {
-	while (window.pollEvent(evnt))
-	{
-		switch (evnt.type)
-		{
-		case sf::Event::Closed:
-			option.quit = true;
-			break;
-
-		case sf::Event::Resized:
-			float aspectRatio = float(window.getSize().x) / float(window.getSize().y);
-			view.setSize(VIEW_SIZE * aspectRatio, VIEW_SIZE);
-			break;
-		}
-	}
-
 	window.clear(sf::Color::Black);
-	
+	window.setView(view);
+
 	player.draw(window);
 
 	window.display();
-	window.setView(view);
-
-	//DRAWS//
-	//player.draw(window);
 }
