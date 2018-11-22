@@ -1,14 +1,16 @@
 #pragma once
+#include <memory>
+
 #include "State.h"
 
 class Controls : public State
 {
 public:
-	Controls(State* previous_state);
+	Controls(sf::RenderWindow& window);
 
-	virtual void process_input(sf::RenderWindow& window);
-	virtual State* update(sf::RenderWindow& window);
-	virtual void render(sf::RenderWindow& window);
+	virtual void process_input();
+	virtual State* update();
+	virtual void render();
 
 private:
 	sf::Event evnt;
@@ -25,8 +27,5 @@ private:
 	sf::Text bottom; //"Press Enter to return"
 
 	std::vector<sf::Text> controlVector;
-
-	std::unique_ptr<State> previous_state;
-
 };
 

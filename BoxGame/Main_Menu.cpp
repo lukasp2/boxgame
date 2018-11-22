@@ -10,7 +10,8 @@
 #define Y_POS 0.0f
 #define CHAR_SIZE 35
 
-Main_Menu::Main_Menu()
+Main_Menu::Main_Menu(sf::RenderWindow& window) 
+	: Menu{ window }
 {
 	sf::Font& font{ Font_Manager::load("Fonts/courier.ttf") };
 	header.setFont(font);
@@ -52,7 +53,7 @@ Main_Menu::Main_Menu()
 	menuView.setSize(VIEW_HEIGHT, VIEW_HEIGHT);
 }
 
-void Main_Menu::process_input(sf::RenderWindow& window)
+void Main_Menu::process_input()
 {
 	while (window.pollEvent(evnt))
 	{
@@ -91,40 +92,40 @@ void Main_Menu::process_input(sf::RenderWindow& window)
 	}
 }
 
-State* Main_Menu::update(sf::RenderWindow& window)
+State* Main_Menu::update()
 {
 	if (option.start)
 	{
 		option.start = false;
-		state_ptr = std::make_unique<Game>();
+		state_ptr = std::make_unique<Game>(window);
 		return state_ptr.get();
 	}
 
 	if (option.highscore)
 	{
 		option.highscore = false;
-		state_ptr = std::make_unique<Highscore>(this);
+		state_ptr = std::make_unique<Highscore>(window);
 		return state_ptr.get();
 	}
 
 	if (option.controls)
 	{
 		option.controls = false;
-		state_ptr = std::make_unique<Controls>(this);
+		state_ptr = std::make_unique<Controls>(window);
 		return state_ptr.get();
 	}
 
 	if (option.quit)
 	{
 		option.quit = false;
-		state_ptr = std::make_unique<Quit>();
+		state_ptr = std::make_unique<Quit>(window);
 		return state_ptr.get();
 	}
 
 	return nullptr;
 }
 
-void Main_Menu::render(sf::RenderWindow & window)
+void Main_Menu::render()
 {
 	window.clear(sf::Color::Black);
 	

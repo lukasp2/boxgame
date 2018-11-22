@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Collider.h"
+#include <vector>
 
 class Wall 
 {
@@ -14,6 +15,8 @@ public:
 	void Draw(sf::RenderWindow& window) { window.draw(body); }
 	Collider GetCollider()				{ return Collider(body); }
 	sf::Vector2f& getColDirection()		{ return colDirection; }
+
+	std::vector<Wall> walls;
 
 private:
 	sf::Vector2f colDirection;

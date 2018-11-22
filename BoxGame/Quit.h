@@ -4,12 +4,11 @@
 class Quit : public Menu
 {
 public:
-	Quit();
-	~Quit();
+	Quit(sf::RenderWindow& window) : Menu{ window } {}
+	~Quit() = default;
 
-	virtual void process_input(sf::RenderWindow& window) override {}
-	virtual State* update(sf::RenderWindow& window) override { return nullptr;  }
-	virtual void render(sf::RenderWindow& window) override {}
-
+	virtual void process_input() override {}
+	virtual State* update() override { return nullptr; }
+	virtual void render() override {}
 };
 

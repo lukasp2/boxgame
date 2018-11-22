@@ -3,13 +3,14 @@
 #include <memory>
 #include "Menu.h"
 #include "Quit.h"
+#include "Wall.h"
 
-Game::Game() 
+Game::Game(sf::RenderWindow& window) : State{ window }
 {
-
+	//player.window_ = window;
 }
 
-void Game::process_input(sf::RenderWindow& window)
+void Game::process_input()
 {
 	while (window.pollEvent(evnt))
 	{
@@ -69,7 +70,7 @@ void Game::process_input(sf::RenderWindow& window)
 	}
 }
 
-State * Game::update(sf::RenderWindow& window)
+State* Game::update()
 {
 	/*prevent a bug*/
 	deltaTime = clock.restart().asSeconds();
@@ -84,24 +85,47 @@ State * Game::update(sf::RenderWindow& window)
 	if (option.quit)
 	{
 		option.quit = false;
-		state_ptr = std::make_unique<Quit>();
+		state_ptr = std::make_unique<Quit>(window);
 		return state_ptr.get();
 	}
 
-	player.update(deltaTime, window);
+	player.update(deltaTime);
 	if (player.death_check()) {}
 
+	/*
+	///////////////////////PROJECTILE COLLISION WITH WALLS///////////////////////////////
+	for (auto pit = player.q.projectiles.begin(); pit != player.q.projectiles.end())
+	{
+		Collider projCol = pit->GetCollider();
+		
+		for (Wall& wall : Wall::walls)
+		{
+			//Projectile hits wall			
+			if (wall.GetCollider().CheckCollision(projCol, pit->getColDirection(), 1.0f))
+				pit = player.q.projectiles.erase(pit);
+
+			else
+				pit++;
+		}
+
+		//Projectile is updated and erased after some time
+		if (pit->update(deltaTime, player.getRange()))
+			pit = player.projectiles.erase(pit);
+
+	}
+	/////////////////////////////////////////////////////////////////////////////////////
+	*/
 	
 
 	return nullptr;
 }
 
-void Game::render(sf::RenderWindow & window)
+void Game::render()
 {
 	window.clear(sf::Color::Black);
 	window.setView(view);
 
-	player.draw(window);
+	player.draw();
 
 	window.display();
 }

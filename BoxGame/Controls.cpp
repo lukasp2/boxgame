@@ -10,8 +10,7 @@
 #define Y_POS 0
 #define CHAR_SIZE 35
 
-Controls::Controls(State* previous_state)
-	: previous_state{ previous_state }
+Controls::Controls(sf::RenderWindow& window) : State{ window }
 {
 	sf::Font& courier_font{ Font_Manager::load("Fonts/courier.ttf") };
 	header.setFont(courier_font);
@@ -62,21 +61,23 @@ Controls::Controls(State* previous_state)
 	inFile.close();
 }
 
-void Controls::process_input(sf::RenderWindow& window)
+void Controls::process_input()
 {
 }
 
-State* Controls::update(sf::RenderWindow& window)
+State* Controls::update()
 {
 	if (option.quit)
 	{
-		return previous_state.get();
+		option.quit = false;
+		state_ptr = std::make_unique<Main_Menu>(window);
+		return state_ptr.get();
 	}
 
 	return nullptr;
 }
 
-void Controls::render(sf::RenderWindow& window)
+void Controls::render()
 {
 	while (window.pollEvent(evnt))
 	{

@@ -8,17 +8,18 @@
 class State
 {
 public:
+	State() = delete;
 	~State() = default;
 
-	virtual void process_input(sf::RenderWindow& window) = 0;
-	virtual State* update(sf::RenderWindow& window) = 0;
-	virtual void render(sf::RenderWindow& window) = 0;
+	State(sf::RenderWindow& window) : window { window } {}
+
+	virtual void process_input() = 0;
+	virtual State* update() = 0;
+	virtual void render() = 0;
 
 protected:
 	std::unique_ptr<State> state_ptr;
-
-	// a queue of states
-	std::stack<std::unique_ptr<State>> states;
+	sf::RenderWindow& window;
 };
 
 /*

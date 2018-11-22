@@ -6,11 +6,11 @@
 class Highscore : public State
 {
 public:
-	Highscore(State* previous_state);
+	Highscore(sf::RenderWindow& window);
 	
-	virtual void process_input(sf::RenderWindow& window);
-	virtual State* update(sf::RenderWindow& window);
-	virtual void render(sf::RenderWindow& window);
+	virtual void process_input();
+	virtual State* update();
+	virtual void render();
 
 private:
 	sf::Event evnt;

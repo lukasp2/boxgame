@@ -1,22 +1,28 @@
 #include "Hero.h"
 
-Hero::Hero(sf::Color color, int size, int speed) : speed{ speed }
+Hero::Hero(sf::RenderWindow& window_, sf::Color color, int size, int speed, std::string name) : window_{window_}, speed { speed }, level{}, XP{}
 {
 	body.setRadius(static_cast<float>(size));
 	body.setFillColor(color);
 	body.setOrigin(body.getRadius(), body.getRadius());
 	body.setPosition(0, 0);
+
+	hero_name.setFont(courier_font);
+	hero_name.setCharacterSize(20);
+	hero_name.setFillColor(sf::Color::Green);
+	hero_name.setPosition(sf::Vector2f(-40, 300));
+	hero_name.setString(name);
 }
 
-void Hero::update(float deltaTime, sf::Window& window)
+void Hero::update(float deltaTime)
 {
 	velocity.x *= 0.1f; //so the player doesn't
 	velocity.y *= 0.1f; //accelerate away
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 	{
-		seekPosition = sf::Vector2i(sf::Mouse::getPosition(window).x - window.getSize().x / 2, 
-			sf::Mouse::getPosition(window).y - window.getSize().y / 2);
+		seekPosition = sf::Vector2i(sf::Mouse::getPosition(window_).x - window_.getSize().x / 2, 
+			sf::Mouse::getPosition(window_).y - window_.getSize().y / 2);
 	}
 
 	if (getPosition().y > seekPosition.y)
@@ -38,22 +44,8 @@ void Hero::update(float deltaTime, sf::Window& window)
 		velocity.y = 0;
 
 	body.move(velocity * deltaTime);
-}
 
-void Hero::draw(sf::RenderWindow & window)
-{
-	window.draw(body);	
-	
-	for (Projectile& p : playerProjectiles)
-		p.draw(window);
-
-	sf::Text hero_name;
-	hero_name.setFont(courier_font);
-	hero_name.setCharacterSize(20);
-	hero_name.setFillColor(sf::Color::Green);
-	hero_name.setPosition(sf::Vector2f(-40, 300));
-	hero_name.setString(getName());
-	window.draw(hero_name);
+	update_more(deltaTime);
 }
 
 void Hero::onCollision()

@@ -14,8 +14,7 @@
 #define CHAR_SIZE 35	//text size
 #define NUM_SCORES 10	//numeber of highscores to be displayed
 
-Highscore::Highscore(State* previous_state)
-	: previous_state{ previous_state }
+Highscore::Highscore(sf::RenderWindow& window) : State{ window }
 {
 	sf::Font& courier_font{ Font_Manager::load("Fonts/courier.ttf") };
 	header.setFont(courier_font);
@@ -67,7 +66,7 @@ Highscore::Highscore(State* previous_state)
 	inFile.close();
 }
 
-void Highscore::process_input(sf::RenderWindow& window)
+void Highscore::process_input()
 {
 	while (window.pollEvent(evnt))
 	{
@@ -87,17 +86,19 @@ void Highscore::process_input(sf::RenderWindow& window)
 	}
 }
 
-State* Highscore::update(sf::RenderWindow& window)
+State* Highscore::update()
 {
 	if (option.quit)
 	{
-		return previous_state.get();
+		option.quit = false;
+		state_ptr = std::make_unique<Main_Menu>(window);
+		return state_ptr.get();
 	}
 
 	return nullptr;
 }
 
-void Highscore::render(sf::RenderWindow & window)
+void Highscore::render()
 {
 	window.clear(sf::Color::Black);
 

@@ -9,9 +9,9 @@
 class Menu : public State
 {
 public:
-	virtual void process_input(sf::RenderWindow& window) = 0;
-	virtual State* update(sf::RenderWindow& window) = 0;
-	virtual void render(sf::RenderWindow& window) = 0;
+	virtual void process_input() = 0;
+	virtual State* update() = 0;
+	virtual void render() = 0;
 
 	void moveUp();
 	void moveDown();
@@ -20,6 +20,8 @@ public:
 	virtual void moveLeft() {};
 
 protected:
+	Menu(sf::RenderWindow& window) : State{ window } {}
+
 	float VIEW_HEIGHT{ 1800.0f };
 	sf::View menuView{ sf::Vector2f(900.0f, 800.0f), sf::Vector2f(VIEW_HEIGHT, VIEW_HEIGHT) };
 
@@ -28,6 +30,5 @@ protected:
 	int selection{ 0 };
 
 	sf::Event evnt;
-
 };
 

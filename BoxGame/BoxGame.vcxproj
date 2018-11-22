@@ -133,7 +133,6 @@
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="MovingObject.cpp" />
     <ClCompile Include="Projectile.cpp" />
-    <ClCompile Include="Quit.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>

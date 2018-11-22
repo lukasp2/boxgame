@@ -9,11 +9,11 @@ static const float VIEW_SIZE{ 900.0f };
 class Game : public State
 {
 public:
-	Game();
+	Game(sf::RenderWindow& window);
 
-	virtual void process_input(sf::RenderWindow& window) override;
-	virtual State* update(sf::RenderWindow& window) override;
-	virtual void render(sf::RenderWindow& window) override;
+	virtual void process_input() override;
+	virtual State* update() override;
+	virtual void render() override;
 
 private:
 	sf::View view{ sf::Vector2f(0, 0), sf::Vector2f(VIEW_SIZE, VIEW_SIZE) };
@@ -23,7 +23,7 @@ private:
 	sf::Clock clock;
 	float deltaTime{ 0.0 };
 	
-	Hero_1 player{};
+	Hero_1 player{window};
 
 	struct Options
 	{

@@ -3,11 +3,11 @@
 class Main_Menu : public Menu
 {
 public:
-	Main_Menu();
+	Main_Menu(sf::RenderWindow& window);
 
-	virtual void process_input(sf::RenderWindow& window) override;
-	virtual State* update(sf::RenderWindow& window) override;
-	virtual void render(sf::RenderWindow& window) override;
+	virtual void process_input() override;
+	virtual State* update() override;
+	virtual void render() override;
 
 private:
 	struct Options
