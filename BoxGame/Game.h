@@ -3,6 +3,7 @@
 
 #include "State.h"
 #include "Hero_1.h"
+#include "Warrior.h"
 
 static const float VIEW_SIZE{ 900.0f };
 
@@ -24,6 +25,7 @@ private:
 	float deltaTime{ };
 	
 	Hero_1 player{ window };
+	Warrior warrior{ window };
 
 	struct Options
 	{

@@ -137,6 +137,7 @@
     <ClCompile Include="MovingObject.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Wall.cpp" />
+    <ClCompile Include="Warrior.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Resources.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Wall.h" />
+    <ClInclude Include="Warrior.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="controls.txt" />

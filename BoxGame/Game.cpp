@@ -89,6 +89,8 @@ State* Game::update()
 	player.update(deltaTime);
 	if (player.death_check()) {}
 
+	warrior.update(deltaTime, player.getPosition());
+
 	/*
 	///////////////////////PROJECTILE COLLISION WITH WALLS///////////////////////////////
 	for (auto pit = player.q.projectiles.begin(); pit != player.q.projectiles.end())
@@ -112,7 +114,6 @@ State* Game::update()
 	}
 	/////////////////////////////////////////////////////////////////////////////////////
 	*/
-	
 
 	return nullptr;
 }
@@ -123,6 +124,7 @@ void Game::render()
 	window.setView(view);
 
 	player.draw();
+	warrior.draw();
 
 	window.display();
 }

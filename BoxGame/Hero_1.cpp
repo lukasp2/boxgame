@@ -84,8 +84,3 @@ void Hero_1::upgrade_R()
 }
 
 //void Hero_1::draw() {}
-
-void Hero_1::update_more(float deltaTime)
-{
-
-}

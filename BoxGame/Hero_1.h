@@ -6,8 +6,6 @@ class Hero_1 : public Hero
 public:
 	Hero_1(sf::RenderWindow& window);
 
-	void update_more(float deltaTime) override;
-
 	void Q() override;
 	void W() override;
 	void E() override;
