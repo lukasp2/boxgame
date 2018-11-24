@@ -6,8 +6,9 @@ Warrior::Warrior(sf::RenderWindow& window) :
 	Enemy{ window, sf::Color::Red, 20.0f, 100, 150, 10, "Saruman" }
 {}
 
-void Warrior::update(float deltaTime, sf::Vector2f playerPos)
+void Warrior::update_more(sf::Vector2f playerPos)
 {
+	/*
 	// so the player doesn't accelerate away
 	velocity.x *= 0.1f;
 	velocity.y *= 0.1f;
@@ -47,6 +48,7 @@ void Warrior::update(float deltaTime, sf::Vector2f playerPos)
 	}
 
 	body.move(velocity * deltaTime);
+	*/
 }
 
 void Warrior::draw()

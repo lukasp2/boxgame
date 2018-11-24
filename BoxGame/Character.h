@@ -12,6 +12,7 @@ public:
 
 	bool			death_check() { return health <= 0;			}
 	sf::Vector2f	getPosition() { return body.getPosition();	}
+	void			update();
 	void			move_to(sf::Vector2f& go_Here);
 
 protected:
@@ -24,6 +25,9 @@ protected:
 	int				level;
 	int				XP;
 	sf::Text		name;
+
+	sf::Vector2f startPosition;
+	sf::Vector2f seekPosition;
 
 private:
 	sf::Font& courier_font{ Font_Manager::load("Fonts/courier.ttf") };

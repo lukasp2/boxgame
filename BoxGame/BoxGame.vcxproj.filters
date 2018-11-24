@@ -73,7 +73,7 @@
       <Filter>Source Files\Drawables</Filter>
     </ClCompile>
     <ClCompile Include="Warrior.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Drawables</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,7 +132,7 @@
       <Filter>Header Files\Drawables</Filter>
     </ClInclude>
     <ClInclude Include="Warrior.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Drawables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -32,7 +32,6 @@ protected:
 	std::vector<Projectile> projectiles;
 
 	// needed for inifinite directional movement
-	sf::Vector2f startPosition;
-	sf::Vector2f seekPosition;
+
 
 };
