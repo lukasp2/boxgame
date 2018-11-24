@@ -124,7 +124,7 @@ void Game::render()
 	window.setView(view);
 
 	player.draw();
-	warrior.draw();
+	//warrior.draw();
 
 	window.display();
 }
