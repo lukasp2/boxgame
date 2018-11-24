@@ -5,10 +5,7 @@
 #include "Quit.h"
 #include "Wall.h"
 
-Game::Game(sf::RenderWindow& window) : State{ window }
-{
-	//player.window_ = window;
-}
+Game::Game(sf::RenderWindow& window) : State{ window } {}
 
 void Game::process_input()
 {

@@ -1,22 +1,13 @@
 #include "Projectile.h"
 
-bool Projectile::update(float deltaTime, int range)
+void Projectile::update(float const deltaTime)
 {
-	if (liveTimer > range || deadTimer >= 30)
-	{
-		return true;
-	}
+	MovingObject::update(deltaTime);
 
-	if (!hasHit)
-	{
-		MovingObject::update(deltaTime);
-		liveTimer++;
-
-		return false;
-	}
-
-	deadTimer++;
-
-	return false;
+	lifeTimer++;
 }
 
+bool Projectile::erase()
+{
+	return (lifeTimer > range || hit);
+}

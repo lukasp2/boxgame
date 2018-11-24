@@ -1,49 +1,47 @@
 #pragma once
 #include <SFML\Graphics.hpp>
-#include "Resources.h" 
+
 #include "Projectile.h"
 
-class Hero
+class Hero : public Drawable
 {
 public:
-	Hero(sf::RenderWindow& window_, sf::Color color, int size, int speed, std::string);
 	~Hero() = default;
+	Hero(sf::RenderWindow& window, sf::Color& color, int size, int speed, std::string name);
 
-	void update(float deltaTime);
-	virtual void update_more(float deltaTime) = 0;
+	void			update(float deltaTime);
+	virtual void	update_more(float deltaTime) = 0;
+	void			onCollision();
+	virtual void	draw() = 0;
 
-	bool death_check() { return health <= 0; }
-	
-	void onCollision();
-	virtual void draw() = 0;
+	// abilities
+	virtual void	Q() = 0;
+	virtual void	W() = 0;
+	virtual void	E() = 0;
+	virtual void	R() = 0;
 
-	sf::Vector2f getPosition() { return body.getPosition(); }
+	// upgrades
+	virtual void	upgrade_Q() = 0;
+	virtual void	upgrade_W() = 0;
+	virtual void	upgrade_E() = 0;
+	virtual void	upgrade_R() = 0;
 
-	virtual void Q() = 0;
-	virtual void W() = 0;
-	virtual void E() = 0;
-	virtual void R() = 0;
+	// setters & getters
+	bool			death_check() { return health <= 0;			}
+	sf::Vector2f	getPosition() { return body.getPosition();	}
+	virtual std::string getName() { return "";					}
 
-	virtual void upgrade_Q() = 0;
-	virtual void upgrade_W() = 0;
-	virtual void upgrade_E() = 0;
-	virtual void upgrade_R() = 0;
-
-	virtual std::string getName() { return ""; }
-
-	sf::RenderWindow& window_;
 protected:
-
-	sf::Vector2f velocity;
-	sf::Vector2i seekPosition;
+	std::vector<Projectile> projectiles;
+	sf::Vector2f	velocity;			
+	sf::Vector2f	seekPosition;
 	sf::CircleShape body;
-	sf::Text hero_name;
+	sf::Text		hero_name;
 
-	int health{ 100 };
-	int speed;
-	int level{ 0 };
-	int XP{ 0 };
+	int				health;
+	int				speed;
+	int				level;
+	int				XP;
 
 	sf::Font& courier_font{ Font_Manager::load("Fonts/courier.ttf") };
 };
-

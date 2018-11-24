@@ -1,26 +1,22 @@
 #pragma once
-#include "MovingObject.h"
 #include <vector>
+
+#include "MovingObject.h"
 
 class Projectile : public MovingObject
 {
 public:
-	Projectile(sf::RectangleShape body, float damage, sf::Vector2f velocity, float angle, sf::Vector2f origin)
-		: MovingObject(body, velocity, angle, origin), damage{ damage } {}
-
 	~Projectile() = default;
+	Projectile(sf::RenderWindow& window, sf::Vector2f& velocity, sf::Vector2f& origin, sf::RectangleShape& body, float degrees, size_t damage, size_t range)
+		: MovingObject{ window, velocity, origin, body, degrees}, damage{ damage }, range{ range } { }
 
-	bool update(float deltaTime, int range);
-
-	bool isHit() const { return hasHit; };
-	void setHit() { hasHit = true; };
-	bool isDestroyed() const { return _isDestroyed; };
+	void update(float const deltaTime);
+	bool erase();
 
 private:
-	float damage{};
-	bool hasHit{ false };
-	bool _isDestroyed{ false };
+	size_t		 damage;
+	size_t		 range;
 
-	unsigned int deadTimer{ 0 };
-	unsigned int liveTimer{ 0 };
+	size_t		 lifeTimer{};
+	bool		 hit{ false };
 };

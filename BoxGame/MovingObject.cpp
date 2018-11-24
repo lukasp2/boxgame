@@ -1,18 +1,11 @@
 #include "MovingObject.h"
-#include <iostream>
-MovingObject::MovingObject(sf::RectangleShape body, sf::Vector2f velocity, float angle, sf::Vector2f position)
-	: body{ body }, angle { angle }, velocity{ velocity }
-{
-	std::cout << "pos: " << position.x << ", " << position.y << std::endl;
-	body.setOrigin(body.getSize() / 2.0f);
-	body.setPosition(position);
-	std::cout << "angle: " << angle << std::endl;
-	body.setRotation(angle);
-}
 
-void MovingObject::update(float deltaTime)
+MovingObject::MovingObject(sf::RenderWindow& window, sf::Vector2f& velocity, sf::Vector2f& origin, sf::RectangleShape& _body,  float angle )
+	: Drawable { window }, body { _body }, angle{ angle }, velocity{ velocity }
 {
-	body.move(velocity * deltaTime);
+	body.setOrigin(body.getSize() / 2.0f);
+	body.setPosition(origin);
+	body.setRotation(angle);
 }
 
 void MovingObject::onCollision()
@@ -41,6 +34,3 @@ void MovingObject::onCollision()
 		velocity.y = 0.0f;
 	}
 }
-
-
-
