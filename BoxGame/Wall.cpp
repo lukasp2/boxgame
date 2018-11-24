@@ -1,7 +1,7 @@
 #include "Wall.h"
 
-Wall::Wall(sf::RectangleShape body, sf::Vector2f size, sf::Vector2f position)
-	: body { body }
+Wall::Wall(sf::RenderWindow& window, sf::RectangleShape body, sf::Vector2f size, sf::Vector2f position)
+	: Drawable{ window }, body { body }
 {
 	body.setFillColor(sf::Color(190, 190, 190));
 	body.setSize(size);
@@ -9,7 +9,7 @@ Wall::Wall(sf::RectangleShape body, sf::Vector2f size, sf::Vector2f position)
 	body.setPosition(position);
 }
 
-void Wall::OnCollision()
+void Wall::onCollision()
 {
 	//collision on left
 	if (colDirection.x < 0.0f)		
@@ -26,9 +26,4 @@ void Wall::OnCollision()
 	//collision above
 	else if (colDirection.y > 0.0f)	
 		velocity.y = 0.0f;	
-}
-
-void Wall::update()
-{
-	body.move(velocity);
 }

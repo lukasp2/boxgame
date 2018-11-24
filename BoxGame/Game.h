@@ -11,9 +11,9 @@ class Game : public State
 public:
 	Game(sf::RenderWindow& window);
 
-	virtual void process_input() override;
-	virtual State* update() override;
-	virtual void render() override;
+	virtual void	process_input() override;
+	virtual State*	update()		override;
+	virtual void	render()		override;
 
 private:
 	sf::View view{ sf::Vector2f(0, 0), sf::Vector2f(VIEW_SIZE, VIEW_SIZE) };
@@ -21,9 +21,9 @@ private:
 
 	sf::Event evnt;
 	sf::Clock clock;
-	float deltaTime{ 0.0 };
+	float deltaTime{ };
 	
-	Hero_1 player{window};
+	Hero_1 player{ window };
 
 	struct Options
 	{
@@ -32,7 +32,4 @@ private:
 		bool quit{ false };
 	};
 	Options option;
-
 };
-
-

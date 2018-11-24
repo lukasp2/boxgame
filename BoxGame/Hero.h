@@ -2,8 +2,9 @@
 #include <SFML\Graphics.hpp>
 
 #include "Projectile.h"
+#include "Character.h"
 
-class Hero : public Drawable
+class Hero : public Character
 {
 public:
 	~Hero() = default;
@@ -29,7 +30,7 @@ public:
 	// setters & getters
 	bool			death_check() { return health <= 0;			}
 	sf::Vector2f	getPosition() { return body.getPosition();	}
-	virtual std::string getName() { return name; }
+	virtual std::string getName() { return name;				}
 
 protected:
 	std::vector<Projectile> projectiles;

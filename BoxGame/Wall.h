@@ -1,25 +1,24 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Collider.h"
 #include <vector>
 
-class Wall 
+#include "Collider.h"
+#include "Drawable.h"
+
+class Wall : public Drawable
 {
 public:
-	Wall(sf::RectangleShape body, sf::Vector2f size, sf::Vector2f position);
-	~Wall() = default;
+	Wall(sf::RenderWindow& window, sf::RectangleShape body, sf::Vector2f size, sf::Vector2f position);
 
-	void OnCollision();
-	void update();
+	void			onCollision();
+	void			update()			{ body.move(velocity);	}
+	void			draw() override		{ window.draw(body);	}
 
-	void Draw(sf::RenderWindow& window) { window.draw(body); }
-	Collider GetCollider()				{ return Collider(body); }
-	sf::Vector2f& getColDirection()		{ return colDirection; }
-
-	std::vector<Wall> walls;
+	Collider		getCollider()		{ return Collider(body);}
+	sf::Vector2f&	getColDirection()	{ return colDirection;	}
 
 private:
-	sf::Vector2f colDirection;
-	sf::Vector2f velocity;
-	sf::RectangleShape body;
+	sf::Vector2f		colDirection;
+	sf::Vector2f		velocity;
+	sf::RectangleShape	body;
 };
