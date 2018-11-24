@@ -1,11 +1,13 @@
 #include "Hero_1.h"
 #include <cmath>	// atan2
+#include <iostream>
 
 #define PI 3.14159265
 
-Hero_1::Hero_1(sf::RenderWindow& window) : Hero{ window, color, size, speed, getName() }
+Hero_1::Hero_1(sf::RenderWindow& window) : 
+	Hero { window, sf::Color::Green, 20.0f, 400, "Rolf" }
 {
-	q.projectileShape.setFillColor	(color);
+	q.projectileShape.setFillColor	(sf::Color::Green);
 	q.projectileShape.setSize		(sf::Vector2f(30.0f, 3.0f));
 }
 
@@ -81,10 +83,7 @@ void Hero_1::upgrade_R()
 	r.damage += 20 * r.level;
 }
 
-void Hero_1::draw()
-{
-
-}
+//void Hero_1::draw() {}
 
 void Hero_1::update_more(float deltaTime)
 {

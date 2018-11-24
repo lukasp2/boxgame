@@ -6,7 +6,6 @@ class Hero_1 : public Hero
 public:
 	Hero_1(sf::RenderWindow& window);
 
-	void draw() override;
 	void update_more(float deltaTime) override;
 
 	void Q() override;
@@ -19,25 +18,17 @@ public:
 	void upgrade_E() override;
 	void upgrade_R() override;
 
-	std::string getName() override { return "Rolf"; }
-
 private:
-	// hero base stats
-	sf::Color color { sf::Color::Green };
-	int health		{ 100 };
-	int speed		{ 400 };
-	int size		{  20 };
-
 	// ability q
 	struct q
 	{
 		q() : damage{ 40 }, range{ 1000 }, velocity{ 800 }, level{ 0 } {}
 
+		int					level;			// level of the ability
+		float				velocity;		// how fast it travels
 		size_t				damage;			// amount of damage
 		size_t				range;			// range
 		sf::RectangleShape  projectileShape;// shape of projectile
-		float				velocity;		// how fast it travels
-		int					level;			// level of the ability
 	}; q q;
 
 	// ability w

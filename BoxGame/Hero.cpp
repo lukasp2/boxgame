@@ -1,10 +1,13 @@
 #include "Hero.h"
 
-Hero::Hero(sf::RenderWindow& window, sf::Color& color, int size, int speed, std::string name) 
-	: Drawable{ window }, speed{ speed }, level{}, XP{}, health{ 100 }
+#include <iostream>
+
+
+Hero::Hero(sf::RenderWindow& window, sf::Color color, float size, int speed, std::string name) 
+	: Drawable{ window }, speed{ speed }, size{ size }, level{}, XP{}, health{ 100 }
 {
 	// set hero body
-	body.setRadius				(static_cast<float>(size));
+	body.setRadius				(size);
 	body.setFillColor			(sf::Color::Black);
 	body.setOutlineColor		(color);
 	body.setOutlineThickness	(2.0f);
