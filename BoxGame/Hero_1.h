@@ -17,40 +17,35 @@ public:
 	void upgrade_R() override;
 
 private:
-	// ability q
 	struct q
 	{
 		q() : damage{ 40 }, range{ 1000 }, velocity{ 800 }, level{ 0 } {}
+		int		level;
+		float	velocity;
+		size_t	damage;
+		size_t	range;
+		sf::RectangleShape  projectileShape;
+	}; q q{};
 
-		int					level;			// level of the ability
-		float				velocity;		// how fast it travels
-		size_t				damage;			// amount of damage
-		size_t				range;			// range
-		sf::RectangleShape  projectileShape;// shape of projectile
-	}; q q;
-
-	// ability w
 	struct w 
 	{
 		w() : level{ 0 }, flash_length{ 200 } {}
 		int	level{ };
 		int	flash_length{ };
-	}; w w;
+	}; w w{};
 
-	// ability e
 	struct e 
 	{
 		e() : level{ 0 }, heal{ 200 } {}
 		int	level{ };
 		int	heal{ };
-	}; e e;
+	}; e e{};
 
-	// ability r
 	struct r
 	{
 		r() : level{ 0 }, damage{ 200 } {}
 		int	level{ };
 		int	damage{ };
-	}; r r;
+	}; r r{};
 };
 

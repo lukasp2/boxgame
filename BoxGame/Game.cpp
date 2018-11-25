@@ -5,7 +5,10 @@
 #include "Quit.h"
 #include "Wall.h"
 
-Game::Game(sf::RenderWindow& window) : State{ window } {}
+Game::Game(sf::RenderWindow& window) : State{ window } 
+{
+
+}
 
 void Game::process_input()
 {
@@ -69,14 +72,17 @@ void Game::process_input()
 
 State* Game::update()
 {
-	/*prevent a bug*/
+	/*prevents a bug*/
 	deltaTime = clock.restart().asSeconds();
-	if (deltaTime > 1.0f / 20.0f) deltaTime = 1.0f / 20.0f;
+	if (deltaTime > 1.0f / 20.0f)
+	{
+		deltaTime = 1.0f / 20.0f;
+	}
 
 	if (option.pause)
 	{
 		option.pause = false;
-		//return pauseState;
+		// return pauseState;
 	}
 
 	if (option.quit)
@@ -87,28 +93,23 @@ State* Game::update()
 	}
 
 	player.update(deltaTime);
-	if (player.death_check()) {}
 
-	// should be replaces with enemy.update
-	// enemy has a std::vector of enemies
-	for (Enemy& e : enemies)
+	projectile.update(deltaTime, player.getProjectiles());
+
+	projectile.checkCollision(player.getProjectiles(), enemies);
+
+	for (Enemy& enemy : enemies)
 	{
-		e.update(deltaTime, player.getPosition());
+		enemy.update(deltaTime, player.getPosition());
+		
+		projectile.update(deltaTime, enemy.getProjectiles());
+		
+		projectile.checkCollision(enemy.getProjectiles(), player);
 	}
-
-	// should be replaced with projectile.update
-	// projectile has two std::vectors: playerProjectiles and enemyProjectiles
-	for (auto pit = player.projectiles.begin(); pit != player.projectiles.end(); )
+	
+	if (player.is_dead())
 	{
-		for (Enemy& e : enemies)
-		{
-			//Projectile hits enemy			
-			if (e.checkCollision(pit->body, pit->getColDirection()))
-				pit = player.projectiles.erase(pit);
-
-			else
-				pit++;
-		}
+		// return game over state
 	}
 
 	return nullptr;
@@ -117,13 +118,15 @@ State* Game::update()
 void Game::render()
 {
 	window.clear(sf::Color::Black);
+	
 	window.setView(view);
 
 	player.draw();
 
-	// should be replaced with enemy.draw
-	// enemy has a draw function and a std::vector of enemies
-	warrior.draw();
+	for (Enemy& e : enemies)
+	{
+		e.draw();
+	}
 
 	window.display();
 }

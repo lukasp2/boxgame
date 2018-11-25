@@ -1,9 +1,6 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <vector>
-
-#include "Collider.h"
 #include "Drawable.h"
+#include "Collider.h"
 
 class Wall : public Drawable
 {

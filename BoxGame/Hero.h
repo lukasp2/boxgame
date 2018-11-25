@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 
-#include "Projectile.h"
 #include "Character.h"
 
 class Hero : public Character
@@ -10,8 +9,7 @@ public:
 	~Hero() = default;
 	Hero(sf::RenderWindow& window, sf::Color color, float size, int speed, std::string name);
 
-	void			update(float deltaTime) override;
-	virtual void	draw();
+	virtual void	update(float deltaTime) override;
 
 	// abilities
 	virtual void	Q() = 0;
@@ -24,10 +22,4 @@ public:
 	virtual void	upgrade_W() = 0;
 	virtual void	upgrade_E() = 0;
 	virtual void	upgrade_R() = 0;
-
-protected:
-	std::vector<Projectile> projectiles;
-
-
-
 };

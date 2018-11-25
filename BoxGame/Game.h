@@ -3,7 +3,8 @@
 
 #include "State.h"
 #include "Hero_1.h"
-#include "Warrior.h"
+#include "Projectile.h"
+#include "Enemy.h"
 
 static const float VIEW_SIZE{ 900.0f };
 
@@ -22,16 +23,14 @@ private:
 
 	sf::Event evnt;
 	sf::Clock clock;
-	float deltaTime{ };
+	float deltaTime;
 	
 	Hero_1 player{ window };
 	std::vector<Enemy> enemies;
-
-	//Warrior warrior{ window };
+	Projectile projectile{ window };
 
 	struct Options
 	{
-		bool dead{ false };
 		bool pause{ false };
 		bool quit{ false };
 	};
