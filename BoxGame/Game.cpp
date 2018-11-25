@@ -89,31 +89,27 @@ State* Game::update()
 	player.update(deltaTime);
 	if (player.death_check()) {}
 
-	warrior.update(deltaTime, player.getPosition());
-
-	/*
-	///////////////////////PROJECTILE COLLISION WITH WALLS///////////////////////////////
-	for (auto pit = player.q.projectiles.begin(); pit != player.q.projectiles.end())
+	// should be replaces with enemy.update
+	// enemy has a std::vector of enemies
+	for (Enemy& e : enemies)
 	{
-		Collider projCol = pit->GetCollider();
-		
-		for (Wall& wall : Wall::walls)
+		e.update(deltaTime, player.getPosition());
+	}
+
+	// should be replaced with projectile.update
+	// projectile has two std::vectors: playerProjectiles and enemyProjectiles
+	for (auto pit = player.projectiles.begin(); pit != player.projectiles.end(); )
+	{
+		for (Enemy& e : enemies)
 		{
-			//Projectile hits wall			
-			if (wall.GetCollider().CheckCollision(projCol, pit->getColDirection(), 1.0f))
-				pit = player.q.projectiles.erase(pit);
+			//Projectile hits enemy			
+			if (e.checkCollision(pit->body, pit->getColDirection()))
+				pit = player.projectiles.erase(pit);
 
 			else
 				pit++;
 		}
-
-		//Projectile is updated and erased after some time
-		if (pit->update(deltaTime, player.getRange()))
-			pit = player.projectiles.erase(pit);
-
 	}
-	/////////////////////////////////////////////////////////////////////////////////////
-	*/
 
 	return nullptr;
 }
@@ -124,6 +120,9 @@ void Game::render()
 	window.setView(view);
 
 	player.draw();
+
+	// should be replaced with enemy.draw
+	// enemy has a draw function and a std::vector of enemies
 	warrior.draw();
 
 	window.display();

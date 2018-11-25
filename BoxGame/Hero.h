@@ -25,13 +25,9 @@ public:
 	virtual void	upgrade_E() = 0;
 	virtual void	upgrade_R() = 0;
 
-	// setters & getters
-	//virtual std::string getName() { return name;				}
-
 protected:
 	std::vector<Projectile> projectiles;
 
-	// needed for inifinite directional movement
 
 
 };

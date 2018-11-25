@@ -17,8 +17,8 @@ public:
 	
 	void			setPosition(sf::Vector2f pos)	{ body.setPosition(pos);	}
 	sf::Vector2f	getPosition()					{ return body.getPosition();}
-	sf::Vector2f &	getColDirection()				{ return colDirection;		}
-	Collider		getCollider()					{ return Collider(body);	}
+	//sf::Vector2f &	getColDirection()				{ return colDirection;		}
+	//Collider		getCollider()					{ return Collider(body);	}
 
 protected:
 	sf::RectangleShape	body;

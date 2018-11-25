@@ -4,15 +4,11 @@
 class Collider
 {
 public:
-	Collider(sf::RectangleShape& body) : body{ body } {}
-	~Collider() {}
+	Collider(sf::Shape& body) : body{ body } {}
 
-	bool checkCollision(Collider& other, sf::Vector2f& direction);
-	bool checkCollision(Collider& other, sf::Vector2f& direction, float push);
+	bool checkCollision(sf::Shape& other, sf::Vector2f& direction);
+	//bool checkCollision(Collider& other, sf::Vector2f& direction, float push);
 
-	sf::RectangleShape& body;
-
-private:
-	sf::Vector2f direction;
+	sf::Shape& body;
 };
 

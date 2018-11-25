@@ -1,21 +1,37 @@
 #include "Collider.h"
 
-bool Collider::checkCollision(Collider & other, sf::Vector2f & direction)
+sf::Vector2f getHalfSize(sf::Shape& shape)
 {
-	sf::Vector2f otherHalfSize = other.body.getSize() / 2.0f;
-	sf::Vector2f thisHalfSize = body.getSize() / 2.0f;
+	sf::Vector2f shapeHalfSize;
 
-	float delta_x = other.body.getPosition().x - body.getPosition().x;
-	float delta_y = other.body.getPosition().y - body.getPosition().y;
-
-	float intersectX = abs(delta_x) - (otherHalfSize.x + thisHalfSize.x);
-	float intersectY = abs(delta_y) - (otherHalfSize.y + thisHalfSize.y);
-
-	// if collision
-	if (intersectX < 0.0f && intersectY < 0.0f) 
+	if (sf::RectangleShape* s = dynamic_cast<sf::RectangleShape*>(&shape))
 	{
-		// if collision on X-axis
-		if (intersectX > intersectY) 
+		shapeHalfSize = s->getSize() / 2.0f;
+	}
+	else if (sf::CircleShape* s = dynamic_cast<sf::CircleShape*>(&shape))
+	{
+		shapeHalfSize = sf::Vector2f{ s->getRadius(), s->getRadius() };
+	}
+	
+	return shapeHalfSize;
+}
+
+bool Collider::checkCollision(sf::Shape& other, sf::Vector2f& direction)
+{
+	float delta_x = other.getPosition().x - body.getPosition().x;
+	float delta_y = other.getPosition().y - body.getPosition().y;
+
+	sf::Vector2f ourSize = getHalfSize(body);
+	sf::Vector2f theirSize = getHalfSize(other);
+
+	float intersect_x = abs(delta_x) - (theirSize.x + ourSize.x);
+	float intersect_y = abs(delta_y) - (theirSize.y + ourSize.y);
+
+	// collision
+	if (intersect_x < 0.0f && intersect_y < 0.0f) 
+	{
+		// collision on x-axis
+		if (intersect_x > intersect_y) 
 		{
 			// direction to push to
 			if (delta_x > 0.0f) 
@@ -31,7 +47,7 @@ bool Collider::checkCollision(Collider & other, sf::Vector2f & direction)
 				direction.y = 0.0f;
 			}
 		}
-		// if collision on Y - axis
+		// collision on y-axis
 		else 
 		{ 
 			if (delta_y > 0.0f)
@@ -52,6 +68,7 @@ bool Collider::checkCollision(Collider & other, sf::Vector2f & direction)
 	return false;
 }
 
+/*
 bool Collider::checkCollision(Collider& other, sf::Vector2f& direction, float push)
 {
 	sf::Vector2f otherHalfSize = other.body.getSize() / 2.0f;
@@ -101,5 +118,6 @@ bool Collider::checkCollision(Collider& other, sf::Vector2f& direction, float pu
 	
 	return false;
 }
+*/
 
 

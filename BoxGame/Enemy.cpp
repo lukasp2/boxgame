@@ -10,9 +10,10 @@ void Enemy::update(float deltaTime, sf::Vector2f playerPos)
 	velocity.x *= 0.1f;
 	velocity.y *= 0.1f;
 
+	seekPosition = playerPos;
+
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right))
 	{
-		seekPosition = sf::Vector2f{ playerPos };
 		startPosition = sf::Vector2f{ body.getPosition().x, body.getPosition().y };
 	}
 

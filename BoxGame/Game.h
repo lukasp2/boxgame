@@ -25,7 +25,9 @@ private:
 	float deltaTime{ };
 	
 	Hero_1 player{ window };
-	Warrior warrior{ window };
+	std::vector<Enemy> enemies;
+
+	//Warrior warrior{ window };
 
 	struct Options
 	{

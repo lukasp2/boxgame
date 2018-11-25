@@ -38,3 +38,22 @@ void Character::move_to(sf::Vector2f& go_Here)
 		velocity.x += speed;
 	}
 }
+
+void Character::onCollision()
+{
+	//collision on left
+	if (colDirection.x < 0.0f)	
+		velocity.x = 0.0f;	
+	
+	//collision on right
+	else if (colDirection.x > 0.0f)	
+		velocity.x = 0.0f;	
+	
+	//collsion on right
+	if (colDirection.y < 0.0f) 
+		velocity.y = 0.0f;	
+	
+	//collision below
+	else if (colDirection.y > 0.0f)	
+		velocity.y = 0.0f;	
+}
