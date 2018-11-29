@@ -9,7 +9,7 @@ public:
 	~Hero() = default;
 	Hero(sf::RenderWindow& window, sf::Color color, float size, int speed, std::string name);
 
-	virtual void	update(float deltaTime) override;
+	void	update(float deltaTime);
 
 	// abilities
 	virtual void	Q() = 0;

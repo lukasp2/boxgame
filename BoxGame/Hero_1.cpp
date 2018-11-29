@@ -5,7 +5,7 @@
 #define PI 3.14159265
 
 Hero_1::Hero_1(sf::RenderWindow& window) : 
-	Hero { window, sf::Color::Green, 20.0f, 400, "Rolf" }
+	Hero { window, sf::Color::Green, 20.0f, 3, "Rolf" }
 {
 	q.projectileShape.setFillColor	(sf::Color::Green);
 	q.projectileShape.setSize		(sf::Vector2f(30.0f, 3.0f));

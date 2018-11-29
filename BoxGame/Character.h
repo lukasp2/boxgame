@@ -9,9 +9,8 @@ public:
 	Character(sf::RenderWindow& window, float size, int speed, int health, std::string name, sf::Color color);
 
 	virtual void	draw();
-	virtual void	update(float deltaTime) = 0;
+	virtual void	draw_more() {};
 
-	void			move_to(sf::Vector2f& go_Here);
 	void			calculateOptimalMovement();
 	bool			is_dead()			{ return health <= 0;	}
 
@@ -42,7 +41,7 @@ protected:
 	// needed for inifinite directional movement
 	sf::Vector2f	startPosition;
 	sf::Vector2f	seekPosition;
-
+	int				x;
 private:
 	sf::Font&		courier_font{ Font_Manager::load("Fonts/courier.ttf") };
 };

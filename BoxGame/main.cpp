@@ -8,7 +8,6 @@
 int main()
 {
 	sf::RenderWindow window{ sf::VideoMode(900, 900), "Game", sf::Style::Default };
-
 	window.setFramerateLimit(144);
 
 	std::unique_ptr<Menu> mainMenu = std::make_unique<Main_Menu>(window);

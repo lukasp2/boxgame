@@ -19,7 +19,7 @@ public:
 private:
 	struct q
 	{
-		q() : damage{ 40 }, range{ 1000 }, velocity{ 800 }, level{ 0 } {}
+		q() : damage{ 15 }, range{ 1000 }, velocity{ 800 }, level{ 0 } {}
 		int		level;
 		float	velocity;
 		size_t	damage;

@@ -1,11 +1,13 @@
 #include "Projectile.h"
+#include "Enemy.h"
+#include "Hero.h"
+#include <iostream>
 
 void Projectile::update(float const deltaTime, std::vector<Projectile>& projectiles)
 {
 	for (auto pit = projectiles.begin(); pit != projectiles.end(); )
 	{
-		//pit->MovingObject::update(deltaTime);
-		pit->body.move(velocity * deltaTime);
+		pit->MovingObject::update(deltaTime);
 
 		if (pit->erase())
 		{
@@ -14,7 +16,7 @@ void Projectile::update(float const deltaTime, std::vector<Projectile>& projecti
 		else
 		{
 		}
-		pit++;
+			pit++;
 	}
 	
 	lifeTimer++;
@@ -37,18 +39,22 @@ void Projectile::checkCollision(std::vector<Projectile>& projectiles, std::vecto
 {
 	for (auto pit = projectiles.begin(); pit != projectiles.end(); ++pit )
 	{
-		for (Enemy& enemy : enemies)
+		for (auto eit = enemies.begin(); eit != enemies.end(); eit++ )
 		{
-			if (enemy.getCollider().checkCollision(pit->body, enemy.getColDirection()))
+			if (eit->getCollider().checkCollision(pit->body, eit->getColDirection()))
 			{
-				enemy.setHealth( enemy.getHealth() - pit->getDamage() );
 				pit->hit = true;
+				eit->got_damaged(pit->getDamage());
+			}
+			else
+			{
+				//eit = enemies.erase(eit);
 			}
 		}
 	}
 }
 
-void Projectile::checkCollision(std::vector<Projectile>& projectiles, Hero & player)
+void Projectile::checkCollision(std::vector<Projectile>& projectiles, Hero& player)
 {
 	for (auto pit = projectiles.begin(); pit != projectiles.end(); )
 	{

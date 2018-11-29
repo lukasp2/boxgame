@@ -5,7 +5,11 @@
 
 Hero::Hero(sf::RenderWindow& window, sf::Color color, float size, int speed, std::string name) 
 	: Character{ window, size, speed, 100, name, color }
-{}
+{
+	Character::name.setFillColor(sf::Color::Green);
+	Character::name.setCharacterSize(20);
+}
+
 
 void Hero::update(float deltaTime)
 {
@@ -16,6 +20,8 @@ void Hero::update(float deltaTime)
 
 		seekPosition = sf::Vector2f{ mouse_posx, mouse_posy };
 		startPosition = sf::Vector2f{ body.getPosition().x, body.getPosition().y };
+
+		x = 0;
 	}
 	
 	Character::calculateOptimalMovement();

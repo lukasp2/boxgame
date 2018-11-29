@@ -2,8 +2,9 @@
 #include <vector>
 
 #include "MovingObject.h"
-#include "Enemy.h"
-#include "Hero.h"
+
+class Enemy;
+class Hero;
 
 class Projectile : public MovingObject
 {

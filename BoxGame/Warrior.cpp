@@ -3,7 +3,7 @@
 
 Warrior::Warrior(sf::RenderWindow& window) :
 	// color, size, speed, health, damage, name
-	Enemy{ window, sf::Color::Red, 20.0f, 100, 150, 10, "Saruman" }
+	Enemy{ window, sf::Color::Red, 20.0f, 1, 150, 10, "Warrior" }
 {
 
 }

@@ -29,6 +29,9 @@ private:
 	std::vector<Enemy> enemies;
 	Projectile projectile{ window };
 
+	std::unique_ptr<Hero> player;
+	std::vector< std::unique_ptr<Drawable> > entities;
+
 	struct Options
 	{
 		bool pause{ false };

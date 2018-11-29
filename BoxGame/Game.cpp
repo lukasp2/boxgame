@@ -4,10 +4,12 @@
 #include "Menu.h"
 #include "Quit.h"
 #include "Wall.h"
+#include "Warrior.h"
 
 Game::Game(sf::RenderWindow& window) : State{ window } 
 {
-
+	Warrior w {window};
+	enemies.push_back(w);
 }
 
 void Game::process_input()
@@ -122,10 +124,14 @@ void Game::render()
 	window.setView(view);
 
 	player.draw();
+	
+	projectile.draw(player.getProjectiles());
 
 	for (Enemy& e : enemies)
 	{
 		e.draw();
+		
+		projectile.draw(e.getProjectiles());
 	}
 
 	window.display();
