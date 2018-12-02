@@ -1,15 +1,16 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 
+#include "Game.h"
 #include "Character.h"
 
 class Hero : public Character
 {
 public:
 	~Hero() = default;
-	Hero(sf::RenderWindow& window, sf::Color color, float size, int speed, std::string name);
+	Hero(Game& game, sf::Color color, float size, int speed, std::string name);
 
-	void	update(float deltaTime);
+	void update(float deltaTime) override;
 
 	// abilities
 	virtual void	Q() = 0;

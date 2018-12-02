@@ -17,9 +17,10 @@ public:
 	virtual State* update() = 0;
 	virtual void render() = 0;
 
+	sf::RenderWindow& window;
+
 protected:
 	std::unique_ptr<State> state_ptr;
-	sf::RenderWindow& window;
 };
 
 /*

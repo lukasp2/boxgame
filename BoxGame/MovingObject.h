@@ -1,17 +1,19 @@
 #pragma once
-#include "Drawable.h"
+
+#include "Game.h"
+#include "Entity.h"
 #include "Collider.h"
 
-class MovingObject : public Drawable
+class MovingObject : public Entity
 {
 public:
 	~MovingObject() = default;
-	MovingObject(sf::RenderWindow& window) : Drawable{ window } {}
-	MovingObject(sf::RenderWindow& window, sf::Vector2f& velocity, sf::Vector2f& origin, sf::RectangleShape& _body, float angle);
+	MovingObject(Game& game) : Entity{ game } {}
+	MovingObject(Game& game, sf::Vector2f& velocity, sf::Vector2f& origin, sf::RectangleShape& _body, float angle);
 
 	void onCollision();
-	void update(float deltaTime)	{ body.move(velocity * deltaTime); }
-	virtual void draw() {};
+	void update(float deltaTime)					{ body.move(velocity * deltaTime); }
+	virtual void draw() = 0;
 	
 	void			setPosition(sf::Vector2f pos)	{ body.setPosition(pos);	}
 	sf::Vector2f	getPosition()					{ return body.getPosition();}

@@ -1,7 +1,7 @@
 #include "Wall.h"
 
-Wall::Wall(sf::RenderWindow& window, sf::RectangleShape body, sf::Vector2f size, sf::Vector2f position)
-	: Drawable{ window }, body { body }
+Wall::Wall(Game& game, sf::RectangleShape body, sf::Vector2f size, sf::Vector2f position)
+	: Entity{ game }, body { body }
 {
 	body.setFillColor(sf::Color(190, 190, 190));
 	body.setSize(size);

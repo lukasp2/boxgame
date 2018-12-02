@@ -1,10 +1,11 @@
 #pragma once
 #include "Hero.h"
+#include "Game.h"
 
 class Hero_1 : public Hero
 {
 public:
-	Hero_1(sf::RenderWindow& window);
+	Hero_1(Game& game);
 
 	void Q() override;
 	void W() override;

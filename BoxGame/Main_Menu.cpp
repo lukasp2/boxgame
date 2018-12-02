@@ -6,6 +6,8 @@
 #include "Quit.h"
 #include "Controls.h"
 
+#include "Hero_1.h"
+
 #define X_POS 100.0f
 #define Y_POS 0.0f
 #define CHAR_SIZE 35
@@ -97,7 +99,10 @@ State* Main_Menu::update()
 	if (option.start)
 	{
 		option.start = false;
+
 		state_ptr = std::make_unique<Game>(window);
+		//state_ptr->Game::player = std::make_unique<Hero_1>(*state_ptr);
+
 		return state_ptr.get();
 	}
 

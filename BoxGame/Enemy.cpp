@@ -1,7 +1,8 @@
 #include "Enemy.h"
+#include "Hero.h"
 
-Enemy::Enemy(sf::RenderWindow& window, sf::Color color, float size, int speed, int health, size_t damage, std::string name)
-	: Character{ window, size, speed, health, name, color }
+Enemy::Enemy(Game& game, sf::Color color, float size, int speed, int health, size_t damage, std::string name)
+	: Character{ game, size, speed, health, name, color }
 {
 	Character::name.setFillColor(color);
 	Character::name.setCharacterSize(15);
@@ -13,9 +14,9 @@ Enemy::Enemy(sf::RenderWindow& window, sf::Color color, float size, int speed, i
 	bar.setOutlineThickness(1);
 }
 
-void Enemy::update(float deltaTime, sf::Vector2f playerPos)
+void Enemy::update(float deltaTime)
 {
-	seekPosition = playerPos;
+	seekPosition = game.player->getPosition();
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right))
 	{
@@ -23,15 +24,13 @@ void Enemy::update(float deltaTime, sf::Vector2f playerPos)
 		x = 0;
 	}
 
-	Character::calculateOptimalMovement();
+	Character::move();
 
 	//update_more(playerPos)?
 
-	//name.setPosition(body.getPosition().x - body.getRadius() - 10, body.getPosition().y - body.getRadius() - 30);
+	name.setPosition(body.getPosition().x - body.getRadius() - 10, body.getPosition().y - body.getRadius() - 40);
 	bar.setPosition(body.getPosition().x - body.getRadius() - 3, body.getPosition().y - body.getRadius() - 12);
 	healthBar.setPosition(body.getPosition().x - body.getRadius() - 3, body.getPosition().y - body.getRadius() - 12);
-
-	body.move(velocity * deltaTime);
 }
 
 void Enemy::draw_more()
@@ -43,5 +42,5 @@ void Enemy::draw_more()
 void Enemy::got_damaged(size_t damage)
 {
 	health -= damage;
-	healthBar.setScale(health / 100.0, 1);
+	healthBar.setScale(health / float(100.0), 1);
 }

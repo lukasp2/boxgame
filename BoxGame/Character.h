@@ -1,22 +1,25 @@
 #pragma once
-#include "Drawable.h"
+#include "Entity.h"
+#include "Game.h"
 #include "Collider.h"
 #include "Projectile.h"
 
-class Character : public Drawable
+class Character : public Entity
 {
 public:
-	Character(sf::RenderWindow& window, float size, int speed, int health, std::string name, sf::Color color);
+	///Character(sf::RenderWindow& window, float size, int speed, int health, std::string name, sf::Color color);
+	Character(Game& game, float size, int speed, int health, std::string name, sf::Color color);
 
-	virtual void	draw();
+	virtual void	draw() override;
 	virtual void	draw_more() {};
+	virtual void	update(float deltaTime) = 0;
 
-	void			calculateOptimalMovement();
-	bool			is_dead()			{ return health <= 0;	}
+	void			move();
+	bool			is_dead()					{ return health <= 0;	}
 
-	sf::Vector2f&	getColDirection()	{ return colDirection;	}
+	sf::Vector2f&	getColDirection()			{ return colDirection;	}
 	void			onCollision();
-	Collider		getCollider()		{ return Collider{ body };	}
+	Collider		getCollider()				{ return Collider{ body };	}
 
 	sf::Vector2f	getPosition()				{ return body.getPosition(); }
 	std::vector<Projectile>& getProjectiles()	{ return projectiles; }
@@ -42,6 +45,4 @@ protected:
 	sf::Vector2f	startPosition;
 	sf::Vector2f	seekPosition;
 	int				x;
-private:
-	sf::Font&		courier_font{ Font_Manager::load("Fonts/courier.ttf") };
 };

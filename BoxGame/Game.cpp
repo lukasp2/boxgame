@@ -5,11 +5,15 @@
 #include "Quit.h"
 #include "Wall.h"
 #include "Warrior.h"
+#include "Hero.h"
+#include "Hero_1.h"
+#include "Entity.h"
 
-Game::Game(sf::RenderWindow& window) : State{ window } 
+Game::Game(sf::RenderWindow& window) : State{ window }
 {
-	Warrior w {window};
-	enemies.push_back(w);
+	player = std::make_unique<Hero_1>(*this);
+
+	entities.push_back( std::make_unique<Enemy>(Warrior{ *this }) );
 }
 
 void Game::process_input()
@@ -32,27 +36,27 @@ void Game::process_input()
 			{
 			case sf::Keyboard::Q:
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-					player.upgrade_Q();
+					player->upgrade_Q();
 				else 
-					player.Q();
+					player->Q();
 				break;
 			case sf::Keyboard::W:
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-					player.upgrade_W();
+					player->upgrade_W();
 				else
-					player.W();
+					player->W();
 				break;
 			case sf::Keyboard::E:
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-					player.upgrade_E();
+					player->upgrade_E();
 				else
-					player.E();
+					player->E();
 				break;
 			case sf::Keyboard::R:
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-					player.upgrade_R();
+					player->upgrade_R();
 				else
-					player.R();
+					player->R();
 				break;
 
 			case sf::Keyboard::Tab:
@@ -93,25 +97,15 @@ State* Game::update()
 		state_ptr = std::make_unique<Quit>(window);
 		return state_ptr.get();
 	}
-
-	player.update(deltaTime);
-
-	projectile.update(deltaTime, player.getProjectiles());
-
-	projectile.checkCollision(player.getProjectiles(), enemies);
-
-	for (Enemy& enemy : enemies)
-	{
-		enemy.update(deltaTime, player.getPosition());
-		
-		projectile.update(deltaTime, enemy.getProjectiles());
-		
-		projectile.checkCollision(enemy.getProjectiles(), player);
-	}
 	
-	if (player.is_dead())
+	if (player->is_dead())
 	{
 		// return game over state
+	}
+
+	for (auto&& entity : entities)
+	{
+		entity->update(deltaTime);
 	}
 
 	return nullptr;
@@ -123,15 +117,9 @@ void Game::render()
 	
 	window.setView(view);
 
-	player.draw();
-	
-	projectile.draw(player.getProjectiles());
-
-	for (Enemy& e : enemies)
+	for (auto&& entity : entities)
 	{
-		e.draw();
-		
-		projectile.draw(e.getProjectiles());
+		entity->draw();
 	}
 
 	window.display();

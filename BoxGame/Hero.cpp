@@ -3,13 +3,12 @@
 
 #define PI 3.14159265
 
-Hero::Hero(sf::RenderWindow& window, sf::Color color, float size, int speed, std::string name) 
-	: Character{ window, size, speed, 100, name, color }
+Hero::Hero(Game& game, sf::Color color, float size, int speed, std::string name) 
+	: Character{ game, size, speed, 100, name, color }
 {
 	Character::name.setFillColor(sf::Color::Green);
 	Character::name.setCharacterSize(20);
 }
-
 
 void Hero::update(float deltaTime)
 {
@@ -24,7 +23,5 @@ void Hero::update(float deltaTime)
 		x = 0;
 	}
 	
-	Character::calculateOptimalMovement();
-	
-	body.move(velocity * deltaTime);
+	Character::move();
 }

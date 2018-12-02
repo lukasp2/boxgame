@@ -1,11 +1,11 @@
 #pragma once
-#include "Drawable.h"
+#include "Entity.h"
 #include "Collider.h"
 
-class Wall : public Drawable
+class Wall : public Entity
 {
 public:
-	Wall(sf::RenderWindow& window, sf::RectangleShape body, sf::Vector2f size, sf::Vector2f position);
+	Wall(Game& game, sf::RectangleShape body, sf::Vector2f size, sf::Vector2f position);
 
 	void			onCollision();
 	void			update()			{ body.move(velocity);	}

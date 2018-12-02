@@ -4,8 +4,7 @@
 
 #define PI 3.14159265
 
-Hero_1::Hero_1(sf::RenderWindow& window) : 
-	Hero { window, sf::Color::Green, 20.0f, 3, "Rolf" }
+Hero_1::Hero_1(Game& game) : Hero { game, sf::Color::Green, 20.0f, 3, "Rolf" }
 {
 	q.projectileShape.setFillColor	(sf::Color::Green);
 	q.projectileShape.setSize		(sf::Vector2f(30.0f, 3.0f));
@@ -25,7 +24,10 @@ void Hero_1::Q()
 	sf::Vector2f velocity { q.velocity * x, q.velocity * y };
 	sf::Vector2f origin	{ body.getPosition().x + 2 * size * x, body.getPosition().y + 2 * size * y };
 
-	projectiles.push_back( Projectile { window, velocity, origin, q.projectileShape, degrees, q.damage, q.range} );
+	//projectiles.push_back( Projectile { window, velocity, origin, q.projectileShape, degrees, q.damage, q.range} );
+	Projectile p{ game, velocity, origin, q.projectileShape, degrees, q.damage, q.range };
+
+	game.entities.push_back(std::make_unique<Projectile>(p));
 }	
 
 void Hero_1::W()
@@ -41,8 +43,10 @@ void Hero_1::W()
 
 	body.setPosition( body.getPosition().x + w.flash_length * x, body.getPosition().y + w.flash_length * y );
 
-	seekPosition.x = body.getPosition().x;
-	seekPosition.y = body.getPosition().y;
+	seekPosition = body.getPosition();
+	startPosition = body.getPosition();
+
+	x = 0;
 }
 
 void Hero_1::E()

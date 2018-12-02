@@ -1,22 +1,19 @@
 #include "Projectile.h"
-#include "Enemy.h"
 #include "Hero.h"
-#include <iostream>
+#include "Enemy.h"
+#include "Game.h"
 
-void Projectile::update(float const deltaTime, std::vector<Projectile>& projectiles)
+//void Projectile::update(float const deltaTime, std::vector<Projectile>& projectiles)
+void Projectile::update(float deltaTime)
 {
-	for (auto pit = projectiles.begin(); pit != projectiles.end(); )
-	{
-		pit->MovingObject::update(deltaTime);
+	MovingObject::update(deltaTime);
 
-		if (pit->erase())
-		{
-			//pit = projectiles.erase(pit);
-		}
-		else
-		{
-		}
-			pit++;
+	//check collision här?
+
+	if (erase())
+	{
+		delete this;
+		//pit = projectiles.erase(pit);
 	}
 	
 	lifeTimer++;
@@ -27,14 +24,8 @@ bool Projectile::erase()
 	return (lifeTimer > range || hit);
 }
 
-void Projectile::draw(std::vector<Projectile>& projectiles)
-{
-	for (Projectile& p : projectiles)
-	{
-		window.draw( p.body );
-	}
-}
 
+/*
 void Projectile::checkCollision(std::vector<Projectile>& projectiles, std::vector<Enemy>& enemies)
 {
 	for (auto pit = projectiles.begin(); pit != projectiles.end(); ++pit )
@@ -65,3 +56,4 @@ void Projectile::checkCollision(std::vector<Projectile>& projectiles, Hero& play
 		}
 	}
 }
+*/

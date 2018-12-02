@@ -1,7 +1,7 @@
 #include "MovingObject.h"
 
-MovingObject::MovingObject(sf::RenderWindow& window, sf::Vector2f& velocity, sf::Vector2f& origin, sf::RectangleShape& _body,  float angle )
-	: Drawable { window }, body { _body }, angle{ angle }, velocity{ velocity }
+MovingObject::MovingObject(Game& game, sf::Vector2f& velocity, sf::Vector2f& origin, sf::RectangleShape& _body,  float angle )
+	: Entity { game }, body { _body }, angle{ angle }, velocity{ velocity }
 {
 	body.setOrigin(body.getSize() / 2.0f);
 	body.setPosition(origin);

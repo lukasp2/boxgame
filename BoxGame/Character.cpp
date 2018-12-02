@@ -1,7 +1,7 @@
 #include "Character.h"
 
-Character::Character(sf::RenderWindow & window, float size, int speed, int health, std::string s_name, sf::Color color)
-	: Drawable{ window }, size{ size }, speed{ speed }, XP{ 0 }, x{ 0 }
+Character::Character(Game& game, float size, int speed, int health, std::string s_name, sf::Color color)
+	: Entity{ game }, size{ size }, speed{ speed }, XP{ 0 }, x{ 0 }
 {
 	// set cahracter body
 	body.setRadius(size);
@@ -12,6 +12,7 @@ Character::Character(sf::RenderWindow & window, float size, int speed, int healt
 	body.setPosition(0, 0);
 
 	// set character name
+	sf::Font& courier_font{ Font_Manager::load("Fonts/courier.ttf") };
 	name.setFont(courier_font);
 	name.setPosition(sf::Vector2f(-40, 300));
 	name.setString(s_name);
@@ -37,7 +38,7 @@ void Character::onCollision()
 }
 
 // Allowing a character to move in infinite directions
-void Character::calculateOptimalMovement()
+void Character::move()
 {
 	float delta_x = abs(seekPosition.x - startPosition.x);
 	float delta_y = abs(seekPosition.y - startPosition.y);
@@ -54,7 +55,7 @@ void Character::calculateOptimalMovement()
 		t = static_cast<float>(x) / n;
 	
 	if (x >= n)
-		x = n;
+		float(x) = n;
 	
 	sf::Vector2f v{ t * (seekPosition.x - startPosition.x), t * (seekPosition.y - startPosition.y) };
 
