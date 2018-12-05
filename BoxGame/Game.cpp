@@ -7,6 +7,8 @@
 #include "Warrior.h"
 #include "Hero_1.h"
 
+#include <iostream>
+
 Game::Game(sf::RenderWindow& window) : State{ window }
 {
 	player = std::make_shared<Hero_1>(*this);
@@ -88,9 +90,13 @@ State* Game::update()
 	for (auto it = entities.begin(); it != entities.end(); )
 	{
 		if ((*it)->update(deltaTime))
+		{
 			it = entities.erase(it);
+		}
 		else
+		{
 			it++;
+		}
 	}
 
 	return nullptr;
