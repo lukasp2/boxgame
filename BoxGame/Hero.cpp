@@ -1,7 +1,7 @@
 #include "Hero.h"
-#include <cmath>
+#include "Game.h"
 
-#define PI 3.14159265
+#include <cmath>
 
 Hero::Hero(Game& game, sf::Color color, float size, int speed, std::string name) 
 	: Character{ game, size, speed, 100, name, color }
@@ -10,7 +10,7 @@ Hero::Hero(Game& game, sf::Color color, float size, int speed, std::string name)
 	Character::name.setCharacterSize(20);
 }
 
-void Hero::update(float deltaTime)
+bool Hero::update(float deltaTime)
 {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right))
 	{
@@ -24,4 +24,42 @@ void Hero::update(float deltaTime)
 	}
 	
 	Character::move();
+
+	return health <= 0;
+}
+
+void Hero::process_input(sf::Event::KeyEvent event)
+{
+	switch (event.code)
+	{
+	case sf::Keyboard::Q:
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+			upgrade_Q();
+		else
+			Q();
+		break;
+	case sf::Keyboard::W:
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+			upgrade_W();
+		else
+			W();
+		break;
+	case sf::Keyboard::E:
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+			upgrade_E();
+		else
+			E();
+		break;
+	case sf::Keyboard::R:
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+			upgrade_R();
+		else
+			R();
+		break;
+	}
+}
+
+void Hero::draw_more()
+{
+	//window.draw(name);
 }

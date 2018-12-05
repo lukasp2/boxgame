@@ -1,6 +1,6 @@
 #include "Hero_1.h"
+#include "Projectile.h"
 #include <cmath>	// atan2
-#include <iostream>
 
 #define PI 3.14159265
 
@@ -24,7 +24,6 @@ void Hero_1::Q()
 	sf::Vector2f velocity { q.velocity * x, q.velocity * y };
 	sf::Vector2f origin	{ body.getPosition().x + 2 * size * x, body.getPosition().y + 2 * size * y };
 
-	//projectiles.push_back( Projectile { window, velocity, origin, q.projectileShape, degrees, q.damage, q.range} );
 	Projectile p{ game, velocity, origin, q.projectileShape, degrees, q.damage, q.range };
 
 	game.entities.push_back(std::make_unique<Projectile>(p));

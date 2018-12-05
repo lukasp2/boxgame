@@ -1,19 +1,18 @@
 #include "Game.h"
-
-#include <memory>
 #include "Menu.h"
 #include "Quit.h"
+
 #include "Wall.h"
-#include "Warrior.h"
-#include "Hero.h"
-#include "Hero_1.h"
 #include "Entity.h"
+#include "Warrior.h"
+#include "Hero_1.h"
 
 Game::Game(sf::RenderWindow& window) : State{ window }
 {
-	player = std::make_unique<Hero_1>(*this);
+	player = std::make_shared<Hero_1>(*this);
+	entities.push_back( player );
 
-	entities.push_back( std::make_unique<Enemy>(Warrior{ *this }) );
+	entities.push_back( std::make_shared<Warrior>(*this) );
 }
 
 void Game::process_input()
@@ -34,31 +33,6 @@ void Game::process_input()
 		case sf::Event::KeyPressed:
 			switch (evnt.key.code)
 			{
-			case sf::Keyboard::Q:
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-					player->upgrade_Q();
-				else 
-					player->Q();
-				break;
-			case sf::Keyboard::W:
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-					player->upgrade_W();
-				else
-					player->W();
-				break;
-			case sf::Keyboard::E:
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-					player->upgrade_E();
-				else
-					player->E();
-				break;
-			case sf::Keyboard::R:
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-					player->upgrade_R();
-				else
-					player->R();
-				break;
-
 			case sf::Keyboard::Tab:
 				//show map
 				break;
@@ -71,14 +45,20 @@ void Game::process_input()
 				option.pause = true;
 				break;
 			}
-		break;
+			
+			player->process_input(evnt.key);
+			
+			break;
+
+		default:
+			break;
 		}
 	}
 }
 
 State* Game::update()
 {
-	/*prevents a bug*/
+	// prevents a bug
 	deltaTime = clock.restart().asSeconds();
 	if (deltaTime > 1.0f / 20.0f)
 	{
@@ -98,14 +78,19 @@ State* Game::update()
 		return state_ptr.get();
 	}
 	
-	if (player->is_dead())
+	// do this in player::update() by setting gameover = true from there.
+	if (option.gameover)
 	{
+		option.gameover = false;
 		// return game over state
 	}
 
-	for (auto&& entity : entities)
+	for (auto it = entities.begin(); it != entities.end(); )
 	{
-		entity->update(deltaTime);
+		if ((*it)->update(deltaTime))
+			it = entities.erase(it);
+		else
+			it++;
 	}
 
 	return nullptr;

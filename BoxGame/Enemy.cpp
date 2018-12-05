@@ -14,7 +14,7 @@ Enemy::Enemy(Game& game, sf::Color color, float size, int speed, int health, siz
 	bar.setOutlineThickness(1);
 }
 
-void Enemy::update(float deltaTime)
+bool Enemy::update(float deltaTime)
 {
 	seekPosition = game.player->getPosition();
 
@@ -31,6 +31,8 @@ void Enemy::update(float deltaTime)
 	name.setPosition(body.getPosition().x - body.getRadius() - 10, body.getPosition().y - body.getRadius() - 40);
 	bar.setPosition(body.getPosition().x - body.getRadius() - 3, body.getPosition().y - body.getRadius() - 12);
 	healthBar.setPosition(body.getPosition().x - body.getRadius() - 3, body.getPosition().y - body.getRadius() - 12);
+
+	return health <= 0;
 }
 
 void Enemy::draw_more()

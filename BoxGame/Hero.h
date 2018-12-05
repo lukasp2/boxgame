@@ -10,7 +10,11 @@ public:
 	~Hero() = default;
 	Hero(Game& game, sf::Color color, float size, int speed, std::string name);
 
-	void update(float deltaTime) override;
+	bool update(float deltaTime) override;
+	void process_input(sf::Event::KeyEvent event);
+
+protected:
+	void draw_more() override;
 
 	// abilities
 	virtual void	Q() = 0;

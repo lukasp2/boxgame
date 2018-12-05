@@ -1,4 +1,5 @@
 #include "Collider.h"
+#include <cmath>
 
 sf::Vector2f getHalfSize(sf::Shape& shape)
 {
@@ -12,7 +13,7 @@ sf::Vector2f getHalfSize(sf::Shape& shape)
 	{
 		shapeHalfSize = sf::Vector2f{ s->getRadius(), s->getRadius() };
 	}
-	
+
 	return shapeHalfSize;
 }
 
@@ -24,8 +25,8 @@ bool Collider::checkCollision(sf::Shape& other, sf::Vector2f& direction)
 	sf::Vector2f ourSize = getHalfSize(body);
 	sf::Vector2f theirSize = getHalfSize(other);
 
-	float intersect_x = abs(delta_x) - (theirSize.x + ourSize.x);
-	float intersect_y = abs(delta_y) - (theirSize.y + ourSize.y);
+	float intersect_x = abs(delta_x - (theirSize.x + ourSize.x));
+	float intersect_y = abs(delta_y - (theirSize.y + ourSize.y));
 
 	// collision
 	if (intersect_x < 0.0f && intersect_y < 0.0f) 

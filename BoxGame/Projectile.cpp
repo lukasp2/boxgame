@@ -1,29 +1,14 @@
 #include "Projectile.h"
-#include "Hero.h"
-#include "Enemy.h"
 #include "Game.h"
 
-//void Projectile::update(float const deltaTime, std::vector<Projectile>& projectiles)
-void Projectile::update(float deltaTime)
+bool Projectile::update(float deltaTime)
 {
-	MovingObject::update(deltaTime);
+	MovingObject::move(deltaTime);
 
-	//check collision här?
-
-	if (erase())
-	{
-		delete this;
-		//pit = projectiles.erase(pit);
-	}
-	
 	lifeTimer++;
-}
 
-bool Projectile::erase()
-{
 	return (lifeTimer > range || hit);
 }
-
 
 /*
 void Projectile::checkCollision(std::vector<Projectile>& projectiles, std::vector<Enemy>& enemies)

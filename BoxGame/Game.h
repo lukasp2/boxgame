@@ -1,7 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <memory>
 
 #include "State.h"
+
 class Hero;
 class Entity;
 
@@ -16,9 +18,8 @@ public:
 	virtual State*	update()		override;
 	virtual void	render()		override;
 
-	// should be private
-	std::unique_ptr<Hero> player;
-	std::vector< std::unique_ptr<Entity> > entities;
+	std::shared_ptr<Hero> player;
+	std::vector< std::shared_ptr<Entity> > entities;
 
 private:
 	sf::View	view{ sf::Vector2f(0, 0), sf::Vector2f(VIEW_SIZE, VIEW_SIZE) };
@@ -32,6 +33,7 @@ private:
 	{
 		bool pause{ false };
 		bool quit{ false };
+		bool gameover{ false };
 	};
 	Options option;
 };

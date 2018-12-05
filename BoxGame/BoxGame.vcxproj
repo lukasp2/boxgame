@@ -150,7 +150,6 @@
     <ClInclude Include="Highscore.h" />
     <ClInclude Include="Main_Menu.h" />
     <ClInclude Include="Menu.h" />
-    <ClInclude Include="Mouse.h" />
     <ClInclude Include="Hero.h" />
     <ClInclude Include="MovingObject.h" />
     <ClInclude Include="Projectile.h" />

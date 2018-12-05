@@ -7,15 +7,11 @@ class Wall : public Entity
 public:
 	Wall(Game& game, sf::RectangleShape body, sf::Vector2f size, sf::Vector2f position);
 
-	void			onCollision();
-	void			update()			{ body.move(velocity);	}
-	void			draw() override		{ window.draw(body);	}
+	bool update(float deltaTime) override	{ return 0; } //{ body.move(velocity * deltaTime); return 0; }
+	void draw()					 override	{ window.draw(body); }
 
-	Collider		getCollider()		{ return Collider(body);}
-	sf::Vector2f&	getColDirection()	{ return colDirection;	}
+	Collider getCollider() { return Collider(body);}
 
 private:
-	sf::Vector2f		colDirection;
-	sf::Vector2f		velocity;
 	sf::RectangleShape	body;
 };
