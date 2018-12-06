@@ -6,8 +6,10 @@
 
 Hero_1::Hero_1(Game& game) : Hero { game, sf::Color::Green, 20.0f, 3, "Rolf" }
 {
-	q.projectileShape.setFillColor	(sf::Color::Green);
-	q.projectileShape.setSize		(sf::Vector2f(30.0f, 3.0f));
+	q.projectileShape.setOutlineColor		(sf::Color::Green);
+	q.projectileShape.setFillColor			(sf::Color::Black);
+	q.projectileShape.setOutlineThickness	(2.0f);
+	q.projectileShape.setRadius				(5.0f);
 }
 
 void Hero_1::Q()
@@ -46,6 +48,8 @@ void Hero_1::W()
 	startPosition = body.getPosition();
 
 	x = 0;
+
+	changed_movement = true;
 }
 
 void Hero_1::E()

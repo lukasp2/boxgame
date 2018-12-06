@@ -49,7 +49,6 @@ void Character::move()
 
 void Character::draw()
 {
-	std::cout << "asdasda" << std::endl;
 	window.draw(body);
 	draw_more();
 }

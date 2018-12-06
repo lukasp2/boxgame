@@ -14,6 +14,7 @@ bool Hero::update(float deltaTime)
 {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right))
 	{
+		changed_movement = true;
 		float mouse_posx = sf::Mouse::getPosition(window).x - static_cast<float>(window.getSize().x / 2);
 		float mouse_posy = sf::Mouse::getPosition(window).y - static_cast<float>(window.getSize().y / 2);
 

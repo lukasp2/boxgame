@@ -13,6 +13,7 @@ public:
 	bool update(float deltaTime) override;
 	void process_input(sf::Event::KeyEvent event);
 
+	bool changed_movement;
 protected:
 	void draw_more() override;
 

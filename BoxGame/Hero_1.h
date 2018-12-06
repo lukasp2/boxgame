@@ -25,7 +25,7 @@ private:
 		float	velocity;
 		size_t	damage;
 		size_t	range;
-		sf::RectangleShape  projectileShape;
+		sf::CircleShape  projectileShape;
 	}; q q{};
 
 	struct w 

@@ -8,7 +8,7 @@ class MovingObject : public Entity
 {
 public:
 	~MovingObject() = default;
-	MovingObject(Game& game, sf::Vector2f& velocity, sf::Vector2f& origin, sf::RectangleShape& _body, float angle);
+	MovingObject(Game& game, sf::Vector2f& velocity, sf::Vector2f& origin, sf::CircleShape& body, float angle);
 
 	void move(float deltaTime)	{ body.move(velocity * deltaTime); }
 	virtual void draw() = 0;
@@ -18,6 +18,6 @@ public:
 	Collider		getCollider()					{ return Collider(body);	}
 
 protected:
-	sf::RectangleShape	body;
+	sf::CircleShape	body;
 	float angle;
 };
