@@ -9,24 +9,19 @@ class GUI : public Entity
 {
 public:
 	GUI(Game& game);
+	~GUI() = default;
 
-	void draw() override;
-	bool update(float deltaTime) override;
+	virtual void draw() override;
+	virtual bool update(float deltaTime) override;
 
-	void update_health(int health);
-	void update_mana(int mana);
-
-	void used_Q();
-	void used_W();
-	void used_E();
-	void used_R();
-
-	void upgraded_Q(int to_level);
-	void upgraded_W(int to_level);
-	void upgraded_E(int to_level);
-	void upgraded_R(int to_level);
-
-private:
-	std::vector<sf::RectangleShape> RecShapes;
+protected:
+	std::vector<GUI> shapes;
 	std::vector<sf::Text> Texts;
+
+	sf::Font& courier_font{ Font_Manager::load("Fonts/courier.ttf") };
 };
+
+/*
+void update_health(int health);
+void update_mana(int mana);
+*/

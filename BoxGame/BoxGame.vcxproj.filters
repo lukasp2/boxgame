@@ -31,6 +31,12 @@
     <Filter Include="Source Files\Entities\Characters">
       <UniqueIdentifier>{1180edfd-4a7e-491d-ba9a-e2c322af71e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\GUI">
+      <UniqueIdentifier>{a029e539-1bda-48c0-80fc-e9f846c7c296}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\GUI">
+      <UniqueIdentifier>{4e01b00a-aa80-4f76-86a8-1ff2250b1a8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -85,7 +91,13 @@
       <Filter>Source Files\Entities\Characters</Filter>
     </ClCompile>
     <ClCompile Include="GUI.cpp">
-      <Filter>Source Files\Entities</Filter>
+      <Filter>Source Files\Entities\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\Entities\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Bar.cpp">
+      <Filter>Source Files\Entities\GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -147,7 +159,13 @@
       <Filter>Header Files\Entities\Characters</Filter>
     </ClInclude>
     <ClInclude Include="GUI.h">
-      <Filter>Header Files\Entities</Filter>
+      <Filter>Header Files\Entities\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\Entities\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Bar.h">
+      <Filter>Header Files\Entities\GUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
