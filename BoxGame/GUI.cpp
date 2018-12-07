@@ -21,7 +21,7 @@ GUI::GUI(Game& game) : Entity{ game }
 
 	//health text
 	sf::Text healthtext;
-	healthtext.setFont(courier_font);
+	healthtext.setFont(game.courier_font);
 	healthtext.setCharacterSize(16);
 	healthtext.setFillColor(sf::Color::Black);
 	healthtext.setPosition(sf::Vector2f(-50, 380));
@@ -31,25 +31,25 @@ GUI::GUI(Game& game) : Entity{ game }
 
 void GUI::draw()
 {
-	for (GUI& shape : shapes)
+	for (Entity& shape : shapes)
 	{
 		shape.draw();
 	}
 	
-	for (sf::Text& Text : Texts)
+	for (sf::Text& text : Texts)
 	{
-		game.window.draw(Text);
+		game.window.draw(text);
 	}
 }
 
 bool GUI::update(float deltaTime) 
 {	
-	for (GUI& shape : shapes)
+	for (Entity& shape : shapes)
 	{
 		shape.update(deltaTime);
 	}
 
-	return false; 
+	return false;
 }
 
 /*

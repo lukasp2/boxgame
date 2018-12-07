@@ -19,6 +19,8 @@ public:
 
 	sf::RenderWindow& window;
 
+	sf::Font& courier_font{ Font_Manager::load("Fonts/courier.ttf") };
+
 protected:
 	std::unique_ptr<State> state_ptr;
 };

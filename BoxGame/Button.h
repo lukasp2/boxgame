@@ -3,9 +3,9 @@
 #include <vector>
 
 #include "Game.h"
-#include "GUI.h"
+#include "Entity.h"
 
-class Button : public GUI
+class Button : public Entity
 {
 public:
 	Button(Game& game, std::string attackName, sf::Vector2f position);

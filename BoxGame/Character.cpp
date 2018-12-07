@@ -12,8 +12,7 @@ Character::Character(Game& game, float size, int speed, int health, std::string 
 	body.setPosition(0, 0);
 
 	// set character name
-	sf::Font& courier_font{ Font_Manager::load("Fonts/courier.ttf") };
-	name.setFont(courier_font);
+	name.setFont(game.courier_font);
 	name.setPosition(sf::Vector2f(-40, 300));
 	name.setString(s_name);
 }

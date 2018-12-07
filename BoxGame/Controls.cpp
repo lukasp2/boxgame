@@ -12,7 +12,6 @@
 
 Controls::Controls(sf::RenderWindow& window) : State{ window }
 {
-	sf::Font& courier_font{ Font_Manager::load("Fonts/courier.ttf") };
 	header.setFont(courier_font);
 	header.setCharacterSize(CHAR_SIZE);
 	header.setFillColor(sf::Color::Green);

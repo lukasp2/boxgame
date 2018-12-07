@@ -2,9 +2,9 @@
 #include <SFML/Graphics.hpp>
 
 #include "Game.h"
-#include "GUI.h"
+#include "Entity.h"
 
-class Bar : public GUI
+class Bar : public Entity
 {
 public:
 	Bar(Game& game, sf::Vector2f position, sf::Vector2f size, sf::Color color);

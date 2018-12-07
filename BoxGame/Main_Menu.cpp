@@ -15,8 +15,7 @@
 Main_Menu::Main_Menu(sf::RenderWindow& window) 
 	: Menu{ window }
 {
-	sf::Font& font{ Font_Manager::load("Fonts/courier.ttf") };
-	header.setFont(font);
+	header.setFont(courier_font);
 	header.setCharacterSize(CHAR_SIZE);
 	header.setString("menu");
 	header.setFillColor(sf::Color::Green);

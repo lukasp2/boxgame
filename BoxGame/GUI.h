@@ -15,10 +15,8 @@ public:
 	virtual bool update(float deltaTime) override;
 
 protected:
-	std::vector<GUI> shapes;
+	std::vector<Entity> shapes;
 	std::vector<sf::Text> Texts;
-
-	sf::Font& courier_font{ Font_Manager::load("Fonts/courier.ttf") };
 };
 
 /*

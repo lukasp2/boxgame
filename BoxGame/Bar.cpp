@@ -1,6 +1,7 @@
 #include "Bar.h"
 
-Bar::Bar(Game& game, sf::Vector2f position, sf::Vector2f size, sf::Color color) : GUI{ game }
+Bar::Bar(Game& game, sf::Vector2f position, sf::Vector2f size, sf::Color color) 
+	: Entity{ game }
 {
 	bar.setSize(size);
 	bar.setPosition(position);
