@@ -1,6 +1,8 @@
 #include "Hero_1.h"
 #include "Projectile.h"
+#include "Disappearing_Character.h"
 #include <cmath>	// atan2
+#include <iostream>
 
 #define PI 3.14159265
 
@@ -8,8 +10,8 @@ Hero_1::Hero_1(Game& game) : Hero { game, sf::Color::Green, 20.0f, 3, "Rolf" }
 {
 	q.projectileShape.setOutlineColor		(sf::Color::Green);
 	q.projectileShape.setFillColor			(sf::Color::Black);
-	q.projectileShape.setOutlineThickness	(2.0f);
-	q.projectileShape.setRadius				(5.0f);
+	q.projectileShape.setOutlineThickness	(1.0f);
+	q.projectileShape.setRadius				(4.0f);
 }
 
 void Hero_1::Q()
@@ -33,22 +35,33 @@ void Hero_1::Q()
 
 void Hero_1::W()
 {
-	float delta_y = body.getPosition().y + window.getSize().y / 2 - sf::Mouse::getPosition(window).y;
 	float delta_x = body.getPosition().x + window.getSize().x / 2 - sf::Mouse::getPosition(window).x;
+	float delta_y = body.getPosition().y + window.getSize().y / 2 - sf::Mouse::getPosition(window).y;
 
 	float radians = atan2(delta_y, delta_x);
 	float degrees = static_cast<float>(180 / PI * radians);
 
 	float x = -std::cos(radians);
 	float y = -std::sin(radians);
+	
+	// creating the fading circle on the point we jumped from
+	game.entities.push_back(std::make_shared<Disappearing_Character>(game, body, sf::Color::Yellow, 30));
+	
+	// determining whether to jump max flash length or to cursor
+	float a_length	{ sqrt(delta_x * delta_x + delta_y * delta_y) };
+	int b_length	{ w.flash_length };
 
-	body.setPosition( body.getPosition().x + w.flash_length * x, body.getPosition().y + w.flash_length * y );
+	if (a_length > b_length)
+		body.setPosition(body.getPosition().x + w.flash_length * x, body.getPosition().y + w.flash_length * y);
+	else
+		body.setPosition(sf::Mouse::getPosition(window).x - static_cast<float>(window.getSize().x / 2), sf::Mouse::getPosition(window).y - static_cast<float>(window.getSize().y / 2));
 
 	seekPosition = body.getPosition();
 	startPosition = body.getPosition();
 
 	x = 0;
 
+	// for the enemy to know we have changed location not based on mouse input
 	changed_movement = true;
 }
 

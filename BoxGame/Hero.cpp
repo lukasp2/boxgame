@@ -1,7 +1,7 @@
 #include "Hero.h"
 #include "Game.h"
-
-#include <cmath>
+#include "GUI.h"
+//#include <cmath>
 
 Hero::Hero(Game& game, sf::Color color, float size, int speed, std::string name) 
 	: Character{ game, size, speed, 100, name, color }
@@ -35,7 +35,10 @@ void Hero::process_input(sf::Event::KeyEvent event)
 	{
 	case sf::Keyboard::Q:
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+		{
 			upgrade_Q();
+			//(*game.entities[1])->upgraded_Q(q.level);
+		}
 		else
 			Q();
 		break;

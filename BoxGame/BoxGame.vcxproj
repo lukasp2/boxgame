@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{4135A29E-1B79-4C0B-B097-3295A740C243}</ProjectGuid>
     <RootNamespace>BoxGame</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -125,9 +125,11 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Controls.cpp" />
+    <ClCompile Include="Disappearing_Character.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GUI.cpp" />
     <ClCompile Include="Hero_1.cpp" />
     <ClCompile Include="Highscore.cpp" />
     <ClCompile Include="main.cpp" />
@@ -143,9 +145,11 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Controls.h" />
+    <ClInclude Include="Disappearing_Character.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GUI.h" />
     <ClInclude Include="Hero_1.h" />
     <ClInclude Include="Highscore.h" />
     <ClInclude Include="Main_Menu.h" />

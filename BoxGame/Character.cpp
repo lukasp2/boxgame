@@ -1,13 +1,11 @@
 #include "Character.h"
 
-#include <iostream>
-
 Character::Character(Game& game, float size, int speed, int health, std::string s_name, sf::Color color)
 	: Entity{ game }, size{ size }, speed{ speed }, health{ health }, XP{ 0 }, x{ 0 }
 {
 	// set character body
 	body.setRadius(size);
-	body.setFillColor(sf::Color::Black);
+	body.setFillColor(sf::Color::Transparent);
 	body.setOutlineColor(color);
 	body.setOutlineThickness(2.0f);
 	body.setOrigin(body.getRadius(), body.getRadius());

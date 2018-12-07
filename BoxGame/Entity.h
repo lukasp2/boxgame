@@ -7,6 +7,8 @@
 class Entity
 {
 public:
+	enum type { hero, enemy, wall, projectile };
+
 	~Entity() = default;
 	
 	// Entities contains a reference to the state that its in, usually the gamestate. Changing to State& could
