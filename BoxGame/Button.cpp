@@ -1,6 +1,6 @@
 #include "Button.h"
 
-Button::Button(Game& game, std::string attackName, sf::Vector2f position) 
+Button::Button(Game& game, std::string attackName, sf::Vector2f position)
 	: Entity{ game }
 {
 	// the big box
@@ -37,9 +37,12 @@ void Button::draw()
 	{
 		game.window.draw(shape);
 	}
+
+	game.window.draw(attack_name);
 }
 
 bool Button::update(float deltaTime)
 {
+	//sf::isButtonPressed(Q) : flash Q?
 	return false;
 }
