@@ -145,6 +145,7 @@
     <ClCompile Include="Warrior.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Abilities.h" />
     <ClInclude Include="Bar.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Character.h" />

@@ -2,16 +2,12 @@
 #include "Projectile.h"
 #include "Disappearing_Character.h"
 #include <cmath>	// atan2
-#include <iostream>
+#include "GUI.h"	// user_interface upgrades
 
 #define PI 3.14159265
 
 Hero_1::Hero_1(Game& game) : Hero { game, sf::Color::Green, 20.0f, 3, "Rolf" }
 {
-	q.projectileShape.setOutlineColor		(sf::Color::Green);
-	q.projectileShape.setFillColor			(sf::Color::Black);
-	q.projectileShape.setOutlineThickness	(1.0f);
-	q.projectileShape.setRadius				(4.0f);
 }
 
 void Hero_1::Q()
@@ -77,30 +73,46 @@ void Hero_1::R()
 
 void Hero_1::upgrade_Q()
 {
-	//q.damage = 60 80 140 220 
-	q.level++;
-	q.damage += 20 * q.level;
+	//q.damage = 60 80 140 220
+	if (q.level != 4)
+	{
+		q.level++;
+		q.damage += 20 * q.level;
+		game.user_interface->upgrade_Q();
+	}
 }
 
 void Hero_1::upgrade_W()
 {
 	//w.jump = 
-	w.level++;
-	w.flash_length += 20 * w.level;
+	if (w.level != 4)
+	{
+		w.level++;
+		w.flash_length += 20 * w.level;
+		game.user_interface->upgrade_W();
+	}
 }
 
 void Hero_1::upgrade_E()
 {
 	//e.heal =
-	e.level++;
-	e.heal += 20 * e.level;
+	if (e.level != 4)
+	{
+		e.level++;
+		e.heal += 20 * e.level;
+		game.user_interface->upgrade_E();
+	}
 }
 
 void Hero_1::upgrade_R()
 {
 	//r.damage = 
-	r.level++;
-	r.damage += 20 * r.level;
+	if (r.level != 3)
+	{
+		r.level++;
+		r.damage += 20 * r.level;
+		game.user_interface->upgrade_R();
+	}
 }
 
 //void Hero_1::draw() {}

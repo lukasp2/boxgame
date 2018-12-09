@@ -4,20 +4,21 @@
 #include "GUI.h"
 #include "Button.h"
 #include "Bar.h"
+#include "Hero.h"
 
 GUI::GUI(Game& game) : game{ game }
 {
 	//healthbar
-	shapes.push_back( std::make_unique<Bar>(game, sf::Vector2f(-200,380), sf::Vector2f(400,20), sf::Color(0,160,0,255)) );
+	GUI_Objects.push_back( std::make_unique<Bar>(game, sf::Vector2f(-200,380), sf::Vector2f(400,20), sf::Color(0,160,0,255)) );
 	
 	//manabar
-	shapes.push_back( std::make_unique<Bar>(game, sf::Vector2f(-170,401), sf::Vector2f(340,15), sf::Color(0,0,160,255)) );
+	GUI_Objects.push_back( std::make_unique<Bar>(game, sf::Vector2f(-170,401), sf::Vector2f(340,15), sf::Color(0,0,160,255)) );
 
 	// box displaying Q, W, E, and R-attack
-	shapes.push_back( std::make_unique<Button>(game, "Q", sf::Vector2f(-150, 320)) );
-	shapes.push_back( std::make_unique<Button>(game, "W", sf::Vector2f(-70, 320)) );
-	shapes.push_back( std::make_unique<Button>(game, "E", sf::Vector2f(10, 320)) );
-	shapes.push_back( std::make_unique<Button>(game, "R", sf::Vector2f(90, 320)) );
+	GUI_Objects.push_back( std::make_unique<Button>(game, "Q", sf::Vector2f(-150, 320)) );
+	GUI_Objects.push_back( std::make_unique<Button>(game, "W", sf::Vector2f(-70, 320)) );
+	GUI_Objects.push_back( std::make_unique<Button>(game, "E", sf::Vector2f(10, 320)) );
+	GUI_Objects.push_back( std::make_unique<Button>(game, "R", sf::Vector2f(90, 320)) );
 
 	//health text
 	sf::Text healthtext;
@@ -31,9 +32,9 @@ GUI::GUI(Game& game) : game{ game }
 
 void GUI::draw()
 {
-	for (auto&& shape : shapes)
+	for (auto&& object : GUI_Objects)
 	{
-		shape->draw();
+		object->draw();
 	}
 	
 	for (sf::Text& text : texts)
@@ -44,11 +45,55 @@ void GUI::draw()
 
 void GUI::update() 
 {	
-	for (auto&& shape : shapes)
+	for (auto&& object : GUI_Objects)
 	{
-		shape->update();
+		object->update();
+	}
+
+	if (game.player->upgrades_avalible >= 1)
+	{
+		upgrade_avalble();
 	}
 }
+
+void GUI::upgrade_avalble()
+{
+}
+
+void GUI::upgrade_Q()
+{
+}
+
+void GUI::upgrade_W()
+{
+}
+
+void GUI::upgrade_E()
+{
+}
+
+void GUI::upgrade_R()
+{
+}
+
+void GUI::used_Q()
+{
+	//GUI_Objects[2]->shapes[2].setOutlineColor(sf::Color::Green);
+}
+
+void GUI::used_W()
+{
+}
+
+void GUI::used_E()
+{
+}
+
+void GUI::used_R()
+{
+}
+
+
 
 /*
 void GUI::update_health(int health)

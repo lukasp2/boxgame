@@ -3,12 +3,15 @@
 
 #include "Game.h"
 #include "Character.h"
+#include "Abilities.h"
 
 class Hero : public Character
 {
+friend class GUI;
+
 public:
-	~Hero() = default;
 	Hero(Game& game, sf::Color color, float size, int speed, std::string name);
+	~Hero() = default;
 
 	bool update(float deltaTime) override;
 	void process_input(sf::Event::KeyEvent event);
