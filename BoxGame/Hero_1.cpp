@@ -16,8 +16,8 @@ Hero_1::Hero_1(Game& game) : Hero { game, sf::Color::Green, 20.0f, 3, "Rolf" }
 
 void Hero_1::Q()
 {
-	float delta_y = body.getPosition().y + window.getSize().y / 2 - sf::Mouse::getPosition(window).y;
-	float delta_x = body.getPosition().x + window.getSize().x / 2 - sf::Mouse::getPosition(window).x;
+	float delta_y = body.getPosition().y + game.window.getSize().y / 2 - sf::Mouse::getPosition(game.window).y;
+	float delta_x = body.getPosition().x + game.window.getSize().x / 2 - sf::Mouse::getPosition(game.window).x;
 
 	float radians = atan2(delta_y, delta_x);
 	float degrees = static_cast<float>(180 / PI * radians);
@@ -35,8 +35,8 @@ void Hero_1::Q()
 
 void Hero_1::W()
 {
-	float delta_x = body.getPosition().x + window.getSize().x / 2 - sf::Mouse::getPosition(window).x;
-	float delta_y = body.getPosition().y + window.getSize().y / 2 - sf::Mouse::getPosition(window).y;
+	float delta_x = body.getPosition().x + game.window.getSize().x / 2 - sf::Mouse::getPosition(game.window).x;
+	float delta_y = body.getPosition().y + game.window.getSize().y / 2 - sf::Mouse::getPosition(game.window).y;
 
 	float radians = atan2(delta_y, delta_x);
 	float degrees = static_cast<float>(180 / PI * radians);
@@ -54,7 +54,7 @@ void Hero_1::W()
 	if (a_length > b_length)
 		body.setPosition(body.getPosition().x + w.flash_length * x, body.getPosition().y + w.flash_length * y);
 	else
-		body.setPosition(sf::Mouse::getPosition(window).x - static_cast<float>(window.getSize().x / 2), sf::Mouse::getPosition(window).y - static_cast<float>(window.getSize().y / 2));
+		body.setPosition(sf::Mouse::getPosition(game.window).x - static_cast<float>(game.window.getSize().x / 2), sf::Mouse::getPosition(game.window).y - static_cast<float>(game.window.getSize().y / 2));
 
 	seekPosition = body.getPosition();
 	startPosition = body.getPosition();

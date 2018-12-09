@@ -23,13 +23,13 @@ public:
 	int				getHealth()					{ return health; }
 
 protected:
+	sf::Text		name;
 	sf::CircleShape body;
 	float			size;
 	int				health;
 	int				speed;
 	int				level;
 	int				XP;
-	sf::Text		name;
 
 	// needed for inifinite directional movement
 	sf::Vector2f	startPosition;

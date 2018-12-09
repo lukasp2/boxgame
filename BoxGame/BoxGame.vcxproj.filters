@@ -31,11 +31,17 @@
     <Filter Include="Source Files\Entities\Characters">
       <UniqueIdentifier>{1180edfd-4a7e-491d-ba9a-e2c322af71e4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Entities\GUI">
-      <UniqueIdentifier>{a029e539-1bda-48c0-80fc-e9f846c7c296}</UniqueIdentifier>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{1e928981-f992-40c5-8f4d-0e026faf8ff6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Entities\GUI">
-      <UniqueIdentifier>{4e01b00a-aa80-4f76-86a8-1ff2250b1a8c}</UniqueIdentifier>
+    <Filter Include="Header Files\GUI">
+      <UniqueIdentifier>{6f5642f9-04f0-438a-bb28-d11ae73561c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI\GUI_Objects">
+      <UniqueIdentifier>{2ad40dfe-8e49-49d2-a37b-d719681f5679}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI\GUI_Objects">
+      <UniqueIdentifier>{22b5fc57-4b10-4884-8ba4-701fac711712}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -88,19 +94,19 @@
       <Filter>Source Files\Entities\Characters</Filter>
     </ClCompile>
     <ClCompile Include="Disappearing_Character.cpp">
-      <Filter>Source Files\Entities\Characters</Filter>
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="GUI.cpp">
-      <Filter>Source Files\Entities\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files\Entities\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Bar.cpp">
-      <Filter>Source Files\Entities\GUI</Filter>
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
     <ClCompile Include="GUI_Object.cpp">
-      <Filter>Source Files\Entities\GUI</Filter>
+      <Filter>Source Files\GUI\GUI_Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\GUI\GUI_Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Bar.cpp">
+      <Filter>Source Files\GUI\GUI_Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,19 +165,19 @@
       <Filter>Header Files\Entities\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Disappearing_Character.h">
-      <Filter>Header Files\Entities\Characters</Filter>
+      <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="GUI.h">
-      <Filter>Header Files\Entities\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files\Entities\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Bar.h">
-      <Filter>Header Files\Entities\GUI</Filter>
+      <Filter>Header Files\GUI</Filter>
     </ClInclude>
     <ClInclude Include="GUI_Object.h">
-      <Filter>Header Files\Entities\GUI</Filter>
+      <Filter>Header Files\GUI\GUI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Bar.h">
+      <Filter>Header Files\GUI\GUI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\GUI\GUI_Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

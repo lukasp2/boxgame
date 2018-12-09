@@ -1,12 +1,10 @@
 #include <memory>
 
-#include "Main_Menu.h"
 #include "Game.h"
+#include "Main_Menu.h"
 #include "Highscore.h"
 #include "Quit.h"
 #include "Controls.h"
-
-#include "Hero_1.h"
 
 #define X_POS 100.0f
 #define Y_POS 0.0f
@@ -134,8 +132,11 @@ void Main_Menu::render()
 	window.clear(sf::Color::Black);
 	
 	window.draw(header);
+
 	for (sf::Text text : textVector)
+	{
 		window.draw(text);
+	}
 	
 	window.display();
 	

@@ -8,7 +8,7 @@
 #include "Warrior.h"
 #include "Hero_1.h"
 
-#include <iostream>
+Game::~Game() {}
 
 Game::Game(sf::RenderWindow& window) : State{ window }
 {

@@ -22,7 +22,7 @@ bool Enemy::update(float deltaTime)
 	if (game.player->changed_movement)
 	{
 		game.player->changed_movement = false;
-		startPosition = sf::Vector2f{ body.getPosition().x, body.getPosition().y };
+		startPosition = body.getPosition();
 		x = 0;
 	}
 	Character::move();
@@ -41,8 +41,8 @@ bool Enemy::update(float deltaTime)
 
 void Enemy::draw_more()
 {
-	window.draw(bar);
-	window.draw(healthBar);
+	game.window.draw(bar);
+	game.window.draw(healthBar);
 }
 
 void Enemy::got_damaged(size_t damage)

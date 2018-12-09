@@ -14,10 +14,11 @@ public:
 	void process_input(sf::Event::KeyEvent event);
 
 	bool changed_movement;
-	
-	float mana{100};
 
 protected:
+	float mana{ 100 };
+	size_t upgrades_avalible{ 1 };
+
 	void draw_more() override;
 
 	virtual void	Q() = 0;
@@ -29,5 +30,4 @@ protected:
 	virtual void	upgrade_W() = 0;
 	virtual void	upgrade_E() = 0;
 	virtual void	upgrade_R() = 0;
-
 };

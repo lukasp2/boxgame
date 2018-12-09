@@ -1,7 +1,7 @@
 #include "Wall.h"
 
-Wall::Wall(Game& game, sf::RectangleShape body, sf::Vector2f size, sf::Vector2f position)
-	: Entity{ game }, body { body }
+Wall::Wall(Game& game, sf::RectangleShape b, sf::Vector2f size, sf::Vector2f position)
+	: Entity{ game }, body{ b }
 {
 	body.setFillColor(sf::Color(190, 190, 190));
 	body.setSize(size);

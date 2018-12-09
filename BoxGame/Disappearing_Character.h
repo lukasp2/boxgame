@@ -8,7 +8,7 @@ class Disappearing_Character : public Entity
 public:
 	Disappearing_Character(Game& game, sf::CircleShape body, sf::Color color, size_t lifetime = 30);
 
-	void draw()	override { window.draw(body); }
+	void draw()	override { game.window.draw(body); }
 	bool update(float deltaTime) override;
 
 private:

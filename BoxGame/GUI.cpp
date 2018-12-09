@@ -5,23 +5,23 @@
 #include "Button.h"
 #include "Bar.h"
 
-GUI::GUI(State& state) : state{ state }
+GUI::GUI(Game& game) : game{ game }
 {
 	//healthbar
-	shapes.push_back( std::make_unique<Bar>(state, sf::Vector2f(-200,380), sf::Vector2f(400,20), sf::Color(0,160,0,255)) );
+	shapes.push_back( std::make_unique<Bar>(game, sf::Vector2f(-200,380), sf::Vector2f(400,20), sf::Color(0,160,0,255)) );
 	
 	//manabar
-	shapes.push_back( std::make_unique<Bar>(state, sf::Vector2f(-170,401), sf::Vector2f(340,15), sf::Color(0,0,160,255)) );
+	shapes.push_back( std::make_unique<Bar>(game, sf::Vector2f(-170,401), sf::Vector2f(340,15), sf::Color(0,0,160,255)) );
 
 	// box displaying Q, W, E, and R-attack
-	shapes.push_back( std::make_unique<Button>(state, "Q", sf::Vector2f(-150, 320)) );
-	shapes.push_back( std::make_unique<Button>(state, "W", sf::Vector2f(-70, 320)) );
-	shapes.push_back( std::make_unique<Button>(state, "E", sf::Vector2f(10, 320)) );
-	shapes.push_back( std::make_unique<Button>(state, "R", sf::Vector2f(90, 320)) );
+	shapes.push_back( std::make_unique<Button>(game, "Q", sf::Vector2f(-150, 320)) );
+	shapes.push_back( std::make_unique<Button>(game, "W", sf::Vector2f(-70, 320)) );
+	shapes.push_back( std::make_unique<Button>(game, "E", sf::Vector2f(10, 320)) );
+	shapes.push_back( std::make_unique<Button>(game, "R", sf::Vector2f(90, 320)) );
 
 	//health text
 	sf::Text healthtext;
-	healthtext.setFont(state.courier_font);
+	healthtext.setFont(game.courier_font);
 	healthtext.setCharacterSize(16);
 	healthtext.setFillColor(sf::Color::Black);
 	healthtext.setPosition(sf::Vector2f(-50, 380));
@@ -38,7 +38,7 @@ void GUI::draw()
 	
 	for (sf::Text& text : texts)
 	{
-		state.window.draw(text);
+		game.window.draw(text);
 	}
 }
 

@@ -18,6 +18,9 @@ public:
 	void upgrade_R() override;
 
 private:
+	mana_cost
+		cooldown
+		level
 	struct q
 	{
 		q() : damage{ 15 }, range{ 1000 }, velocity{ 800 }, level{ 0 } {}

@@ -1,7 +1,6 @@
 #include "Hero.h"
 #include "Game.h"
 #include "GUI.h"
-//#include <cmath>
 
 Hero::Hero(Game& game, sf::Color color, float size, int speed, std::string name) 
 	: Character{ game, size, speed, 100, name, color }
@@ -15,8 +14,8 @@ bool Hero::update(float deltaTime)
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right))
 	{
 		changed_movement = true;
-		float mouse_posx = sf::Mouse::getPosition(window).x - static_cast<float>(window.getSize().x / 2);
-		float mouse_posy = sf::Mouse::getPosition(window).y - static_cast<float>(window.getSize().y / 2);
+		float mouse_posx = sf::Mouse::getPosition(game.window).x - static_cast<float>(game.window.getSize().x / 2);
+		float mouse_posy = sf::Mouse::getPosition(game.window).y - static_cast<float>(game.window.getSize().y / 2);
 
 		seekPosition = sf::Vector2f{ mouse_posx, mouse_posy };
 		startPosition = sf::Vector2f{ body.getPosition().x, body.getPosition().y };
@@ -35,10 +34,7 @@ void Hero::process_input(sf::Event::KeyEvent event)
 	{
 	case sf::Keyboard::Q:
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-		{
 			upgrade_Q();
-			//(*game.entities[1])->upgraded_Q(q.level);
-		}
 		else
 			Q();
 		break;

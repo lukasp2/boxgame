@@ -1,7 +1,7 @@
 #include "Bar.h"
 
-Bar::Bar(State& state, sf::Vector2f position, sf::Vector2f size, sf::Color color)
-	: GUI_Object{ state }
+Bar::Bar(Game& game, sf::Vector2f position, sf::Vector2f size, sf::Color color)
+	: GUI_Object{ game }
 {
 	bar.setSize(size);
 	bar.setPosition(position);
@@ -16,8 +16,8 @@ Bar::Bar(State& state, sf::Vector2f position, sf::Vector2f size, sf::Color color
 
 void Bar::draw()
 {
-	state.window.draw(bar);
-	state.window.draw(edge);
+	game.window.draw(bar);
+	game.window.draw(edge);
 }
 
 void Bar::update()

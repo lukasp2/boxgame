@@ -3,8 +3,8 @@
 #include <memory>
 
 #include "State.h"
-#include "GUI.h"
 
+class GUI;
 class Hero;
 class Entity;
 
@@ -14,6 +14,7 @@ class Game : public State
 {
 public:
 	Game(sf::RenderWindow& window);
+	~Game();
 
 	virtual void	process_input() override;
 	virtual State*	update()		override;

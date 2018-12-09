@@ -2,13 +2,13 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-#include "State.h"
+#include "Game.h"
 #include "GUI_Object.h"
 
 class Button : public GUI_Object
 {
 public:
-	Button(State& state, std::string attackName, sf::Vector2f position);
+	Button(Game& game, std::string attackName, sf::Vector2f position);
 
 	void draw() override;
 	void update() override;

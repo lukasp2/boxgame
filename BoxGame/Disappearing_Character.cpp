@@ -1,6 +1,6 @@
 #include "Disappearing_Character.h"
 
-Disappearing_Character::Disappearing_Character(Game & game, sf::CircleShape body, sf::Color color, size_t lifetime)
+Disappearing_Character::Disappearing_Character(Game& game, sf::CircleShape body, sf::Color color, size_t lifetime)
 	: Entity{ game }, body{ body }, lifetime{ lifetime }, total_lifetime{ lifetime }, color{ color }
 {
 

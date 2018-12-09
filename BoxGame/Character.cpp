@@ -17,7 +17,6 @@ Character::Character(Game& game, float size, int speed, int health, std::string 
 	name.setString(s_name);
 }
 
-// Allowing a character to move in infinite directions
 void Character::move()
 {
 	float delta_x = abs(seekPosition.x - startPosition.x);
@@ -46,6 +45,6 @@ void Character::move()
 
 void Character::draw()
 {
-	window.draw(body);
+	game.window.draw(body);
 	draw_more();
 }
