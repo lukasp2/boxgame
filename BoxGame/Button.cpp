@@ -1,7 +1,7 @@
 #include "Button.h"
 
-Button::Button(Game& game, std::string attackName, sf::Vector2f position)
-	: Entity{ game }
+Button::Button(State& state, std::string attackName, sf::Vector2f position)
+	: GUI_Object{ state }
 {
 	// the big box
 	sf::RectangleShape shape;
@@ -25,7 +25,7 @@ Button::Button(Game& game, std::string attackName, sf::Vector2f position)
 	}
 
 	// the text
-	attack_name.setFont(game.courier_font);
+	attack_name.setFont(state.courier_font);
 	attack_name.setCharacterSize(18);
 	attack_name.setPosition(sf::Vector2f(position.x + shape.getSize().x / 2 - 5, position.y + shape.getSize().y / 2 - 16));
 	attack_name.setString(attackName);
@@ -35,14 +35,13 @@ void Button::draw()
 {
 	for (auto&& shape : shapes)
 	{
-		game.window.draw(shape);
+		state.window.draw(shape);
 	}
 
-	game.window.draw(attack_name);
+	state.window.draw(attack_name);
 }
 
-bool Button::update(float deltaTime)
+void Button::update()
 {
 
-	return false;
 }

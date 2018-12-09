@@ -99,6 +99,9 @@
     <ClCompile Include="Bar.cpp">
       <Filter>Source Files\Entities\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="GUI_Object.cpp">
+      <Filter>Source Files\Entities\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resources.h">
@@ -165,6 +168,9 @@
       <Filter>Header Files\Entities\GUI</Filter>
     </ClInclude>
     <ClInclude Include="Bar.h">
+      <Filter>Header Files\Entities\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI_Object.h">
       <Filter>Header Files\Entities\GUI</Filter>
     </ClInclude>
   </ItemGroup>

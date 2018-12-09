@@ -1,7 +1,7 @@
 #include "Bar.h"
 
-Bar::Bar(Game& game, sf::Vector2f position, sf::Vector2f size, sf::Color color)
-	: Entity{ game }
+Bar::Bar(State& state, sf::Vector2f position, sf::Vector2f size, sf::Color color)
+	: GUI_Object{ state }
 {
 	bar.setSize(size);
 	bar.setPosition(position);
@@ -16,11 +16,11 @@ Bar::Bar(Game& game, sf::Vector2f position, sf::Vector2f size, sf::Color color)
 
 void Bar::draw()
 {
-	game.window.draw(bar);
-	game.window.draw(edge);
+	state.window.draw(bar);
+	state.window.draw(edge);
 }
 
-bool Bar::update(float deltaTime)
+void Bar::update()
 {
-	return false;
+	
 }

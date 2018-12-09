@@ -3,24 +3,24 @@
 #include <vector>
 #include <memory>
 
-#include "Entity.h"
-#include "Game.h"
+#include "State.h"
+#include "GUI_Object.h"
 
-class GUI : public Entity
+class GUI
 {
 public:
-	GUI(Game& game);
+	GUI(State& state);
 	~GUI() = default;
 
-	virtual void draw() override;
-	virtual bool update(float deltaTime) override;
+	//denna klass är friendad i Hero
+
+	//ritar ut och updaterar alla GUI_Objects i vectorn
+	void draw();
+	void update();
 
 protected:
-	std::vector<std::unique_ptr<Entity>> shapes;
-	std::vector<sf::Text> Texts;
-};
+	std::vector<std::unique_ptr<GUI_Object>> shapes;
+	std::vector<sf::Text> texts;
 
-/*
-void update_health(int health);
-void update_mana(int mana);
-*/
+	State& state;
+};

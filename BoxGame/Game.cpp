@@ -15,9 +15,7 @@ Game::Game(sf::RenderWindow& window) : State{ window }
 	player = std::make_shared<Hero_1>(*this);
 	entities.push_back( player );
 
-	entities.push_back(std::make_shared<GUI>(*this));
-
-	//entities.push_back( std::make_shared<Warrior>(*this) );
+	user_interface = std::make_unique<GUI>(*this);
 }
 
 void Game::process_input()
@@ -96,8 +94,13 @@ State* Game::update()
 		{
 			it = entities.erase(it);
 		}
-		else it++;
+		else
+		{
+			it++;
+		}
 	}
+
+	user_interface->update();
 
 	return nullptr;
 }
@@ -112,6 +115,8 @@ void Game::render()
 	{
 		entity->draw();
 	}
+
+	user_interface->draw();
 
 	window.display();
 }

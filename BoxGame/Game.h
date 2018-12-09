@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "State.h"
+#include "GUI.h"
 
 class Hero;
 class Entity;
@@ -18,6 +19,7 @@ public:
 	virtual State*	update()		override;
 	virtual void	render()		override;
 
+	std::unique_ptr<GUI> user_interface;
 	std::shared_ptr<Hero> player;
 	std::vector< std::shared_ptr<Entity> > entities;
 
