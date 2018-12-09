@@ -16,5 +16,4 @@ public:
 private:
 	std::vector<sf::RectangleShape> shapes;
 	sf::Text attack_name;
-	int effect_counter;
 };
