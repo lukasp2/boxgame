@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <memory>
 
 #include "Entity.h"
 #include "Game.h"
@@ -15,7 +16,7 @@ public:
 	virtual bool update(float deltaTime) override;
 
 protected:
-	std::vector<Entity> shapes;
+	std::vector<std::unique_ptr<Entity>> shapes;
 	std::vector<sf::Text> Texts;
 };
 

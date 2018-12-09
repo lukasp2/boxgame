@@ -15,7 +15,7 @@ Game::Game(sf::RenderWindow& window) : State{ window }
 	player = std::make_shared<Hero_1>(*this);
 	entities.push_back( player );
 
-	//entities.push_back(std::make_shared<GUI>(*this));
+	entities.push_back(std::make_shared<GUI>(*this));
 
 	//entities.push_back( std::make_shared<Warrior>(*this) );
 }
