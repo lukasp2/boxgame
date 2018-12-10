@@ -9,16 +9,16 @@
 GUI::GUI(Game& game) : game{ game }
 {
 	//healthbar
-	bars.push_back( std::make_unique<Bar>(game, sf::Vector2f(-200,380), sf::Vector2f(400,20), sf::Color(0,160,0,255)) );
+	GUI_Objects.push_back( std::make_unique<Bar>(game, sf::Vector2f(-200,380), sf::Vector2f(400,20), sf::Color(0,160,0,255)) );
 	
 	//manabar
-	bars.push_back( std::make_unique<Bar>(game, sf::Vector2f(-170,401), sf::Vector2f(340,15), sf::Color(0,0,160,255)) );
+	GUI_Objects.push_back( std::make_unique<Bar>(game, sf::Vector2f(-170,401), sf::Vector2f(340,15), sf::Color(0,0,160,255)) );
 
 	// box displaying Q, W, E, and R-attack
-	buttons.push_back( std::make_unique<Button>(game, "Q", sf::Vector2f(-150, 320)) );
-	buttons.push_back( std::make_unique<Button>(game, "W", sf::Vector2f(-70, 320)) );
-	buttons.push_back( std::make_unique<Button>(game, "E", sf::Vector2f(10, 320)) );
-	buttons.push_back( std::make_unique<Button>(game, "R", sf::Vector2f(90, 320)) );
+	GUI_Objects.push_back( std::make_unique<Button>(game, "Q", sf::Vector2f(-150, 320), game.player->q_ptr, sf::Keyboard::Key::Q) );
+	GUI_Objects.push_back( std::make_unique<Button>(game, "W", sf::Vector2f(-70, 320), game.player->w_ptr, sf::Keyboard::Key::W) );
+	GUI_Objects.push_back( std::make_unique<Button>(game, "E", sf::Vector2f(10, 320), game.player->e_ptr, sf::Keyboard::Key::E) );
+	GUI_Objects.push_back( std::make_unique<Button>(game, "R", sf::Vector2f(90, 320), game.player->r_ptr, sf::Keyboard::Key::R) );
 
 	//health text
 	sf::Text healthtext;
@@ -32,39 +32,10 @@ GUI::GUI(Game& game) : game{ game }
 
 void GUI::proccess_input(sf::Event::KeyEvent event)
 {
-	switch (event.code)
+	for (auto&& object : GUI_Objects)
 	{
-	case sf::Keyboard::Q:
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-			upgrade_Q();
-		else
-			used_Q();
-		break;
-	case sf::Keyboard::W:
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-			upgrade_W();
-		else
-			used_W();
-		break;
-	case sf::Keyboard::E:
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-			upgrade_E();
-		else
-			used_E();
-		break;
-	case sf::Keyboard::R:
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-			upgrade_R();
-		else
-			used_R();
-		break;
+		object->proccess_input(event);
 	}
-
-	for (auto&& object : GUI_objects)
-	{
-		object->process_input(event.code);
-	}
-
 }
 
 void GUI::draw()

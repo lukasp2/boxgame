@@ -9,21 +9,22 @@
 class Button : public GUI_Object
 {
 public:
-	Button(Game& game, std::string attackName, sf::Vector2f position, ability& ability);
+	Button(Game& game, std::string attackName, sf::Vector2f position, ability* ability, sf::Keyboard::Key key);
 
 	void draw() override;
 
-	// update: updates the cooldown visual
 	void update() override;
+	void use();
 
-	// proccess_input: handles use and upgrade of ability, sets cooldown
 	virtual void proccess_input(sf::Event::KeyEvent event) override;
 
+	void upgrade();
 	void upgrade_avalible();
 
 private:
 	std::vector<sf::RectangleShape> shapes;
 	sf::Text attack_name;
 
-	ability& ability;
+	sf::Keyboard::Key key;
+	ability* a;
 };

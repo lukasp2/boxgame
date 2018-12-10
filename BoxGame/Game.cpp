@@ -36,21 +36,14 @@ void Game::process_input()
 		case sf::Event::KeyPressed:
 			switch (evnt.key.code)
 			{
-			case sf::Keyboard::Tab:
-				//show map
-				break;
-
-			case sf::Keyboard::F:
-				//action key
-				break;
-
 			case sf::Keyboard::Escape:
 				option.pause = true;
 				break;
 			}
 			
+			user_interface->proccess_input(evnt.key);
 			player->process_input(evnt.key);
-			
+
 			break;
 
 		default:

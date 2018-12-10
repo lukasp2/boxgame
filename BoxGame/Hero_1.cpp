@@ -8,6 +8,10 @@
 
 Hero_1::Hero_1(Game& game) : Hero { game, sf::Color::Green, 20.0f, 3, "Rolf" }
 {
+	Hero::q_ptr = &q;
+	Hero::w_ptr = &w;
+	Hero::e_ptr = &e;
+	Hero::r_ptr = &r;
 }
 
 void Hero_1::Q()
@@ -74,40 +78,40 @@ void Hero_1::R()
 void Hero_1::upgrade_Q()
 {
 	//q.damage = 60 80 140 220
-	if (q.a.level != 4)
+	if (q.level != 4)
 	{
-		q.a.level++;
-		q.damage += 20 * q.a.level;
+		q.level++;
+		q.damage += 20 * q.level;
 	}
 }
 
 void Hero_1::upgrade_W()
 {
 	//w.jump = 
-	if (w.a.level != 4)
+	if (w.level != 4)
 	{
-		w.a.level++;
-		w.flash_length += 20 * w.a.level;
+		w.level++;
+		w.flash_length += 20 * w.level;
 	}
 }
 
 void Hero_1::upgrade_E()
 {
 	//e.heal =
-	if (e.a.level != 4)
+	if (e.level != 4)
 	{
-		e.a.level++;
-		e.heal += 20 * e.a.level;
+		e.level++;
+		e.heal += 20 * e.level;
 	}
 }
 
 void Hero_1::upgrade_R()
 {
 	//r.damage = 
-	if (r.a.level != 3)
+	if (r.level != 3)
 	{
-		r.a.level++;
-		r.damage += 20 * r.a.level;
+		r.level++;
+		r.damage += 20 * r.level;
 	}
 }
 

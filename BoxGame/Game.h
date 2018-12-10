@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <memory>
-
 #include "State.h"
 
 class GUI;

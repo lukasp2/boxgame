@@ -18,10 +18,9 @@ public:
 	void upgrade_R() override;
 
 private:
-	struct q
+	struct q : public ability
 	{
-		// shoot_ability{ mana cost, cooldown, velocity, damage, range }
-		q() : a{1, 100}, velocity { 800 }, damage{ 15 }, range{ 1000 }
+		q() : ability{ 15, 100, 0 }, velocity{ 800 }, damage{ 15 }, range{ 1000 }
 		{
 			projectileShape.setOutlineColor(sf::Color::Green);
 			projectileShape.setFillColor(sf::Color::Black);
@@ -29,7 +28,6 @@ private:
 			projectileShape.setRadius(4.0f);
 		}
 
-		ability a;
 		float velocity;
 		size_t damage;
 		size_t range;
@@ -37,31 +35,25 @@ private:
 	};
 	q q{};
 
-	struct w
+	struct w : public ability
 	{
-		w() : a{15, 200}, flash_length{ 200 } {}
-		ability a;
-		int	flash_length{ };
+		w() : ability{ 15, 200, 0 }, flash_length { 200 } {}
+		int	flash_length{};
 	}; 
-	
 	w w{};
 
-	struct e
+	struct e : public ability
 	{
-		e() : a{ 15, 200 }, heal{ 200 } {}
-		ability a;
+		e() : ability{ 15, 200, 0 }, heal{ 200 } {}
 		int	heal{ };
 	}; 
-	
 	e e{};
 
-	struct r
+	struct r : public ability
 	{
-		r() : a{ 15, 200 }, damage{ 200 } {}
-		ability a;
+		r() : ability{ 15, 200, 0 }, damage{ 200 } {}
 		int	damage{ };
 	}; 
-	
 	r r{};
 };
 

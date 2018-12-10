@@ -5,8 +5,7 @@
 
 #include "Game.h"
 #include "GUI_Object.h"
-#include "Button.h"
-#include "Bar.h"
+
 class GUI
 {
 public:
