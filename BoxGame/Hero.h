@@ -22,6 +22,11 @@ protected:
 	float mana{ 100 };
 	size_t upgrades_avalible{ 1 };
 
+	ability q;
+	ability w;
+	ability e;
+	ability r;
+
 	void draw_more() override;
 
 	virtual void	Q() = 0;

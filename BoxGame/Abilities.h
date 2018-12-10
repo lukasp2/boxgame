@@ -2,6 +2,7 @@
 
 struct ability
 {
+	ability() = default;
 	ability(int mana_cost, size_t cooldown) : mana_cost{ mana_cost }, cooldown{ cooldown }, level{ 0 } {}
 	int mana_cost;
 	int level;

@@ -9,16 +9,16 @@
 GUI::GUI(Game& game) : game{ game }
 {
 	//healthbar
-	GUI_Objects.push_back( std::make_unique<Bar>(game, sf::Vector2f(-200,380), sf::Vector2f(400,20), sf::Color(0,160,0,255)) );
+	bars.push_back( std::make_unique<Bar>(game, sf::Vector2f(-200,380), sf::Vector2f(400,20), sf::Color(0,160,0,255)) );
 	
 	//manabar
-	GUI_Objects.push_back( std::make_unique<Bar>(game, sf::Vector2f(-170,401), sf::Vector2f(340,15), sf::Color(0,0,160,255)) );
+	bars.push_back( std::make_unique<Bar>(game, sf::Vector2f(-170,401), sf::Vector2f(340,15), sf::Color(0,0,160,255)) );
 
 	// box displaying Q, W, E, and R-attack
-	GUI_Objects.push_back( std::make_unique<Button>(game, "Q", sf::Vector2f(-150, 320)) );
-	GUI_Objects.push_back( std::make_unique<Button>(game, "W", sf::Vector2f(-70, 320)) );
-	GUI_Objects.push_back( std::make_unique<Button>(game, "E", sf::Vector2f(10, 320)) );
-	GUI_Objects.push_back( std::make_unique<Button>(game, "R", sf::Vector2f(90, 320)) );
+	buttons.push_back( std::make_unique<Button>(game, "Q", sf::Vector2f(-150, 320)) );
+	buttons.push_back( std::make_unique<Button>(game, "W", sf::Vector2f(-70, 320)) );
+	buttons.push_back( std::make_unique<Button>(game, "E", sf::Vector2f(10, 320)) );
+	buttons.push_back( std::make_unique<Button>(game, "R", sf::Vector2f(90, 320)) );
 
 	//health text
 	sf::Text healthtext;
@@ -30,70 +30,63 @@ GUI::GUI(Game& game) : game{ game }
 	texts.push_back(healthtext);
 }
 
+void GUI::proccess_input(sf::Event::KeyEvent event)
+{
+	switch (event.code)
+	{
+	case sf::Keyboard::Q:
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+			upgrade_Q();
+		else
+			used_Q();
+		break;
+	case sf::Keyboard::W:
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+			upgrade_W();
+		else
+			used_W();
+		break;
+	case sf::Keyboard::E:
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+			upgrade_E();
+		else
+			used_E();
+		break;
+	case sf::Keyboard::R:
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+			upgrade_R();
+		else
+			used_R();
+		break;
+	}
+
+	for (auto&& object : GUI_objects)
+	{
+		object->process_input(event.code);
+	}
+
+}
+
 void GUI::draw()
 {
 	for (auto&& object : GUI_Objects)
 	{
 		object->draw();
 	}
-	
+
 	for (sf::Text& text : texts)
 	{
 		game.window.draw(text);
 	}
 }
 
-void GUI::update() 
-{	
+void GUI::update()
+{
 	for (auto&& object : GUI_Objects)
 	{
 		object->update();
 	}
-
-	if (game.player->upgrades_avalible >= 1)
-	{
-		upgrade_avalble();
-	}
 }
-
-void GUI::upgrade_avalble()
-{
-}
-
-void GUI::upgrade_Q()
-{
-}
-
-void GUI::upgrade_W()
-{
-}
-
-void GUI::upgrade_E()
-{
-}
-
-void GUI::upgrade_R()
-{
-}
-
-void GUI::used_Q()
-{
-	//GUI_Objects[2]->shapes[2].setOutlineColor(sf::Color::Green);
-}
-
-void GUI::used_W()
-{
-}
-
-void GUI::used_E()
-{
-}
-
-void GUI::used_R()
-{
-}
-
-
 
 /*
 void GUI::update_health(int health)

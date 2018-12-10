@@ -1,7 +1,7 @@
 #include "Button.h"
 
-Button::Button(Game& game, std::string attackName, sf::Vector2f position)
-	: GUI_Object{ game }
+Button::Button(Game& game, std::string attackName, sf::Vector2f position, ability& ability)
+	: GUI_Object{ game }, ability{ ability }
 {
 	// the big box
 	sf::RectangleShape shape;
@@ -43,5 +43,39 @@ void Button::draw()
 
 void Button::update()
 {
+	//update cooldown thingy
+}
 
+void Button::upgrade()
+{
+	if (game.player->upgrades_avalible > 0 && ability.level != 4)
+	{
+		// *upgrade*
+	}
+	else if (game.player->upgrades_avalible == 0)
+	{
+		// "upgrade unavalible"
+	}
+	else if (ability.level > 4)
+	{
+		// "ability is already at maximum level"
+	}
+}
+
+void Button::proccess_input(sf::Event::KeyEvent event)
+{
+	// skicka in Knapp till kontruktorn
+	switch (event.code)
+	{
+	case sf::Keyboard::Q:
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+			upgrade_Q();
+		else
+			used_Q();
+		break;
+	}
+}
+
+void Button::upgrade_avalible()
+{
 }

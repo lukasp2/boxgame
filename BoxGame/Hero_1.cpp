@@ -74,44 +74,40 @@ void Hero_1::R()
 void Hero_1::upgrade_Q()
 {
 	//q.damage = 60 80 140 220
-	if (q.level != 4)
+	if (q.a.level != 4)
 	{
-		q.level++;
-		q.damage += 20 * q.level;
-		game.user_interface->upgrade_Q();
+		q.a.level++;
+		q.damage += 20 * q.a.level;
 	}
 }
 
 void Hero_1::upgrade_W()
 {
 	//w.jump = 
-	if (w.level != 4)
+	if (w.a.level != 4)
 	{
-		w.level++;
-		w.flash_length += 20 * w.level;
-		game.user_interface->upgrade_W();
+		w.a.level++;
+		w.flash_length += 20 * w.a.level;
 	}
 }
 
 void Hero_1::upgrade_E()
 {
 	//e.heal =
-	if (e.level != 4)
+	if (e.a.level != 4)
 	{
-		e.level++;
-		e.heal += 20 * e.level;
-		game.user_interface->upgrade_E();
+		e.a.level++;
+		e.heal += 20 * e.a.level;
 	}
 }
 
 void Hero_1::upgrade_R()
 {
 	//r.damage = 
-	if (r.level != 3)
+	if (r.a.level != 3)
 	{
-		r.level++;
-		r.damage += 20 * r.level;
-		game.user_interface->upgrade_R();
+		r.a.level++;
+		r.damage += 20 * r.a.level;
 	}
 }
 
