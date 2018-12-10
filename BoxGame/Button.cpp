@@ -11,7 +11,7 @@ Button::Button(Game& game, std::string attackName, sf::Vector2f position, abilit
 	big_box.setSize(sf::Vector2f(40, 40));
 	big_box.setPosition(position.x, position.y);
 	big_box.setFillColor(sf::Color(15,15,15));
-	big_box.setOutlineColor(sf::Color::White);
+	big_box.setOutlineColor(sf::Color(30,30,30));
 	big_box.setOutlineThickness(1.0f);
 	shapes.push_back(big_box);
 
@@ -82,11 +82,13 @@ void Button::use()
 {
 	if (game.player->mana > a->mana_cost) // && a->cooldown_count == 0 // sf::Time cooldown_count;
 	{
-		shapes[0].setOutlineColor(sf::Color(150,150,150));
+		shapes[0].setOutlineColor(sf::Color(100,100,100));
+		std::cout << "its grey" << std::endl;
 	}
 	else
 	{
 		shapes[0].setOutlineColor(sf::Color(50, 0, 0));
+		std::cout << "its red" << std::endl;
 		// "cant use that ability right now"
 	}
 }
@@ -98,14 +100,17 @@ void Button::proccess_input(sf::Event::KeyEvent event)
 		upgrade();
 	}
 	
+	shapes[0].setOutlineColor(sf::Color(30,30,30));
+	if (shapes[0].getOutlineColor() == sf::Color::White)
+	{
+		std::cout << "its white" << std::endl;
+	}
+
 	if (sf::Keyboard::isKeyPressed(key))
 	{ 
 		use();
 	}
-	else
-	{
-		shapes[0].setOutlineColor(sf::Color::White);
-	}
+
 }
 
 void Button::upgrade_avalible()
