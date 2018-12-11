@@ -10,8 +10,6 @@ public:
 	Bar(Game& game, sf::Vector2f position, sf::Vector2f size, sf::Color color);
 
 	virtual void draw() override;
-
-	// visually updates the amount of health, mana and XP left
 	bool update() = 0;
 
 protected:

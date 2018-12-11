@@ -5,7 +5,7 @@
 #include <iostream>
 
 Hero::Hero(Game& game, sf::Color color, float size, int speed, std::string name) 
-	: Character{ game, size, speed, 100, name, color }, XP{ 0 }, mana{ 100 }
+	: Character{ game, size, speed, 10, name, color }, XP{ 0 }, mana{ 100 }
 {
 	Character::name.setFillColor(sf::Color::Green);
 	Character::name.setCharacterSize(20);
@@ -26,6 +26,21 @@ bool Hero::update(float deltaTime)
 	}
 	
 	Character::move();
+
+	if ( !(mana >= 100) )
+	{
+		mana += 8 * deltaTime; // 3
+	}
+
+	if ( !(XP >= 100) )
+	{
+		XP += 6 * deltaTime; // 1
+	}
+
+	if ( !(health >= 100) )
+	{
+		health += 10 * deltaTime; // 1
+ 	}
 
 	return health <= 0;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "Bar.h"
+
 class XPbar : public Bar
 {
 public:

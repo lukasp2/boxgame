@@ -3,7 +3,7 @@
 
 bool XPbar::update()
 {
-	bar.setScale(game.player->getXP() / float(100.0), 1);
+	bar.setScale(float(game.player->getXP()) / float(100.0), 1);
 
 	return false;
 }

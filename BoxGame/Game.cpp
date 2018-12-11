@@ -22,12 +22,12 @@ void Game::process_input()
 {
 	//user_interface->proccess_input();
 	
-	while (window.pollEvent(evnt))
+	while (window.pollEvent(event))
 	{
-		user_interface->proccess_input(evnt);
-		player->proccess_input(evnt);
+		user_interface->proccess_input(event);
+		player->proccess_input(event);
 
-		switch (evnt.type)
+		switch (event.type)
 		{
 		case sf::Event::Closed:
 			option.quit = true;
@@ -39,7 +39,7 @@ void Game::process_input()
 			break;
 
 		case sf::Event::KeyPressed:
-			switch (evnt.key.code)
+			switch (event.key.code)
 			{
 			case sf::Keyboard::Escape:
 				option.pause = true;
@@ -56,7 +56,7 @@ void Game::process_input()
 State* Game::update()
 {
 	// prevents a bug
-	deltaTime = clock.restart().asSeconds();
+	deltaTime = frame_clock.restart().asSeconds();
 	if (deltaTime > 1.0f / 20.0f)
 	{
 		deltaTime = 1.0f / 20.0f;

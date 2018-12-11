@@ -7,7 +7,7 @@
 class Character : public Entity
 {
 public:
-	Character(Game& game, float size, int speed, int health, std::string name, sf::Color color);
+	Character(Game& game, float size, int speed, double health, std::string name, sf::Color color);
 
 	virtual bool	update(float deltaTime) = 0;
 	void			move();
@@ -19,14 +19,18 @@ public:
 
 	sf::Vector2f	getPosition()				{ return body.getPosition(); }
 
-	void			setHealth(int newHealth)	{ health = newHealth; }
-	int				getHealth()					{ return health; }
+	void			damaged(int damage)			{ health -= damage; }
+	double			getHealth()					{ return health; }
 
 protected:
 	sf::Text		name;
+	
 	sf::CircleShape body;
+	sf::CircleShape outer_body;
+	sf::CircleShape inner_body;
+
 	float			size;
-	int				health;
+	double			health;
 	int				speed;
 	int				level;
 

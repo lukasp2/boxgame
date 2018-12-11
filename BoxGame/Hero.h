@@ -20,14 +20,15 @@ public:
 	bool changed_movement;
 
 	bool can_upgrade(int& level);
-	int upgrades_avalible{ 2 };
+	int upgrades_avalible{ 20 };
 
-	int getMana() { return mana; }
-	int getXP() { return XP; }
+	double getMana()	{ return mana; }
+	double getXP()		{ return XP; }
 
 protected:
-	int XP{ 0 };
-	int mana{ 100 };
+	double XP{ 0 };
+	double mana{ 100 };
+
 	void draw_more() override;
 
 	ability* q_ptr;

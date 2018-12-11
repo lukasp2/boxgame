@@ -20,7 +20,7 @@ public:
 private:
 	struct q : public ability
 	{
-		q() : ability{ 15, 100, 0 }, velocity{ 800 }, damage{ 15 }, range{ 1000 }
+		q() : ability{ 5, 100, 0 }, velocity{ 800 }, damage{ 15 }, range{ 1000 }
 		{
 			projectileShape.setOutlineColor(sf::Color::Green);
 			projectileShape.setFillColor(sf::Color::Black);
@@ -44,14 +44,14 @@ private:
 
 	struct e : public ability
 	{
-		e() : ability{ 15, 200, 0 }, heal{ 200 } {}
+		e() : ability{ 20, 200, 0 }, heal{ 200 } {}
 		int	heal{ };
 	}; 
 	e e{};
 
 	struct r : public ability
 	{
-		r() : ability{ 15, 200, 0 }, damage{ 200 } {}
+		r() : ability{ 45, 200, 0 }, damage{ 200 } {}
 		int	damage{ };
 	}; 
 	r r{};

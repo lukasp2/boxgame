@@ -39,8 +39,13 @@ Button::Button(Game& game, std::string attackName, sf::Vector2f position, abilit
 	// the text
 	attack_name.setFont(game.courier_font);
 	attack_name.setCharacterSize(18);
-	attack_name.setPosition(sf::Vector2f(position.x + big_box.getSize().x / 2 - 5, position.y + big_box.getSize().y / 2 - 16));
+	attack_name.setPosition(sf::Vector2f(position.x + big_box.getSize().x / 2 - 13, position.y + big_box.getSize().y / 2 - 20));
 	attack_name.setString(attackName);
+
+	mana_costs.setFont(game.courier_font);
+	mana_costs.setCharacterSize(10);
+	mana_costs.setPosition(sf::Vector2f(position.x + big_box.getSize().x - 13, position.y + 2));
+	mana_costs.setString(std::to_string(a->mana_cost));
 }
 
 void Button::draw()
@@ -51,6 +56,7 @@ void Button::draw()
 	}
 
 	game.window.draw(attack_name);
+	game.window.draw(mana_costs);
 }
 
 bool Button::update()
@@ -73,18 +79,16 @@ bool Button::update()
 		shapes[0].setOutlineColor(sf::Color::Red);
 	}
 
-	if (option.mana_too_low)
+	if (game.player->mana < a->mana_cost)
 	{
 		option.mana_too_low = false;
-		shapes[0].setOutlineColor(sf::Color(50, 0, 0));
-	}
-
-	if (option.use)
-	{
-		option.use = false;
+		shapes[0].setOutlineColor(sf::Color(90, 0, 0));
 	}
 
 	//update cooldown thingy
+
+	mana_costs.setString(std::to_string(a->mana_cost));
+
 	return false;
 }
 
@@ -113,9 +117,9 @@ void Button::proccess_input(sf::Event event)
 			option.use = true;
 		}
 
-		else if (game.player->mana < a->mana_cost)
+		//else if (game.player->mana < a->mana_cost)
 		{
-			option.mana_too_low = true;
+		//		option.mana_too_low = true;
 		}
 	}
 }

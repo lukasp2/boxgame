@@ -28,6 +28,7 @@ private:
 
 	std::vector<sf::RectangleShape> shapes;
 	sf::Text attack_name;
+	sf::Text mana_costs;
 
 	sf::Keyboard::Key key;
 	ability* a;

@@ -48,5 +48,5 @@ void Enemy::draw_more()
 void Enemy::got_damaged(size_t damage)
 {
 	health -= damage;
-	healthBar.setScale(health / float(100.0), 1);
+	healthBar.setScale(float(health) / float(100.0), 1);
 }

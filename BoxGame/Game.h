@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include "State.h"
+#include "Clock.h"
 
 class GUI;
 class Hero;
@@ -23,12 +24,15 @@ public:
 	std::shared_ptr<Hero> player;
 	std::vector< std::shared_ptr<Entity> > entities;
 
+	Clock getClock() { return system_clock; }
+
 private:
 	sf::View	view{ sf::Vector2f(0, 0), sf::Vector2f(VIEW_SIZE, VIEW_SIZE) };
 	float		aspectRatio;
 
-	sf::Event	evnt;
-	sf::Clock	clock;
+	sf::Event	event;
+	sf::Clock	frame_clock;
+	Clock		system_clock;
 	float		deltaTime;
 	
 	struct Options

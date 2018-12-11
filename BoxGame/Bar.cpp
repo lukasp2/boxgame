@@ -10,7 +10,7 @@ Bar::Bar(Game& game, sf::Vector2f position, sf::Vector2f size, sf::Color color)
 	edge.setSize(size);
 	edge.setPosition(position);
 	edge.setFillColor(sf::Color::Transparent);
-	edge.setOutlineColor(sf::Color(40,40,40));
+	edge.setOutlineColor(sf::Color(60,60,60));
 	edge.setOutlineThickness(1.0f);
 }
 
