@@ -18,6 +18,7 @@ public:
 	Collider		getCollider()				{ return Collider{ body };	}
 
 	sf::Vector2f	getPosition()				{ return body.getPosition(); }
+	void			setInnerBodyPos();
 
 	void			damaged(int damage)			{ health -= damage; }
 	double			getHealth()					{ return health; }
@@ -26,7 +27,6 @@ protected:
 	sf::Text		name;
 	
 	sf::CircleShape body;
-	sf::CircleShape outer_body;
 	sf::CircleShape inner_body;
 
 	float			size;

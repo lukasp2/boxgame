@@ -60,9 +60,15 @@ void Hero_1::W()
 		int b_length	{ w.flash_length };
 
 		if (a_length > b_length)
+		{
 			body.setPosition(body.getPosition().x + w.flash_length * x, body.getPosition().y + w.flash_length * y);
+		}
 		else
+		{
 			body.setPosition(sf::Mouse::getPosition(game.window).x - static_cast<float>(game.window.getSize().x / 2), sf::Mouse::getPosition(game.window).y - static_cast<float>(game.window.getSize().y / 2));
+		}
+
+		setInnerBodyPos();
 
 		seekPosition = body.getPosition();
 		startPosition = body.getPosition();

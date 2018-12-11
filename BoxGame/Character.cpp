@@ -12,6 +12,7 @@ Character::Character(Game& game, float size, int speed, double health, std::stri
 	body.setPosition(0, 0);
 
 	inner_body = body;
+	setInnerBodyPos();
 	inner_body.setRadius(size - 3);
 	inner_body.setOutlineThickness(8.0f);
 	inner_body.setOutlineColor(color - sf::Color(0,0,0,190));
@@ -48,7 +49,7 @@ void Character::move()
 		sf::Vector2f result = v + startPosition;
 
 		body.setPosition(result);
-		inner_body.setPosition(result.x + 3, result.y + 3);
+		setInnerBodyPos();
 	}
 }
 
@@ -57,4 +58,9 @@ void Character::draw()
 	game.window.draw(body);
 	game.window.draw(inner_body);
 	draw_more();
+}
+
+void Character::setInnerBodyPos()
+{
+	inner_body.setPosition(body.getPosition().x + 3, body.getPosition().y + 3);
 }
