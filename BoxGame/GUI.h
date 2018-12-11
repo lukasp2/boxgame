@@ -12,7 +12,7 @@ public:
 	GUI(Game& game);
 	~GUI() = default;
 
-	void proccess_input(sf::Event::KeyEvent event);
+	void proccess_input(sf::Event event); //sf::Event::KeyEvent event
 	void draw();
 	void update();
 

@@ -9,10 +9,13 @@
 GUI::GUI(Game& game) : game{ game }
 {
 	//healthbar
-	GUI_Objects.push_back( std::make_unique<Bar>(game, sf::Vector2f(-200,380), sf::Vector2f(400,20), sf::Color(0,160,0,255)) );
+	GUI_Objects.push_back( std::make_unique<Bar>(game, sf::Vector2f(-200, 380), sf::Vector2f(400, 20), sf::Color(0,160,0, 255)) );
 	
 	//manabar
-	GUI_Objects.push_back( std::make_unique<Bar>(game, sf::Vector2f(-170,401), sf::Vector2f(340,15), sf::Color(0,0,160,255)) );
+	GUI_Objects.push_back( std::make_unique<Bar>(game, sf::Vector2f(-170, 403), sf::Vector2f(340, 10), sf::Color(0,0,160, 255)) );
+
+	//XP-bar
+	GUI_Objects.push_back(std::make_unique<Bar>(game, sf::Vector2f(-200, 375), sf::Vector2f(400, 2), sf::Color(255, 255, 0, 255)));
 
 	// box displaying Q, W, E, and R-attack
 	GUI_Objects.push_back( std::make_unique<Button>(game, "Q", sf::Vector2f(-150, 320), game.player->q_ptr, sf::Keyboard::Key::Q) );
@@ -30,7 +33,7 @@ GUI::GUI(Game& game) : game{ game }
 	texts.push_back(healthtext);
 }
 
-void GUI::proccess_input(sf::Event::KeyEvent event)
+void GUI::proccess_input(sf::Event event)
 {
 	for (auto&& object : GUI_Objects)
 	{

@@ -16,7 +16,7 @@ public:
 	void update() override;
 	void use();
 
-	virtual void proccess_input(sf::Event::KeyEvent event) override;
+	virtual void proccess_input(sf::Event event) override;
 
 	void upgrade();
 	void upgrade_avalible();

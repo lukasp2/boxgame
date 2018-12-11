@@ -77,10 +77,8 @@ void Hero_1::R()
 
 void Hero_1::upgrade_Q()
 {
-	//q.damage = 60 80 140 220
-	if (q.level != 4)
+	if (can_upgrade(q.level))
 	{
-		q.level++;
 		q.damage += 20 * q.level;
 	}
 }
@@ -88,9 +86,8 @@ void Hero_1::upgrade_Q()
 void Hero_1::upgrade_W()
 {
 	//w.jump = 
-	if (w.level != 4)
+	if (can_upgrade(w.level))
 	{
-		w.level++;
 		w.flash_length += 20 * w.level;
 	}
 }
@@ -98,9 +95,8 @@ void Hero_1::upgrade_W()
 void Hero_1::upgrade_E()
 {
 	//e.heal =
-	if (e.level != 4)
+	if (can_upgrade(e.level))
 	{
-		e.level++;
 		e.heal += 20 * e.level;
 	}
 }
@@ -108,9 +104,8 @@ void Hero_1::upgrade_E()
 void Hero_1::upgrade_R()
 {
 	//r.damage = 
-	if (r.level != 3)
+	if (can_upgrade(r.level))
 	{
-		r.level++;
 		r.damage += 20 * r.level;
 	}
 }

@@ -10,7 +10,7 @@ public:
 
 	virtual void draw() = 0;
 	virtual void update() = 0;
-	virtual void proccess_input(sf::Event::KeyEvent event) {};
+	virtual void proccess_input(sf::Event event) {};
 
 protected:
 	Game& game;

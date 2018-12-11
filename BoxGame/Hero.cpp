@@ -2,6 +2,8 @@
 #include "Game.h"
 #include "GUI.h"
 
+#include <iostream>
+
 Hero::Hero(Game& game, sf::Color color, float size, int speed, std::string name) 
 	: Character{ game, size, speed, 100, name, color }
 {
@@ -28,35 +30,53 @@ bool Hero::update(float deltaTime)
 	return health <= 0;
 }
 
-void Hero::process_input(sf::Event::KeyEvent event)
+void Hero::proccess_input(sf::Event event)
 {
-	switch (event.code)
+	switch (event.type)
 	{
-	case sf::Keyboard::Q:
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-			upgrade_Q();
-		else
-			Q();
-		break;
-	case sf::Keyboard::W:
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-			upgrade_W();
-		else
-			W();
-		break;
-	case sf::Keyboard::E:
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-			upgrade_E();
-		else
-			E();
-		break;
-	case sf::Keyboard::R:
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-			upgrade_R();
-		else
-			R();
+	case sf::Event::KeyPressed:
+		switch (event.key.code)
+		{
+		case sf::Keyboard::Q:
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+				upgrade_Q();
+			else
+				Q();
+			break;
+		case sf::Keyboard::W:
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+				upgrade_W();
+			else
+				W();
+			break;
+		case sf::Keyboard::E:
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+				upgrade_E();
+			else
+				E();
+			break;
+		case sf::Keyboard::R:
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+				upgrade_R();
+			else
+				R();
+			break;
+		}
+	default:
 		break;
 	}
+}
+
+bool Hero::can_upgrade(int& level)
+{
+	if (level != 4)
+	{
+		level++;
+		upgrades_avalible--;
+		return true;
+	}
+
+	return false;
 }
 
 void Hero::draw_more()

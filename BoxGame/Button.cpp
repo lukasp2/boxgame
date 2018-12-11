@@ -63,56 +63,63 @@ void Button::update()
 
 void Button::upgrade()
 {
-	if (game.player->upgrades_avalible > 0 && a->level != 4)
+	if (game.player->upgrades_avalible > 0 && a->level < 4)
 	{
 		shapes[a->level + 2].setFillColor(sf::Color::Yellow);
-		game.player->upgrades_avalible--;
+		shapes[0].setOutlineColor(sf::Color(120, 100, 0));
 	}
-	else if (game.player->upgrades_avalible == 0)
+	else if (game.player->upgrades_avalible < 2)
 	{
+		shapes[0].setOutlineColor(sf::Color::Red);
 		// "upgrade unavalible"
 	}
-	else if (a->level > 4)
+	else if (a->level == 4)
 	{
+		shapes[0].setOutlineColor(sf::Color::Red);
 		// "ability is already at maximum level"
+	}
+	else
+	{
+		shapes[0].setOutlineColor(sf::Color::Red);
+		// "no upgrades"
 	}
 }
 
 void Button::use()
 {
-	if (game.player->mana > a->mana_cost) // && a->cooldown_count == 0 // sf::Time cooldown_count;
+	if (game.player->mana >= a->mana_cost) // && a->cooldown_count == 0 // sf::Time cooldown_count;
 	{
 		shapes[0].setOutlineColor(sf::Color(100,100,100));
-		std::cout << "its grey" << std::endl;
 	}
-	else
+	else if (game.player->mana < a->mana_cost)
 	{
 		shapes[0].setOutlineColor(sf::Color(50, 0, 0));
-		std::cout << "its red" << std::endl;
-		// "cant use that ability right now"
+		// "mana too low"
 	}
+	/*
+	else if (game.player->cooldown < a->cooldown)
+	{
+		shapes[0].setOutlineColor(sf::Color(50, 0, 0));
+		// "ability not ready yet"
+	}
+	*/
 }
 
-void Button::proccess_input(sf::Event::KeyEvent event)
+void Button::proccess_input(sf::Event event)
 {
+	shapes[0].setOutlineColor(sf::Color(30, 30, 30));
+	
 	if (sf::Keyboard::isKeyPressed(key) && sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
 	{
 		upgrade();
 	}
-	
-	shapes[0].setOutlineColor(sf::Color(30,30,30));
-	if (shapes[0].getOutlineColor() == sf::Color::White)
-	{
-		std::cout << "its white" << std::endl;
-	}
-
-	if (sf::Keyboard::isKeyPressed(key))
+	else if (sf::Keyboard::isKeyPressed(key))
 	{ 
 		use();
 	}
-
 }
 
 void Button::upgrade_avalible()
 {
+
 }

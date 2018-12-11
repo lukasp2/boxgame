@@ -20,8 +20,13 @@ Game::Game(sf::RenderWindow& window) : State{ window }
 
 void Game::process_input()
 {
+	//user_interface->proccess_input();
+	
 	while (window.pollEvent(evnt))
 	{
+		user_interface->proccess_input(evnt);
+		player->proccess_input(evnt);
+
 		switch (evnt.type)
 		{
 		case sf::Event::Closed:
@@ -40,10 +45,6 @@ void Game::process_input()
 				option.pause = true;
 				break;
 			}
-			
-			user_interface->proccess_input(evnt.key);
-			player->process_input(evnt.key);
-
 			break;
 
 		default:

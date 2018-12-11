@@ -15,29 +15,18 @@ public:
 	~Hero() = default;
 
 	bool update(float deltaTime) override;
-	void process_input(sf::Event::KeyEvent event);
+	void proccess_input(sf::Event event);
 
 	bool changed_movement;
 
-	int upgrades_avalible{ 20 };
+	bool can_upgrade(int& level);
+	int upgrades_avalible{ 3 };
 
 	float mana{ 100 };
 
 protected:
 	void draw_more() override;
-	/*
-	struct base_q : public ability { using ability::ability; };
-	base_q b_q;
 
-	struct base_w : public ability { using ability::ability; };
-	base_w b_w;
-
-	struct base_e : public ability { using ability::ability; };
-	base_e b_e;
-
-	struct base_r : public ability { using ability::ability; };
-	base_r b_r;
-	*/
 	ability* q_ptr;
 	ability* w_ptr;
 	ability* e_ptr;
