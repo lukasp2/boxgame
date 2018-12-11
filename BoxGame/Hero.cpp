@@ -5,7 +5,7 @@
 #include <iostream>
 
 Hero::Hero(Game& game, sf::Color color, float size, int speed, std::string name) 
-	: Character{ game, size, speed, 100, name, color }
+	: Character{ game, size, speed, 100, name, color }, XP{ 0 }, mana{ 100 }
 {
 	Character::name.setFillColor(sf::Color::Green);
 	Character::name.setCharacterSize(20);

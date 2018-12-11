@@ -16,53 +16,64 @@ Hero_1::Hero_1(Game& game) : Hero { game, sf::Color::Green, 20.0f, 3, "Rolf" }
 
 void Hero_1::Q()
 {
-	float delta_y = body.getPosition().y + game.window.getSize().y / 2 - sf::Mouse::getPosition(game.window).y;
-	float delta_x = body.getPosition().x + game.window.getSize().x / 2 - sf::Mouse::getPosition(game.window).x;
+	if (mana >= q.mana_cost)
+	{
+		float delta_y = body.getPosition().y + game.window.getSize().y / 2 - sf::Mouse::getPosition(game.window).y;
+		float delta_x = body.getPosition().x + game.window.getSize().x / 2 - sf::Mouse::getPosition(game.window).x;
 
-	float radians = atan2(delta_y, delta_x);
-	float degrees = static_cast<float>(180 / PI * radians);
+		float radians = atan2(delta_y, delta_x);
+		float degrees = static_cast<float>(180 / PI * radians);
 
-	float x = -std::cos(radians);
-	float y = -std::sin(radians);
+		float x = -std::cos(radians);
+		float y = -std::sin(radians);
 
-	sf::Vector2f velocity { q.velocity * x, q.velocity * y };
-	sf::Vector2f origin	{ body.getPosition().x + 2 * size * x, body.getPosition().y + 2 * size * y };
+		sf::Vector2f velocity { q.velocity * x, q.velocity * y };
+		sf::Vector2f origin	{ body.getPosition().x + 2 * size * x, body.getPosition().y + 2 * size * y };
 
-	Projectile p{ game, velocity, origin, q.projectileShape, degrees, q.damage, q.range };
+		Projectile p{ game, velocity, origin, q.projectileShape, degrees, q.damage, q.range };
 
-	game.entities.push_back(std::make_unique<Projectile>(p));
+		game.entities.push_back(std::make_unique<Projectile>(p));
+
+		mana -= w.mana_cost;
+	}
 }	
 
 void Hero_1::W()
 {
-	float delta_x = body.getPosition().x + game.window.getSize().x / 2 - sf::Mouse::getPosition(game.window).x;
-	float delta_y = body.getPosition().y + game.window.getSize().y / 2 - sf::Mouse::getPosition(game.window).y;
+	if (mana >= w.mana_cost)
+	{
 
-	float radians = atan2(delta_y, delta_x);
-	float degrees = static_cast<float>(180 / PI * radians);
+		float delta_x = body.getPosition().x + game.window.getSize().x / 2 - sf::Mouse::getPosition(game.window).x;
+		float delta_y = body.getPosition().y + game.window.getSize().y / 2 - sf::Mouse::getPosition(game.window).y;
 
-	float x = -std::cos(radians);
-	float y = -std::sin(radians);
+		float radians = atan2(delta_y, delta_x);
+		float degrees = static_cast<float>(180 / PI * radians);
+
+		float x = -std::cos(radians);
+		float y = -std::sin(radians);
 	
-	// creating the fading circle on the point we jumped from
-	game.entities.push_back(std::make_shared<Disappearing_Character>(game, body, sf::Color::Yellow, 30));
+		// creating the fading circle on the point we jumped from
+		game.entities.push_back(std::make_shared<Disappearing_Character>(game, body, sf::Color::Yellow, 30));
 	
-	// determining whether to jump max flash length or to cursor
-	float a_length	{ sqrt(delta_x * delta_x + delta_y * delta_y) };
-	int b_length	{ w.flash_length };
+		// determining whether to jump max flash length or to cursor
+		float a_length	{ sqrt(delta_x * delta_x + delta_y * delta_y) };
+		int b_length	{ w.flash_length };
 
-	if (a_length > b_length)
-		body.setPosition(body.getPosition().x + w.flash_length * x, body.getPosition().y + w.flash_length * y);
-	else
-		body.setPosition(sf::Mouse::getPosition(game.window).x - static_cast<float>(game.window.getSize().x / 2), sf::Mouse::getPosition(game.window).y - static_cast<float>(game.window.getSize().y / 2));
+		if (a_length > b_length)
+			body.setPosition(body.getPosition().x + w.flash_length * x, body.getPosition().y + w.flash_length * y);
+		else
+			body.setPosition(sf::Mouse::getPosition(game.window).x - static_cast<float>(game.window.getSize().x / 2), sf::Mouse::getPosition(game.window).y - static_cast<float>(game.window.getSize().y / 2));
 
-	seekPosition = body.getPosition();
-	startPosition = body.getPosition();
+		seekPosition = body.getPosition();
+		startPosition = body.getPosition();
 
-	x = 0;
+		x = 0;
 
-	// for the enemy to know we have changed location not based on mouse input
-	changed_movement = true;
+		// for the enemy to know we have changed location not based on mouse input
+		changed_movement = true;
+
+		mana -= w.mana_cost;
+	}
 }
 
 void Hero_1::E()

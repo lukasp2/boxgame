@@ -29,7 +29,6 @@ protected:
 	int				health;
 	int				speed;
 	int				level;
-	int				XP;
 
 	// needed for inifinite directional movement
 	sf::Vector2f	startPosition;

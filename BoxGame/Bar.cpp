@@ -20,7 +20,3 @@ void Bar::draw()
 	game.window.draw(edge);
 }
 
-void Bar::update()
-{
-	
-}

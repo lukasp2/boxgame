@@ -1,5 +1,7 @@
 #include "Button.h"
 #include "Hero.h"
+#include "Timed_Text.h"
+#include "GUI.h"
 
 #include <iostream>
 
@@ -51,75 +53,75 @@ void Button::draw()
 	game.window.draw(attack_name);
 }
 
-void Button::update()
+bool Button::update()
 {
 	if (game.player->upgrades_avalible > 0)
 	{
 		// set outline color
 	}
 
-	//update cooldown thingy
-}
-
-void Button::upgrade()
-{
-	if (game.player->upgrades_avalible > 0 && a->level < 4)
+	if (option.upgrade)
 	{
-		shapes[a->level + 2].setFillColor(sf::Color::Yellow);
+		option.upgrade = false;
+		shapes[a->level + 1].setFillColor(sf::Color::Yellow);
 		shapes[0].setOutlineColor(sf::Color(120, 100, 0));
 	}
-	else if (game.player->upgrades_avalible < 2)
-	{
-		shapes[0].setOutlineColor(sf::Color::Red);
-		// "upgrade unavalible"
-	}
-	else if (a->level == 4)
-	{
-		shapes[0].setOutlineColor(sf::Color::Red);
-		// "ability is already at maximum level"
-	}
-	else
-	{
-		shapes[0].setOutlineColor(sf::Color::Red);
-		// "no upgrades"
-	}
-}
 
-void Button::use()
-{
-	if (game.player->mana >= a->mana_cost) // && a->cooldown_count == 0 // sf::Time cooldown_count;
+	if (option.upgrade_unavalible)
 	{
-		shapes[0].setOutlineColor(sf::Color(100,100,100));
+		option.upgrade_unavalible = false;
+		shapes[0].setOutlineColor(sf::Color::Red);
 	}
-	else if (game.player->mana < a->mana_cost)
+
+	if (option.mana_too_low)
 	{
+		option.mana_too_low = false;
 		shapes[0].setOutlineColor(sf::Color(50, 0, 0));
-		// "mana too low"
 	}
-	/*
-	else if (game.player->cooldown < a->cooldown)
+
+	if (option.use)
 	{
-		shapes[0].setOutlineColor(sf::Color(50, 0, 0));
-		// "ability not ready yet"
+		option.use = false;
 	}
-	*/
+
+	//update cooldown thingy
+	return false;
 }
 
 void Button::proccess_input(sf::Event event)
-{
+{	
 	shapes[0].setOutlineColor(sf::Color(30, 30, 30));
-	
+
 	if (sf::Keyboard::isKeyPressed(key) && sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
 	{
-		upgrade();
+		if (game.player->upgrades_avalible > 0 && a->level < 4)
+		{
+			option.upgrade = true;
+		}
+
+		else if (game.player->upgrades_avalible < 2 || a->level == 4)
+		{
+			option.upgrade_unavalible = true;
+		}
 	}
+
 	else if (sf::Keyboard::isKeyPressed(key))
 	{ 
-		use();
+		if (game.player->mana >= a->mana_cost) // && a->cooldown_count == 0 // sf::Time cooldown_count;
+		{
+			shapes[0].setOutlineColor(sf::Color(100, 100, 100));
+			option.use = true;
+		}
+
+		else if (game.player->mana < a->mana_cost)
+		{
+			option.mana_too_low = true;
+		}
 	}
 }
-
+/*
 void Button::upgrade_avalible()
 {
 
 }
+*/

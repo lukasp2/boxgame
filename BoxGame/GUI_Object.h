@@ -9,7 +9,7 @@ public:
 	~GUI_Object() = default;
 
 	virtual void draw() = 0;
-	virtual void update() = 0;
+	virtual bool update() = 0;
 	virtual void proccess_input(sf::Event event) {};
 
 protected:
