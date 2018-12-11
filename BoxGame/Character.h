@@ -32,7 +32,6 @@ protected:
 	float			size;
 	double			health;
 	int				speed;
-	int				level;
 
 	// needed for inifinite directional movement
 	sf::Vector2f	startPosition;

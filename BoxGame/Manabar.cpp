@@ -9,12 +9,15 @@ Manabar::Manabar(Game & game, sf::Vector2f position, sf::Vector2f size, sf::Colo
 	manatext.setOutlineThickness(1);
 	manatext.setOutlineColor(sf::Color(90, 90, 90, 100));
 	manatext.setFillColor(sf::Color::White);
-	manatext.setPosition(sf::Vector2f(-45, 20));
+	manatext.setPosition(sf::Vector2f(-45, 400));
 }
 
 bool Manabar::update()
 {
 	bar.setScale(float(game.player->getMana()) / float(100.0), 1);
+
+	manatext.setString(std::to_string(static_cast<int>(game.player->getMana())) + " / 100");
+
 	return false;
 }
 

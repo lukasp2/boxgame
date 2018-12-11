@@ -5,7 +5,7 @@
 #include <iostream>
 
 Hero::Hero(Game& game, sf::Color color, float size, int speed, std::string name) 
-	: Character{ game, size, speed, 10, name, color }, XP{ 0 }, mana{ 100 }
+	: Character{ game, size, speed, 10, name, color }, XP{ 0 }, mana{ 100 }, level{ 1 }
 {
 	Character::name.setFillColor(sf::Color::Green);
 	Character::name.setCharacterSize(20);
@@ -29,12 +29,21 @@ bool Hero::update(float deltaTime)
 
 	if ( !(mana >= 100) )
 	{
-		mana += 8 * deltaTime; // 3
+		mana += 8 * deltaTime; // 3, this number is the manaregen per second.
 	}
 
-	if ( !(XP >= 100) )
+	if (level != 18)
 	{
-		XP += 6 * deltaTime; // 1
+		if ( XP >= 100 )
+		{
+			level++;
+			upgrades_avalible++;
+			XP = 0;
+		}
+		else
+		{
+			XP += 30 * deltaTime; // 1
+		}
 	}
 
 	if ( !(health >= 100) )
@@ -82,11 +91,11 @@ void Hero::proccess_input(sf::Event event)
 	}
 }
 
-bool Hero::can_upgrade(int& level)
+bool Hero::can_upgrade(int& ability_level)
 {
-	if (level != 4)
+	if (ability_level != 4 && upgrades_avalible > 0)
 	{
-		level++;
+		ability_level++;
 		upgrades_avalible--;
 		return true;
 	}

@@ -14,20 +14,22 @@ public:
 	Hero(Game& game, sf::Color color, float size, int speed, std::string name);
 	~Hero() = default;
 
-	bool update(float deltaTime) override;
-	void proccess_input(sf::Event event);
+	bool	update(float deltaTime) override;
+	void	proccess_input(sf::Event event);
 
-	bool changed_movement;
+	bool	changed_movement;
 
-	bool can_upgrade(int& level);
-	int upgrades_avalible{ 20 };
+	bool	can_upgrade(int& level);
+	int		upgrades_avalible{ 1 };
 
-	double getMana()	{ return mana; }
-	double getXP()		{ return XP; }
+	double	getMana()	{ return mana; }
+	double	getXP()		{ return XP; }
+	int		getLevel()	{ return level; }
 
 protected:
-	double XP{ 0 };
-	double mana{ 100 };
+	double	XP{ 0 };
+	double	mana{ 100 };
+	int		level{ 1 };
 
 	void draw_more() override;
 

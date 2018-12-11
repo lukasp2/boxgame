@@ -19,6 +19,7 @@ public:
 
 protected:
 	std::vector<std::unique_ptr<GUI_Object>> GUI_Objects;
-
+	std::vector<sf::Text> texts;
+	
 	Game& game;
 };
