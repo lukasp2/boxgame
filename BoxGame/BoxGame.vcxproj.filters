@@ -123,6 +123,9 @@
     <ClCompile Include="Clock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mini_Healthbar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resources.h">
@@ -210,6 +213,9 @@
       <Filter>Header Files\GUI\GUI_Objects</Filter>
     </ClInclude>
     <ClInclude Include="Clock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mini_Healthbar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

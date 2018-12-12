@@ -1,6 +1,7 @@
 #include "Healthbar.h"
 #include "Hero.h"
 #include <sstream>
+#include <iomanip>
 
 Healthbar::Healthbar(Game& game, sf::Vector2f position, sf::Vector2f size, sf::Color color) 
 	: Bar {game, position, size, color}
@@ -15,9 +16,20 @@ Healthbar::Healthbar(Game& game, sf::Vector2f position, sf::Vector2f size, sf::C
 
 bool Healthbar::update()
 {
-	bar.setScale(float(game.player->getHealth()) / float(100.0), 1);
+	float health = float(game.player->getHealth());
+	bar.setScale( health / float(100.0), 1);
+	
+	if (health < 100)
+	{
+		std::stringstream ss;
+		ss << std::setprecision(1) << std::fixed << game.player->get_health_reg();
 
-	healthtext.setString(std::to_string(static_cast<int>(game.player->getHealth())) + " / 100");
+		healthtext.setString(std::to_string(static_cast<int>(health)) + " / 100 " + " ( +" + ss.str() + "/sec )");
+	}
+	else
+	{
+		healthtext.setString(std::to_string(static_cast<int>(health)) + " / 100");
+	}
 
 	return false;
 }
@@ -25,5 +37,7 @@ bool Healthbar::update()
 void Healthbar::draw()
 {
 	game.window.draw(bar);
+	game.window.draw(edge);
 	game.window.draw(healthtext);
 }
+

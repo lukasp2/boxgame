@@ -1,5 +1,7 @@
 #include "Manabar.h"
 #include "Hero.h"
+#include <sstream>
+#include <iomanip>
 
 Manabar::Manabar(Game & game, sf::Vector2f position, sf::Vector2f size, sf::Color color)
 	: Bar{ game, position, size, color }
@@ -14,9 +16,21 @@ Manabar::Manabar(Game & game, sf::Vector2f position, sf::Vector2f size, sf::Colo
 
 bool Manabar::update()
 {
+	float mana = float(game.player->getMana());
 	bar.setScale(float(game.player->getMana()) / float(100.0), 1);
 
-	manatext.setString(std::to_string(static_cast<int>(game.player->getMana())) + " / 100");
+	if (mana < 100)
+	{
+		std::stringstream ss;
+		ss << std::setprecision(1) << std::fixed << game.player->get_mana_reg();
+
+		manatext.setString(std::to_string(static_cast<int>(mana)) + " / 100 " + " ( +" + ss.str() + "/sec )");
+	}
+	else
+	{
+		manatext.setString(std::to_string(static_cast<int>(mana)) + " / 100");
+	}
+
 
 	return false;
 }
@@ -24,5 +38,6 @@ bool Manabar::update()
 void Manabar::draw()
 {
 	game.window.draw(bar);
+	game.window.draw(edge);
 	game.window.draw(manatext);
 }

@@ -9,6 +9,7 @@ public:
 	bool update() override;
 	void draw() override;
 
+
 private:
 	sf::Text healthtext;
 };

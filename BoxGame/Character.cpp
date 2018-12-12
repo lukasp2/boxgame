@@ -15,7 +15,7 @@ Character::Character(Game& game, float size, int speed, double health, std::stri
 	setInnerBodyPos();
 	inner_body.setRadius(size - 3);
 	inner_body.setOutlineThickness(8.0f);
-	inner_body.setOutlineColor(color - sf::Color(0,0,0,200));
+	inner_body.setOutlineColor(color - sf::Color(0,0,0,210));
 
 	// set character name
 	name.setFont(game.courier_font);

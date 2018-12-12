@@ -42,4 +42,20 @@ private:
 		bool gameover{ false };
 	};
 	Options option;
+
+	struct Controls
+	{
+		Controls() : Q{ 16 }, W{ 22 }, E{ 4 }, R{ 17 }, LAlt{ 39 } {}
+		int Q;
+		int W;
+		int E;
+		int R;
+		int LAlt;
+	};
+
+	struct Settings
+	{
+		bool display_healthbar;
+	};
+
 };

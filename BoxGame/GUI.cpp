@@ -4,6 +4,7 @@
 #include "GUI.h"
 #include "Button.h"
 #include "Healthbar.h"
+#include "Mini_Healthbar.h"
 #include "Manabar.h"
 #include "XPbar.h"
 #include "Hero.h"
@@ -25,14 +26,8 @@ GUI::GUI(Game& game) : game{ game }
 	GUI_Objects.push_back( std::make_unique<Button>(game, "E", sf::Vector2f(10, 320), game.player->e_ptr, sf::Keyboard::Key::E) );
 	GUI_Objects.push_back( std::make_unique<Button>(game, "R", sf::Vector2f(90, 320), game.player->r_ptr, sf::Keyboard::Key::R) );
 
-	// texts
-	sf::Text level;
-	level.setFont(game.courier_font);
-	level.setCharacterSize(16);
-	level.setFillColor(sf::Color::White);
-	level.setPosition(sf::Vector2f(-400, 382));
-	level.setString("Level: 1");
-	texts.push_back(level);
+	// mini healthbar
+	GUI_Objects.push_back(std::make_unique<Mini_Healthbar>(game, game.player->getPosition(), sf::Vector2f(40, 4), sf::Color(0, 235, 0)));
 }
 
 void GUI::proccess_input(sf::Event event)
@@ -48,11 +43,6 @@ void GUI::draw()
 	for (auto&& object : GUI_Objects)
 	{
 		object->draw();
-	}
-
-	for (auto&& text : texts)
-	{
-		game.window.draw(text);
 	}
 
 	game.window.draw(game.getClock().get_as_text());
@@ -71,6 +61,4 @@ void GUI::update()
 			++it;
 		}
 	}
-
-	texts[0].setString("Level: " + std::to_string(game.player->getLevel()));
 }

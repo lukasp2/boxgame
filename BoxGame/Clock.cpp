@@ -14,7 +14,7 @@ Clock::Clock() : clock{}
 
 sf::Text Clock::get_as_text()
 {
-	int total_seconds = clock.getElapsedTime().asSeconds();
+	int total_seconds = static_cast<int>(clock.getElapsedTime().asSeconds());
 
 	int seconds = total_seconds % 60;
 	int minutes = ((total_seconds - seconds) / 60) % 60;

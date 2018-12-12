@@ -62,22 +62,6 @@ Controls::Controls(sf::RenderWindow& window) : State{ window }
 
 void Controls::process_input()
 {
-}
-
-State* Controls::update()
-{
-	if (option.quit)
-	{
-		option.quit = false;
-		state_ptr = std::make_unique<Main_Menu>(window);
-		return state_ptr.get();
-	}
-
-	return nullptr;
-}
-
-void Controls::render()
-{
 	while (window.pollEvent(evnt))
 	{
 		switch (evnt.type)
@@ -98,7 +82,22 @@ void Controls::render()
 		break;
 		}
 	}
+}
 
+State* Controls::update()
+{
+	if (option.quit)
+	{
+		option.quit = false;
+		state_ptr = std::make_unique<Main_Menu>(window);
+		return state_ptr.get();
+	}
+
+	return nullptr;
+}
+
+void Controls::render()
+{
 	window.clear(sf::Color::Black);
 
 	window.draw(header);

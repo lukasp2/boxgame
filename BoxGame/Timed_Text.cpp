@@ -1,6 +1,6 @@
 #include "Timed_Text.h"
 
-Timed_Text::Timed_Text(Game& game, std::string txt, sf::Color color, sf::Vector2f position, size_t size, size_t lifelength)
+Timed_Text::Timed_Text(Game& game, std::string txt, sf::Color color, sf::Vector2f position, size_t size, float lifelength)
 	: GUI_Object{ game }, lifelength{ lifelength }
 {
 	sf::Text text;
