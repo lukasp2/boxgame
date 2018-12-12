@@ -1,6 +1,4 @@
-#include "Collider.h"
-#include <cmath>
-
+/*
 sf::Vector2f getHalfSize(sf::Shape& shape)
 {
 	sf::Vector2f shapeHalfSize;
@@ -17,7 +15,7 @@ sf::Vector2f getHalfSize(sf::Shape& shape)
 	return shapeHalfSize;
 }
 
-bool Collider::checkCollision(sf::Shape& other, sf::Vector2f& direction)
+bool checkCollision(sf::Shape& other, sf::Vector2f& direction)
 {
 	float delta_x = other.getPosition().x - body.getPosition().x;
 	float delta_y = other.getPosition().y - body.getPosition().y;
@@ -69,7 +67,6 @@ bool Collider::checkCollision(sf::Shape& other, sf::Vector2f& direction)
 	return false;
 }
 
-/*
 bool Collider::checkCollision(Collider& other, sf::Vector2f& direction, float push)
 {
 	sf::Vector2f otherHalfSize = other.body.getSize() / 2.0f;

@@ -14,9 +14,9 @@ public:
 
 	void got_damaged(size_t damage);
 
-	sf::RectangleShape healthBar;
-	sf::RectangleShape bar;
-
 private:
+	sf::RectangleShape healthBar;
+	sf::RectangleShape edge;
+
 	size_t damage{};
 };

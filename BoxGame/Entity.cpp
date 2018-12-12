@@ -1,28 +1,11 @@
 #include "Entity.h"
 
-void Entity::onCollision()
+bool Entity::checkCollision(Entity& otherEntity)
 {
-	// collision on left
-	if (colDirection.x < 0.0f)
-	{
-		velocity.x = 0.0f;
-	}
+	float delta_x = abs(body.getPosition().x - otherEntity.body.getPosition().x );
+	float delta_y = abs(body.getPosition().y - otherEntity.body.getPosition().y );
 
-	// collision on right
-	else if (colDirection.x > 0.0f)
-	{
-		velocity.x = 0.0f;
-	}
+	float dist{ sqrt(delta_x * delta_x + delta_y * delta_y) };
 
-	// collision below
-	if (colDirection.y < 0.0f)
-	{
-		velocity.y = 0.0f;
-	}
-
-	// collision above
-	else if (colDirection.y > 0.0f)
-	{
-		velocity.y = 0.0f;
-	}
+	return (dist <= body.getRadius() + otherEntity.body.getRadius());
 }

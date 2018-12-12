@@ -7,25 +7,21 @@
 class Entity
 {
 public:
-	enum type { hero, enemy, wall, projectile };
-
 	~Entity() = default;
-
 	Entity(Game& game) : game{ game } {}
+	
+	enum type { hero = 1, enemy, projectile };
 
 	virtual void	draw() = 0;
 	virtual bool	update(float deltaTime) = 0;
 
-	sf::Vector2f&	getColDirection() { return colDirection; }
-	void			onCollision();
+	bool			checkCollision(Entity& otherBody);
+	//sf::Vector2f&	getColDirection() { return colDirection; }
+	virtual void	onCollision() {};
 
 protected:
 	Game& game;
 
-	//this reference is just for convenience (game.window => window), removing it would be wise..
-	//sf::RenderWindow& window;
-
-	sf::Vector2f		velocity;
-	sf::Vector2f		colDirection;
+	sf::CircleShape body;
 };
 

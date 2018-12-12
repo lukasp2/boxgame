@@ -20,6 +20,9 @@ public:
 	virtual State*	update()		override;
 	virtual void	render()		override;
 
+	void read_settings();
+	void read_options();
+
 	std::unique_ptr<GUI> user_interface;
 	std::shared_ptr<Hero> player;
 	std::vector< std::shared_ptr<Entity> > entities;

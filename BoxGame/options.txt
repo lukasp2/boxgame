@@ -1,0 +1,3 @@
+1 display_minibar Y
+2 display_levelbox Y
+3 display_clock Y

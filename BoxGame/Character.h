@@ -1,8 +1,6 @@
 #pragma once
-
 #include "Entity.h"
 #include "Game.h"
-#include "Collider.h"
 
 class Character : public Entity
 {
@@ -13,10 +11,9 @@ public:
 	void			move();
 	virtual void	draw() override;
 	virtual void	draw_more() {};
+	//virtual void	onCollision() override;
 
 	// getters & setters
-	Collider		getCollider()				{ return Collider{ body };	}
-
 	sf::Vector2f	getPosition()				{ return body.getPosition(); }
 	void			setInnerBodyPos();
 
@@ -25,7 +22,6 @@ public:
 
 protected:
 	sf::Text		name;
-	
 	sf::CircleShape body;
 	sf::CircleShape inner_body;
 

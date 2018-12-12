@@ -156,7 +156,6 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Clock.h" />
-    <ClInclude Include="Collider.h" />
     <ClInclude Include="Controls.h" />
     <ClInclude Include="Disappearing_Character.h" />
     <ClInclude Include="Entity.h" />
@@ -185,6 +184,7 @@
   <ItemGroup>
     <Text Include="controls.txt" />
     <Text Include="highscore.txt" />
+    <Text Include="options.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -124,14 +124,11 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Mini_Healthbar.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GUI\GUI_Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resources.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Controls.h">
@@ -216,7 +213,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Mini_Healthbar.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GUI\GUI_Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +221,9 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="controls.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="options.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

@@ -13,11 +13,7 @@ public:
 
 private:
 	sf::Color color;
-	sf::Color inner_color;
-
 	sf::CircleShape body;
-	sf::CircleShape inner_body;
-
 	size_t lifetime;
 	size_t total_lifetime;
 };
