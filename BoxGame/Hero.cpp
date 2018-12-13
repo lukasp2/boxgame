@@ -1,11 +1,10 @@
 #include "Hero.h"
 #include "Game.h"
 #include "GUI.h"
-
-#include <iostream>
+#include "Enemy.h"
 
 Hero::Hero(Game& game, sf::Color color, float size, int speed, std::string name) 
-	: Character{ game, size, speed, 1, name, color }, XP{ 0 }, mana{ 100 }, level{ 1 }, mana_regen{5.22}, health_regen{2.38}
+	: Character{ game, size, speed, 100, name, color }, XP{ 0 }, mana{ 100 }, level{ 1 }, mana_regen{5.22}, health_regen{2.38}
 {
 	Character::name.setFillColor(sf::Color::Green);
 	Character::name.setCharacterSize(20);
@@ -27,24 +26,18 @@ bool Hero::update(float deltaTime)
 	
 	Character::move();
 
-	if ( !(mana >= 100) )
+
+	if (level != 18 && XP >= 100)
+	{
+		level_up();
+	}
+
+	if (mana < 100)
 	{
 		mana += mana_regen * deltaTime;
 	}
 
-	if (level != 18)
-	{
-		if ( XP >= 100 )
-		{
-			level_up();
-		}
-		else
-		{
-			XP += 1 * deltaTime;
-		}
-	}
-
-	if ( !(health >= 100) )
+	if (health < 100)
 	{
 		health += health_regen * deltaTime;
  	}
@@ -87,6 +80,19 @@ void Hero::proccess_input(sf::Event event)
 	default:
 		break;
 	}
+}
+
+void Hero::onCollision(Entity& otherEntity)
+{
+	if (Enemy* e = dynamic_cast<Enemy*>(&otherEntity))
+	{
+		health -= e->getDamage();
+	}
+}
+
+void Hero::recieve_XP()
+{
+	XP += 10;
 }
 
 void Hero::level_up()

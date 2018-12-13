@@ -34,14 +34,17 @@ bool Enemy::update(float deltaTime)
 
 	//update_more()?
 
-	healthBar.setScale(float(health) / max_health, 1);
+	healthBar.setScale(float(health) / float(max_health), 1);
 
 	name.setPosition(body.getPosition().x - body.getRadius() - 10, body.getPosition().y - body.getRadius() - 40);
 	edge.setPosition(body.getPosition().x - body.getRadius() - 3, body.getPosition().y - body.getRadius() - 15);
 	healthBar.setPosition(body.getPosition().x - body.getRadius() - 3, body.getPosition().y - body.getRadius() - 15);
 
 	if (health <= 0)
+	{
+		game.player->recieve_XP();
 		game.entities.push_back( std::make_shared<Disappearing_Character>(game, body, body.getOutlineColor(), 40));
+	}
 	
 	return health <= 0;
 }

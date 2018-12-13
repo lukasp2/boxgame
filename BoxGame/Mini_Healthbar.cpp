@@ -1,8 +1,9 @@
 #include "Mini_Healthbar.h"
 #include "Hero.h"
+#include <iostream>
 
 Mini_Healthbar::Mini_Healthbar(Game& game, sf::Vector2f position, sf::Vector2f size, sf::Color color)
-	: Bar{ game, position, size, color }, current_level{game.player->getLevel()}
+	: Bar{ game, position, size, color }, current_level{ game.player->getLevel() }
 {
 	edge.setOutlineColor(sf::Color(100,100,100));
 
@@ -42,9 +43,8 @@ bool Mini_Healthbar::update()
 			level_box.setPosition(level_box.getPosition().x - 6, level_box.getPosition().y);
 		}
 	}
-
-
-	bar.setScale(float(game.player->getHealth()) / float(game.player->getMaxHealth()) , 1);
+	
+	bar.setScale(float(game.player->getHealth()) / game.player->getMaxHealth(), 1);
 
 	return false;
 }

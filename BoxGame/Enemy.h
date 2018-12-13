@@ -13,6 +13,8 @@ public:
 	virtual void draw_more() override;
 	void onCollision(Entity& otherEntity) override;
 
+	size_t getDamage() { return damage; }
+
 private:
 	sf::RectangleShape healthBar;
 	sf::RectangleShape edge;
