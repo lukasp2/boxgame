@@ -5,18 +5,28 @@
 class Projectile : public MovingObject
 {
 public:
+	enum class type { friendly, hostile };
+	
 	~Projectile() = default;
-	Projectile(Game& game, sf::Vector2f& velocity, sf::Vector2f& origin, sf::CircleShape& body, size_t damage, size_t range);
+	Projectile(Game& game, 
+		sf::Vector2f& velocity, 
+		sf::Vector2f& origin, 
+		sf::CircleShape& body, 
+		size_t damage, 
+		size_t range,
+		enum type t);
 
 	bool update (float deltaTime);
 	void draw()	override { game.window.draw(body); }
+	void onCollision(Entity& otherEntity) override;
 
 	size_t getDamage()	{ return damage; }
 
 private:
-	size_t		damage;
-	size_t		range;
+	type t;
+	size_t	damage;
+	size_t	range;
 
-	size_t		lifeTimer{};
-	bool		hit{ false };
+	size_t	lifeTimer{};
+	bool	hit{ false };
 };

@@ -8,7 +8,6 @@ class GUI;
 class Hero;
 class Entity;
 
-
 class Game : public State
 {
 public:

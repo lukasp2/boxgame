@@ -30,19 +30,18 @@ void Hero_1::Q()
 		sf::Vector2f velocity { q.velocity * x, q.velocity * y };
 		sf::Vector2f origin	{ body.getPosition().x + 2 * size * x, body.getPosition().y + 2 * size * y };
 
-		Projectile p{ game, velocity, origin, q.projectileShape, q.damage, q.range };
+		Projectile p{ game, velocity, origin, q.projectileShape, q.damage, q.range, Projectile::type::friendly };
 
 		game.entities.push_back(std::make_unique<Projectile>(p));
 
 		mana -= q.mana_cost;
 	}
-}	
+}
 
 void Hero_1::W()
 {
 	if (mana >= w.mana_cost)
 	{
-
 		float delta_x = body.getPosition().x + game.window.getSize().x / 2 - sf::Mouse::getPosition(game.window).x;
 		float delta_y = body.getPosition().y + game.window.getSize().y / 2 - sf::Mouse::getPosition(game.window).y;
 

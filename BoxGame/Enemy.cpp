@@ -1,9 +1,10 @@
 #include "Enemy.h"
 #include "Hero.h"
+#include "Projectile.h"
 #include "Disappearing_Character.h"
 
-Enemy::Enemy(Game& game, sf::Color color, float size, int speed, int health, size_t damage, std::string name)
-	: Character{ game, size, speed, health, name, color }
+Enemy::Enemy(Game& game, sf::Color color, float size, int speed, float health, size_t damage, std::string name)
+	: Character{ game, size, speed, health, name, color }, max_health{ health }
 {
 	Character::name.setFillColor(color);
 	Character::name.setCharacterSize(15);
@@ -15,6 +16,8 @@ Enemy::Enemy(Game& game, sf::Color color, float size, int speed, int health, siz
 	edge.setFillColor		(sf::Color::Black);
 	edge.setOutlineThickness(1);
 	edge.setOutlineColor(sf::Color(100, 100, 100));
+
+	body.setPosition(-200,-200);
 }
 
 bool Enemy::update(float deltaTime)
@@ -47,8 +50,13 @@ void Enemy::draw_more()
 	game.window.draw(healthBar);
 }
 
-void Enemy::got_damaged(size_t damage)
+void Enemy::onCollision(Entity& otherEntity)
+{
+
+}
+
+void Enemy::damage_enemy(size_t damage)
 {
 	health -= damage;
-	healthBar.setScale(float(health) / float(100.0), 1);
+	healthBar.setScale(float(health) / max_health, 1);
 }
