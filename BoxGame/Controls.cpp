@@ -1,14 +1,15 @@
 #include "Controls.h"
 #include "Main_Menu.h"
+#include "Quit.h"
 
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <iomanip>
 
-#define X_POS 100
-#define Y_POS 0
-#define CHAR_SIZE 35
+#define X_POS -400		//X & Y placement of text
+#define Y_POS -400			
+#define CHAR_SIZE 20	//text size
 
 Controls::Controls(sf::RenderWindow& window) : State{ window }
 {
@@ -62,20 +63,25 @@ Controls::Controls(sf::RenderWindow& window) : State{ window }
 
 void Controls::process_input()
 {
-	while (window.pollEvent(evnt))
+	while (window.pollEvent(event))
 	{
-		switch (evnt.type)
+		switch (event.type)
 		{
+		case sf::Event::Closed:
+			option.quit = true;
+			break;
+
+		case sf::Event::Resized:
+			aspectRatio = float(window.getSize().x) / float(window.getSize().y);
+			view.setSize(VIEW_SIZE * aspectRatio, VIEW_SIZE);
+			break;
+
 		case sf::Event::KeyPressed:
 		{
-			switch (evnt.key.code)
+			switch (event.key.code)
 			{
-			case sf::Event::Closed:
-				option.quit = true;
-				break;
-
 			case sf::Keyboard::Enter:
-				option.quit = true;
+				option.go_back = true;
 				break;
 			}
 		}
@@ -86,10 +92,17 @@ void Controls::process_input()
 
 State* Controls::update()
 {
+	if (option.go_back)
+	{
+		option.go_back = false;
+		state_ptr = std::make_unique<Main_Menu>(window);
+		return state_ptr.get();
+	}
+
 	if (option.quit)
 	{
 		option.quit = false;
-		state_ptr = std::make_unique<Main_Menu>(window);
+		state_ptr = std::make_unique<Quit>(window);
 		return state_ptr.get();
 	}
 
@@ -108,5 +121,5 @@ void Controls::render()
 
 	window.display();
 
-	window.setView(menuView);
+	window.setView(view);
 }

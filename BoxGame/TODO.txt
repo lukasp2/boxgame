@@ -1,0 +1,3 @@
+- när man går till menyn efter att ha varit i highscore så blinkar menytexten till på höger sida av skärmen
+- det går inte att resizea main menu
+- när man går tilbaka till menyn efter att ha varit i en undermeny så borde man "stå" på samma val som man gjorde när man gick in

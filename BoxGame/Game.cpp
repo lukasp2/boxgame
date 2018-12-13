@@ -90,7 +90,7 @@ State* Game::update()
 
 	for (auto it = entities.begin(); it != entities.end(); )
 	{
-		for (auto it2 = entities.begin(); it2 != entities.end(); ++it2)
+		for (auto it2 = it; it2 != entities.end(); ++it2)
 		{
 			if (it2 != it)
 			{

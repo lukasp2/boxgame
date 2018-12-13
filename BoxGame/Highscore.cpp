@@ -1,5 +1,6 @@
 #include "Highscore.h"
 #include "Main_Menu.h"
+#include "Quit.h"
 
 #include <fstream>
 #include <iostream>
@@ -9,9 +10,9 @@
 #include <vector>
 #include <algorithm>
 
-#define X_POS 100		//X & Y placement of text
-#define Y_POS 0			
-#define CHAR_SIZE 35	//text size
+#define X_POS -400		//X & Y placement of text
+#define Y_POS -400			
+#define CHAR_SIZE 20	//text size
 #define NUM_SCORES 10	//numeber of highscores to be displayed
 
 Highscore::Highscore(sf::RenderWindow& window) : State{ window }
@@ -52,13 +53,14 @@ Highscore::Highscore(sf::RenderWindow& window) : State{ window }
 	text.setCharacterSize(CHAR_SIZE);
 	text.setFillColor(sf::Color::Green);
 
-	for (size_t i{}; i < NUM_SCORES && i < v.size(); ++i)
+	for (int i{}; i < NUM_SCORES && i < int(v.size()); ++i)
 	{
 		std::stringstream ss;
 		ss << std::setw(2) << i + 1 << "." << std::left << std::setw(20) << std::setfill('.') << v[i].first << std::right << v[i].second;
 		text.setString(ss.str());
-		text.setPosition( sf::Vector2f(X_POS, static_cast<float>(Y_POS + CHAR_SIZE * (i + 1))) );
-
+		text.setPosition( sf::Vector2f(X_POS, static_cast<float>(Y_POS + CHAR_SIZE * (i + 1))));
+		std::cout << i << std::endl;
+		
 		scoreVector.push_back(text);
 	}
 
@@ -67,16 +69,25 @@ Highscore::Highscore(sf::RenderWindow& window) : State{ window }
 
 void Highscore::process_input()
 {
-	while (window.pollEvent(evnt))
+	while (window.pollEvent(event))
 	{
-		switch (evnt.type)
+		switch (event.type)
 		{
+		case sf::Event::Closed:
+			option.quit = true;
+			break;
+
+		case sf::Event::Resized:
+			aspectRatio = float(window.getSize().x) / float(window.getSize().y);
+			view.setSize(VIEW_SIZE * aspectRatio, VIEW_SIZE);
+			break;
+
 		case sf::Event::KeyPressed:
 		{
-			switch (evnt.key.code)
+			switch (event.key.code)
 			{
 			case sf::Keyboard::Enter:
-				option.quit = true;
+				option.go_back = true;
 				break;
 			}
 		}
@@ -87,10 +98,17 @@ void Highscore::process_input()
 
 State* Highscore::update()
 {
+	if (option.go_back)
+	{
+		option.go_back = false;
+		state_ptr = std::make_unique<Main_Menu>(window);
+		return state_ptr.get();
+	}
+
 	if (option.quit)
 	{
 		option.quit = false;
-		state_ptr = std::make_unique<Main_Menu>(window);
+		state_ptr = std::make_unique<Quit>(window);
 		return state_ptr.get();
 	}
 
@@ -109,5 +127,5 @@ void Highscore::render()
 
 	window.display();
 
-	window.setView(menuView);
+	window.setView(view);
 }

@@ -48,19 +48,26 @@ Main_Menu::Main_Menu(sf::RenderWindow& window)
 		
 		textVector.push_back(opt);
 	}
-
-	menuView.setSize(VIEW_HEIGHT, VIEW_HEIGHT);
 }
 
 void Main_Menu::process_input()
 {
-	while (window.pollEvent(evnt))
+	while (window.pollEvent(event))
 	{
-		switch (evnt.type)
+		switch (event.type)
 		{
+		case sf::Event::Closed:
+			option.quit = true;
+			break;
+
+		case sf::Event::Resized:
+			aspectRatio = float(window.getSize().x) / float(window.getSize().y);
+			view.setSize(VIEW_SIZE * aspectRatio, VIEW_SIZE);
+			break;
+
 		case sf::Event::KeyPressed:
 		{
-			switch (evnt.key.code)
+			switch (event.key.code)
 			{
 			case sf::Keyboard::Up:
 				moveUp();
