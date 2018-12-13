@@ -11,14 +11,14 @@ public:
 	void			move();
 	virtual void	draw() override;
 	virtual void	draw_more() {};
-	//virtual void	onCollision() override;
 
 	// getters & setters
 	sf::Vector2f	getPosition()				{ return body.getPosition(); }
 	void			setInnerBodyPos();
 
-	void			damaged(int damage)			{ health -= damage; }
+	void			damage_char(int damage)		{ health -= damage; }
 	double			getHealth()					{ return health; }
+	double			getMaxHealth()				{ return max_health; }
 
 protected:
 	sf::Text		name;
@@ -26,6 +26,7 @@ protected:
 
 	float			size;
 	double			health;
+	double			max_health;
 	int				speed;
 
 	// needed for inifinite directional movement

@@ -16,6 +16,8 @@ public:
 
 	bool	update(float deltaTime) override;
 	void	proccess_input(sf::Event event);
+	void	checkCollision(Entity& otherEntity) override;
+
 	virtual void level_up();
 
 	bool	changed_movement;

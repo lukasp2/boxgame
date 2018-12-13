@@ -20,4 +20,3 @@ private:
 	};
 	Options option;
 };
-

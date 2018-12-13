@@ -1,5 +1,6 @@
 #include "Projectile.h"
 #include "Enemy.h"
+#include "Hero.h"
 #include "Game.h"
 
 Projectile::Projectile(Game& game, sf::Vector2f& velocity, sf::Vector2f& origin, sf::CircleShape& body, size_t damage, size_t range, enum type t)
@@ -27,7 +28,15 @@ void Projectile::onCollision(Entity& otherEntity)
 	{
 		if (t == type::friendly)
 		{
-			e->damage_enemy(damage);
+			e->damage_char(damage);
+		}
+	}
+
+	if (Hero* h = dynamic_cast<Hero*>(&otherEntity))
+	{
+		if (t == type::friendly)
+		{
+			h->damage_char(damage);
 		}
 	}
 

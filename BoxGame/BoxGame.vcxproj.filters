@@ -229,5 +229,8 @@
     <Text Include="TODO.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="spawns.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

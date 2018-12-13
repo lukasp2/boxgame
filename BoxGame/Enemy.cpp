@@ -4,7 +4,7 @@
 #include "Disappearing_Character.h"
 
 Enemy::Enemy(Game& game, sf::Color color, float size, int speed, float health, size_t damage, std::string name)
-	: Character{ game, size, speed, health, name, color }, max_health{ health }
+	: Character{ game, size, speed, health, name, color }
 {
 	Character::name.setFillColor(color);
 	Character::name.setCharacterSize(15);
@@ -34,6 +34,8 @@ bool Enemy::update(float deltaTime)
 
 	//update_more()?
 
+	healthBar.setScale(float(health) / max_health, 1);
+
 	name.setPosition(body.getPosition().x - body.getRadius() - 10, body.getPosition().y - body.getRadius() - 40);
 	edge.setPosition(body.getPosition().x - body.getRadius() - 3, body.getPosition().y - body.getRadius() - 15);
 	healthBar.setPosition(body.getPosition().x - body.getRadius() - 3, body.getPosition().y - body.getRadius() - 15);
@@ -53,10 +55,4 @@ void Enemy::draw_more()
 void Enemy::onCollision(Entity& otherEntity)
 {
 
-}
-
-void Enemy::damage_enemy(size_t damage)
-{
-	health -= damage;
-	healthBar.setScale(float(health) / max_health, 1);
 }

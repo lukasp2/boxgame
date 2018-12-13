@@ -1,7 +1,7 @@
 #include "Character.h"
 
 Character::Character(Game& game, float size, int speed, double health, std::string s_name, sf::Color color)
-	: Entity{ game }, size{ size }, speed{ speed }, health{ health }, x{ 0 }
+	: Entity{ game }, size{ size }, speed{ speed }, health{ health }, x{ 0 }, max_health{ health }
 {
 	// set character body
 	body.setRadius(size);

@@ -1,0 +1,24 @@
+Level 1
+Warrior (-300,-300) : 2 sec
+Warrior (-300,300) : 2 sec
+Warrior (300,-300) : 3 sec
+Warrior (300,300) : 3 sec
+--
+Level 2
+Warrior (-300,-300) : 2 sec
+Warrior (-300,300) : 2 sec
+Warrior (300,-300) : 3 sec
+Warrior (300,300) : 3 sec
+--
+Level 3
+Warrior (-300,-300) : 2 sec
+Warrior (-300,300) : 2 sec
+Warrior (300,-300) : 3 sec
+Warrior (300,300) : 3 sec
+--
+Level 4
+Warrior (-300,-300) : 2 sec
+Warrior (-300,300) : 2 sec
+Warrior (300,-300) : 3 sec
+Warrior (300,300) : 3 sec
+--

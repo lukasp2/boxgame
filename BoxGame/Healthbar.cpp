@@ -17,7 +17,7 @@ Healthbar::Healthbar(Game& game, sf::Vector2f position, sf::Vector2f size, sf::C
 bool Healthbar::update()
 {
 	float health = float(game.player->getHealth());
-	bar.setScale( health / float(100.0), 1);
+	bar.setScale( health / float(game.player->getMaxHealth()), 1);
 	
 	if (health < 100)
 	{

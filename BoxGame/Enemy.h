@@ -13,13 +13,9 @@ public:
 	virtual void draw_more() override;
 	void onCollision(Entity& otherEntity) override;
 
-	void damage_enemy(size_t damage);
-
 private:
 	sf::RectangleShape healthBar;
 	sf::RectangleShape edge;
-
-	float max_health;
-
+	
 	size_t damage{};
 };
