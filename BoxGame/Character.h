@@ -22,7 +22,6 @@ public:
 
 protected:
 	sf::Text		name;
-	sf::CircleShape body;
 	sf::CircleShape inner_body;
 
 	float			size;

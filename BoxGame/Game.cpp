@@ -86,8 +86,6 @@ State* Game::update()
 		// return game over state
 	}
 
-	size_t count{};
-
 	for (auto it = entities.begin(); it != entities.end(); )
 	{
 		for (auto it2 = it; it2 != entities.end(); ++it2)
@@ -96,7 +94,7 @@ State* Game::update()
 			{
 				if ((*it)->checkCollision(*(*it2)))
 				{
-					std::cout << "collision " << count++ << std::endl;
+					std::cout << "collision " << std::endl;
 				}
 			}
 		}

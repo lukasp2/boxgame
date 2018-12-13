@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include <iostream>
 
 bool Entity::checkCollision(Entity& otherEntity)
 {

@@ -10,7 +10,7 @@ public:
 	~Entity() = default;
 	Entity(Game& game) : game{ game } {}
 	
-	enum type { hero = 1, enemy, projectile };
+	enum type { hero = 1, enemy, hero_projectile, enemy_projectile};
 
 	virtual void	draw() = 0;
 	virtual bool	update(float deltaTime) = 0;

@@ -59,7 +59,6 @@ Highscore::Highscore(sf::RenderWindow& window) : State{ window }
 		ss << std::setw(2) << i + 1 << "." << std::left << std::setw(20) << std::setfill('.') << v[i].first << std::right << v[i].second;
 		text.setString(ss.str());
 		text.setPosition( sf::Vector2f(X_POS, static_cast<float>(Y_POS + CHAR_SIZE * (i + 1))));
-		std::cout << i << std::endl;
 		
 		scoreVector.push_back(text);
 	}

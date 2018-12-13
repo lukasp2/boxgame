@@ -1,11 +1,11 @@
 #include "MovingObject.h"
 
-MovingObject::MovingObject(Game& game, sf::Vector2f& velocity, sf::Vector2f& origin, sf::CircleShape& body,  float angle )
-	: Entity { game }, body { body }, angle{ angle }, velocity {velocity}
+MovingObject::MovingObject(Game& game, sf::Vector2f& velocity, sf::Vector2f& origin, sf::CircleShape& body )
+	: Entity { game }, velocity {velocity}
 {
-	MovingObject::body.setOrigin(body.getRadius(), body.getRadius());
-	MovingObject::body.setPosition(origin);
-	MovingObject::body.setRotation(angle);
+	Entity::body = body;
+	Entity::body.setOrigin(body.getRadius(), body.getRadius());
+	Entity::body.setPosition(origin);
 }
 
 void MovingObject::onCollision()

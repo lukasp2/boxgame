@@ -6,7 +6,7 @@ class MovingObject : public Entity
 {
 public:
 	~MovingObject() = default;
-	MovingObject(Game& game, sf::Vector2f& velocity, sf::Vector2f& origin, sf::CircleShape& body, float angle);
+	MovingObject(Game& game, sf::Vector2f& velocity, sf::Vector2f& origin, sf::CircleShape& body);
 
 	void			move(float deltaTime)			{ body.move(velocity * deltaTime); }
 	virtual void	draw() = 0;
@@ -17,7 +17,5 @@ public:
 
 protected:
 	sf::Vector2f	velocity;
-	sf::CircleShape	body;
-	float			angle;
-	sf::Vector2f		colDirection;
+	sf::Vector2f	colDirection;
 };
