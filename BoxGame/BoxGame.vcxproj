@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{4135A29E-1B79-4C0B-B097-3295A740C243}</ProjectGuid>
     <RootNamespace>BoxGame</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -146,6 +146,7 @@
     <ClCompile Include="MovingObject.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Ranger.cpp" />
+    <ClCompile Include="Static_Projectile.cpp" />
     <ClCompile Include="Timed_Text.cpp" />
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="Warrior.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="Ranger.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="Static_Projectile.h" />
     <ClInclude Include="Timed_Text.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Warrior.h" />

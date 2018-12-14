@@ -42,7 +42,7 @@ bool Enemy::update(float deltaTime)
 	if (health <= 0)
 	{
 		game.player->recieve_XP();
-		game.entities.push_back( std::make_shared<Disappearing_Character>(game, body, body.getOutlineColor(), 40));
+		game.add( std::make_shared<Disappearing_Character>(game, body, body.getOutlineColor(), 40));
 	}
 	
 	return health <= 0;

@@ -7,6 +7,7 @@
 #include "Wall.h"
 #include "Entity.h"
 #include "Warrior.h"
+#include "Ranger.h"
 #include "Hero_1.h"
 
 Game::~Game() {}
@@ -112,6 +113,13 @@ State* Game::update()
 		}
 	}
 
+	// add new entities to entity vector
+	while (!add_queue.empty())
+	{
+		entities.push_back(add_queue.front());
+		add_queue.pop();
+	}
+
 	// update interface
 	user_interface->update();
 
@@ -133,6 +141,12 @@ void Game::render()
 
 	window.display();
 }
+
+void Game::add(std::shared_ptr<Entity> ptr)
+{
+	add_queue.push(ptr);
+}
+
 //////////////
 
 void Game::read_spawns()
@@ -153,6 +167,7 @@ void Game::spawn_enemy()
 	char junk{};
 	std::string enemy_type{};
 
+	// enemy type
 	spawn_stream >> junk;
 	spawn_stream >> enemy_type;
 	spawn_stream >> junk;
@@ -171,8 +186,40 @@ void Game::spawn_enemy()
 		entities.push_back(std::make_unique<Warrior>(*this, pos));
 	}
 
+	if (enemy_type == "Ranger")
+	{
+		entities.push_back(std::make_unique<Ranger>(*this, pos));
+	}
+
 	// the seconds after which the enemy will spawn
 	spawn_stream >> next_spawn;
+}
+
+bool Game::level_complete() 
+{
+	if (next_spawn == -1)
+	{
+		int enemy_count{};
+
+		for (auto&& it : entities)
+		{
+			if (Enemy* e = dynamic_cast<Enemy*>(&(*it)))
+			{
+				enemy_count++;
+			}
+		}
+
+		if (enemy_count == 0)
+		{
+			// level complete
+			spawn_clock.restart();
+			spawn_stream >> next_spawn;
+
+			return true;
+		}
+	}
+
+	return false;
 }
 
 // for interface manipulation
@@ -223,31 +270,4 @@ void Game::read_options()
 void Game::read_settings()
 {
 
-}
-
-bool Game::level_complete() 
-{
-	if (next_spawn == -1)
-	{
-		int enemy_count{};
-
-		for (auto&& it : entities)
-		{
-			if (Enemy* e = dynamic_cast<Enemy*>(&(*it)))
-			{
-				enemy_count++;
-			}
-		}
-
-		if (enemy_count == 0)
-		{
-			// level complete
-			spawn_clock.restart();
-			spawn_stream >> next_spawn;
-
-			return true;
-		}
-	}
-
-	return false;
 }

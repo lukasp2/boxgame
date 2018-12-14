@@ -16,7 +16,7 @@ Hero_1::Hero_1(Game& game) : Hero { game, sf::Color::Green, 20.0f, 1.0f, "Rolf" 
 
 void Hero_1::Q()
 {
-	if (mana >= q.mana_cost)
+	if (mana >= q.mana_cost && q.level > 0)
 	{
 		float delta_y = body.getPosition().y + game.window.getSize().y / 2 - sf::Mouse::getPosition(game.window).y;
 		float delta_x = body.getPosition().x + game.window.getSize().x / 2 - sf::Mouse::getPosition(game.window).x;
@@ -27,12 +27,12 @@ void Hero_1::Q()
 		float x = -std::cos(radians);
 		float y = -std::sin(radians);
 
-		sf::Vector2f velocity { q.velocity * x, q.velocity * y };
+		sf::Vector2f velocity { q.static_proj.getVelocity() * x, q.static_proj.getVelocity() * y };
 		sf::Vector2f origin	{ body.getPosition().x + 2 * size * x, body.getPosition().y + 2 * size * y };
 
-		Projectile p{ game, velocity, origin, q.projectileShape, q.damage, q.range, Projectile::type::friendly };
+		Projectile p{ game, q.static_proj, velocity, origin, Projectile::type::friendly };
 
-		game.entities.push_back(std::make_unique<Projectile>(p));
+		game.add(std::make_unique<Projectile>(p));
 
 		mana -= q.mana_cost;
 	}
@@ -40,7 +40,7 @@ void Hero_1::Q()
 
 void Hero_1::W()
 {
-	if (mana >= w.mana_cost)
+	if (mana >= w.mana_cost && w.level > 0)
 	{
 		changed_movement = false;
 
@@ -54,7 +54,7 @@ void Hero_1::W()
 		float y = -std::sin(radians);
 	
 		// creating the fading circle on the point we jumped from
-		game.entities.push_back(std::make_shared<Disappearing_Character>(game, body, sf::Color::Yellow, 30));
+		game.add(std::make_shared<Disappearing_Character>(game, body, sf::Color::Yellow, 30));
 	
 		// determining whether to jump max flash length or to cursor
 		float a_length	{ sqrt(delta_x * delta_x + delta_y * delta_y) };
@@ -85,7 +85,7 @@ void Hero_1::W()
 
 void Hero_1::E()
 {
-	if (mana >= e.mana_cost)
+	if (mana >= e.mana_cost && e.level > 0)
 	{
 
 		mana -= e.mana_cost;
@@ -94,7 +94,7 @@ void Hero_1::E()
 
 void Hero_1::R()
 {
-	if (mana >= r.mana_cost)
+	if (mana >= r.mana_cost && r.level > 0)
 	{
 
 		mana -= r.mana_cost;
@@ -106,7 +106,7 @@ void Hero_1::upgrade_Q()
 	if (can_upgrade(q.level))
 	{
 		q.mana_cost += 2;
-		q.damage += 20 * q.level;
+		q.static_proj.setDamage(20 * q.level);
 	}
 }
 

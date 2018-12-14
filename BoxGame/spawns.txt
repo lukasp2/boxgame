@@ -1,7 +1,7 @@
-2 : Warrior : -300, -300
-3 : Warrior : -300, 300
-4 : Warrior : 300, -300
-5 : Warrior : 300, 300
+2 : Ranger : -500, -500
+3 : Ranger : 500, -500
+5 : Warrior : 500, 300
+5 : Warrior : -300, 300
 -1
 6 : Warrior : -400, -500
 9 : Warrior : -300, 300

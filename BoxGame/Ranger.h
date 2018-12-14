@@ -1,5 +1,7 @@
 #pragma once
 #include "Enemy.h"
+#include "Static_Projectile.h"
+
 class Ranger : public Enemy
 {
 public:
@@ -10,15 +12,6 @@ private:
 	sf::Clock shoot_cooldown_clock;
 	int shoot_cooldown;
 
-	struct Projectile 
-	{
-		Projectile{} : velocity{ 500 }, damage{ 10 }, range{ 900 } {}
-		
-		sf::CircleShape shape;
-		float velocity;
-		size_t damage;
-		size_t range;
-	};
-	Projectile projectile;
+	Static_Projectile static_proj;
 };
 

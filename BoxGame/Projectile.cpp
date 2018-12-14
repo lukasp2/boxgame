@@ -12,6 +12,13 @@ Projectile::Projectile(Game& game, sf::Vector2f& velocity, sf::Vector2f& origin,
 	Entity::body.setFillColor(sf::Color::Transparent);
 }
 
+Projectile::Projectile(Game& game, Static_Projectile& proj, sf::Vector2f& velocity, sf::Vector2f& origin, enum type t)
+	: MovingObject{ game, velocity }, damage{ proj.getDamage() }, range{ proj.getRange() }, t{ t }
+{
+	body = proj.getShape();
+	body.setPosition(origin);
+}
+
 bool Projectile::update(float deltaTime)
 {
 	move(deltaTime);
@@ -34,37 +41,11 @@ void Projectile::onCollision(Entity& otherEntity)
 
 	if (Hero* h = dynamic_cast<Hero*>(&otherEntity))
 	{
-		if (t == type::friendly)
+		if (t == type::hostile)
 		{
 			h->damage_char(damage);
 		}
 	}
 
 	hit = true;
-
-	/*
-	// collision on left
-	if (colDirection.x < 0.0f)
-	{
-		velocity.x = 0.0f;
-	}
-
-	// collision on right
-	else if (colDirection.x > 0.0f)
-	{
-		velocity.x = 0.0f;
-	}
-
-	// collision below
-	if (colDirection.y < 0.0f)
-	{
-		velocity.y = 0.0f;
-	}
-
-	// collision above
-	else if (colDirection.y > 0.0f)
-	{
-		velocity.y = 0.0f;
-	}
-	*/
 }

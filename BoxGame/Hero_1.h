@@ -1,6 +1,7 @@
 #pragma once
 #include "Hero.h"
 #include "Game.h"
+#include "Static_Projectile.h"
 
 class Hero_1 : public Hero
 {
@@ -20,18 +21,8 @@ public:
 private:
 	struct q : public ability
 	{
-		q() : ability{ 5, 100, 0 }, velocity{ 800 }, damage{ 15 }, range{ 1000 }
-		{
-			projectileShape.setOutlineColor(sf::Color::Green);
-			projectileShape.setFillColor(sf::Color::Black);
-			projectileShape.setOutlineThickness(1.0f);
-			projectileShape.setRadius(4.0f);
-		}
-
-		float velocity;
-		size_t damage;
-		size_t range;
-		sf::CircleShape projectileShape;
+		q() : ability{ 5, 100, 0 }, static_proj{ 800, 35, 1000, 4.0f, sf::Color::Green } {}
+		Static_Projectile static_proj;
 	};
 	q q{};
 

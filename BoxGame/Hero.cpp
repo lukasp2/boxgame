@@ -95,7 +95,7 @@ void Hero::onCollision(Entity& otherEntity)
 
 void Hero::recieve_XP()
 {
-	XP += 100 / (30 * level);
+	XP += 100 / (3 * level);
 }
 
 void Hero::level_up()
@@ -115,6 +115,7 @@ bool Hero::can_upgrade(int& ability_level)
 	{
 		ability_level++;
 		upgrades_avalible--;
+
 		return true;
 	}
 

@@ -129,6 +129,9 @@
     <ClCompile Include="Ranger.cpp">
       <Filter>Source Files\Entities\Characters</Filter>
     </ClCompile>
+    <ClCompile Include="Static_Projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resources.h">
@@ -220,6 +223,9 @@
     </ClInclude>
     <ClInclude Include="Ranger.h">
       <Filter>Header Files\Entities\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Static_Projectile.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
