@@ -132,6 +132,9 @@
     <ClCompile Include="Static_Projectile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Level_Box.cpp">
+      <Filter>Source Files\GUI\GUI_Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resources.h">
@@ -225,6 +228,9 @@
       <Filter>Header Files\Entities\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Static_Projectile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_Box.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

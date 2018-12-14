@@ -4,5 +4,5 @@
 class Warrior : public Enemy
 {
 public:
-	Warrior(Game& game, sf::Vector2f& position);
+	Warrior(Game& game, sf::Vector2f& position, int level);
 };

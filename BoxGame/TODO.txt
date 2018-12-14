@@ -1,5 +1,13 @@
 - när man går till menyn efter att ha varit i highscore så blinkar menytexten till på höger sida av skärmen
 - det går inte att resizea main menu
 - när man går tilbaka till menyn efter att ha varit i en undermeny så borde man "stå" på samma val som man gjorde när man gick in
+- healthbar ska inte ligga i fiendeklassen
 
 - specificera level av fiender i textfilen och ändra hp och damage baserat på det
+- spawn visuals hade varit fint
+- level text "Level 1 incomming"
+- börja endast level 1 efter att man uppgraderat första abilityn
+- ha en cooldown i hero
+- level up visual
+- kills, current wave
+- apperaing_characer

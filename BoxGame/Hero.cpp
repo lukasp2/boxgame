@@ -4,11 +4,13 @@
 #include "Enemy.h"
 
 Hero::Hero(Game& game, sf::Color color, float size, float speed, std::string name) 
-	: Character{ game, size, speed, 100, name, color }, XP{ 0 }, mana{ 100 }, level{ 1 }, mana_regen{5.22}, health_regen{2.38}
+	: Character{ game, size, speed, 100, name, color }, XP{ 0 }, mana{ 100 }, mana_regen{5.22}, health_regen{2.38}
 {
 	Character::name.setFillColor(sf::Color::Green);
 	Character::name.setCharacterSize(20);
-	
+	Character::level = 1;
+	Character::upgrades_avalible = 1;
+
 	body.setPosition(0,200);
 	setInnerBodyPos();
 }
@@ -101,7 +103,10 @@ void Hero::recieve_XP()
 void Hero::level_up()
 {
 	level++;
-	upgrades_avalible++;
+	if (level < 17)
+	{
+		upgrades_avalible++;
+	}
 
 	mana_regen *= 1.2;
 	health_regen *= 1.2;

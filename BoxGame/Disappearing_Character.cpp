@@ -3,7 +3,6 @@
 Disappearing_Character::Disappearing_Character(Game& game, sf::CircleShape body, sf::Color color, size_t lifetime)
 	: Entity{ game }, body{ body }, lifetime{ lifetime }, total_lifetime{ lifetime }, color{ color }
 {
-
 }
 
 void Disappearing_Character::draw()

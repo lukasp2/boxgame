@@ -164,14 +164,20 @@ void Game::read_spawns()
 
 void Game::spawn_enemy()
 {
-	char junk{};
-	std::string enemy_type{};
+	// "2 sec: Ranger lvl 11 @ -500, -500"
 
 	// enemy type
+	std::string junk{};
+	std::string enemy_type{};
 	spawn_stream >> junk;
 	spawn_stream >> enemy_type;
 	spawn_stream >> junk;
 	
+	// enemy level
+	int level;
+	spawn_stream >> level;
+	spawn_stream >> junk;
+
 	// the location on which the enemy spawns
 	float place{};				
 	sf::Vector2f pos{};
@@ -183,15 +189,15 @@ void Game::spawn_enemy()
 	
 	if (enemy_type == "Warrior")
 	{
-		entities.push_back(std::make_unique<Warrior>(*this, pos));
+		entities.push_back(std::make_unique<Warrior>(*this, pos, level));
 	}
 
 	if (enemy_type == "Ranger")
 	{
-		entities.push_back(std::make_unique<Ranger>(*this, pos));
+		entities.push_back(std::make_unique<Ranger>(*this, pos, level));
 	}
 
-	// the seconds after which the enemy will spawn
+	// get the seconds after which the next enemy will spawn
 	spawn_stream >> next_spawn;
 }
 

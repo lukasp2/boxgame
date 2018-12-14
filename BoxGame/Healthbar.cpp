@@ -16,19 +16,21 @@ Healthbar::Healthbar(Game& game, sf::Vector2f position, sf::Vector2f size, sf::C
 
 bool Healthbar::update()
 {
-	float health = float(game.player->getHealth());
-	bar.setScale( health / float(game.player->getMaxHealth()), 1);
+	float health = static_cast<float>(game.player->getHealth());
+	float max_health = static_cast<float>(game.player->getMaxHealth());
+
+	bar.setScale( health / max_health, 1);
 	
 	if (health < 100)
 	{
 		std::stringstream ss;
 		ss << std::setprecision(1) << std::fixed << game.player->get_health_reg();
 
-		healthtext.setString(std::to_string(static_cast<int>(health)) + " / 100 " + " ( +" + ss.str() + "/sec )");
+		healthtext.setString(std::to_string(static_cast<int>(health)) + " / " + std::to_string(static_cast<int>(max_health)) + " ( +" + ss.str() + "/sec )");
 	}
 	else
 	{
-		healthtext.setString(std::to_string(static_cast<int>(health)) + " / 100");
+		healthtext.setString(std::to_string(static_cast<int>(health)) + " / " + std::to_string(static_cast<int>(max_health)));
 	}
 
 	return false;

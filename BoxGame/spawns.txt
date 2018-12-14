@@ -1,9 +1,12 @@
-2 : Ranger : -500, -500
-3 : Ranger : 500, -500
-5 : Warrior : 500, 300
-5 : Warrior : -300, 300
+2 sec: Ranger lvl 11 @ -500, -500
+3 sec: Ranger lvl 2 @ 500, -500
+5 sec: Warrior lvl 6 @ 500, 300
+5 sec: Warrior lvl 8 @ -300, 300
 -1
-6 : Warrior : -400, -500
-9 : Warrior : -300, 300
-10 : Warrior : -300, 300
+2 sec: Ranger lvl 2 @ -500, -500
+3 sec: Ranger lvl 4 @ 500, -500
+5 sec: Ranger lvl 5 @ 500, 300
+5 sec: Ranger lvl 2 @ -300, 300
+5 sec: Warrior lvl 3 @ 500, 300
+5 sec: Warrior lvl 2 @ -300, 300
 -1

@@ -7,6 +7,7 @@
 #include "Mini_Healthbar.h"
 #include "Manabar.h"
 #include "XPbar.h"
+#include "Level_Box.h"
 #include "Hero.h"
 
 GUI::GUI(Game& game) : game{ game }
@@ -27,7 +28,10 @@ GUI::GUI(Game& game) : game{ game }
 	GUI_Objects.push_back( std::make_unique<Button>(game, "R", sf::Vector2f(90, 320), game.player->r_ptr, sf::Keyboard::Key::R) );
 
 	// mini healthbar
-	GUI_Objects.push_back(std::make_unique<Mini_Healthbar>(game, game.player->getPosition(), sf::Vector2f(40, 4), sf::Color(0, 235, 0)));
+	GUI_Objects.push_back(std::make_unique<Mini_Healthbar>(game, *game.player, sf::Vector2f(45, 4), sf::Color(0, 235, 0)));
+
+	// level box
+	GUI_Objects.push_back(std::make_unique<Level_Box>(game, *game.player));
 }
 
 void GUI::proccess_input(sf::Event event)

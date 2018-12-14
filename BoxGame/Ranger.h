@@ -5,7 +5,7 @@
 class Ranger : public Enemy
 {
 public:
-	Ranger(Game& game, sf::Vector2f& position);
+	Ranger(Game& game, sf::Vector2f& position, int level);
 	void update_more() override;
 
 private:

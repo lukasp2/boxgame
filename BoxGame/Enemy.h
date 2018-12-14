@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "Character.h"
+#include "Mini_Healthbar.h"
+#include "Level_Box.h"
 #include "Game.h"
 
 class Enemy : public Character
@@ -18,11 +20,10 @@ public:
 	size_t melee_attack();
 
 private:
-	sf::RectangleShape healthBar;
-	sf::RectangleShape edge;
-	
-	sf::Clock melee_cooldown_clock;
-	int melee_cooldown;
+	Mini_Healthbar hpBar;
+	Level_Box lvlBox;
 
 	size_t damage{};
+	sf::Clock melee_cooldown_clock;
+	int melee_cooldown;
 };

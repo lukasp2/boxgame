@@ -137,6 +137,7 @@
     <ClCompile Include="Healthbar.cpp" />
     <ClCompile Include="Hero_1.cpp" />
     <ClCompile Include="Highscore.cpp" />
+    <ClCompile Include="Level_Box.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Main_Menu.cpp" />
     <ClCompile Include="Manabar.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="Healthbar.h" />
     <ClInclude Include="Hero_1.h" />
     <ClInclude Include="Highscore.h" />
+    <ClInclude Include="Level_Box.h" />
     <ClInclude Include="Main_Menu.h" />
     <ClInclude Include="Manabar.h" />
     <ClInclude Include="Menu.h" />
