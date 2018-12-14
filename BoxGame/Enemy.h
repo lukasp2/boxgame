@@ -7,7 +7,7 @@
 class Enemy : public Character
 {
 public:
-	Enemy(Game& game, sf::Color color, float size, int speed, float health, size_t damage, std::string name);
+	Enemy(Game& game, sf::Color color, float size, float speed, float health, size_t damage, std::string name);
 
 	virtual bool update(float deltaTime) override;
 	virtual void draw_more() override;

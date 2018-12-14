@@ -11,7 +11,7 @@ friend class GUI;
 friend class Button;
 
 public:
-	Hero(Game& game, sf::Color color, float size, int speed, std::string name);
+	Hero(Game& game, sf::Color color, float size, float speed, std::string name);
 	~Hero() = default;
 
 	bool	update(float deltaTime) override;

@@ -6,7 +6,7 @@
 
 #define PI 3.14159265
 
-Hero_1::Hero_1(Game& game) : Hero { game, sf::Color::Green, 20.0f, 3, "Rolf" }
+Hero_1::Hero_1(Game& game) : Hero { game, sf::Color::Green, 20.0f, 1.0f, "Rolf" }
 {
 	Hero::q_ptr = &q;
 	Hero::w_ptr = &w;
@@ -42,6 +42,8 @@ void Hero_1::W()
 {
 	if (mana >= w.mana_cost)
 	{
+		changed_movement = false;
+
 		float delta_x = body.getPosition().x + game.window.getSize().x / 2 - sf::Mouse::getPosition(game.window).x;
 		float delta_y = body.getPosition().y + game.window.getSize().y / 2 - sf::Mouse::getPosition(game.window).y;
 

@@ -44,7 +44,7 @@ bool Mini_Healthbar::update()
 		}
 	}
 	
-	bar.setScale(float(game.player->getHealth()) / game.player->getMaxHealth(), 1);
+	bar.setScale(float(game.player->getHealth()) / float(game.player->getMaxHealth()), 1);
 
 	return false;
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <memory>
+#include <fstream>
 #include "State.h"
 #include "Clock.h"
 
@@ -18,19 +19,30 @@ public:
 	virtual State*	update()		override;
 	virtual void	render()		override;
 
-	void read_settings();
-	void read_options();
-
+	// private
 	std::unique_ptr<GUI> user_interface;
 	std::shared_ptr<Hero> player;
 	std::vector< std::shared_ptr<Entity> > entities;
+	//
 
 	Clock getClock() { return system_clock; }
 
 private:
-	sf::Clock	frame_clock;
-	Clock		system_clock;
-	float		deltaTime;
+	//flytta ut som hjälpfunktioner ist
+	void read_settings();
+	void read_options();
+	void read_spawns();
+	bool level_complete();
+
+	sf::Clock frame_clock{};
+	float deltaTime{};
+	
+	Clock system_clock{};
+	
+	sf::Clock spawn_clock{};
+	std::ifstream spawn_stream;
+	int next_spawn;
+	void spawn_enemy();
 	
 	struct Options
 	{
@@ -38,7 +50,7 @@ private:
 		bool quit{ false };
 		bool gameover{ false };
 	};
-	Options option;
+	Options option{};
 
 	struct Controls
 	{
@@ -54,5 +66,4 @@ private:
 	{
 		bool display_healthbar;
 	};
-
 };

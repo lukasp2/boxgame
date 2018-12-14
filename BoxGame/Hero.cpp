@@ -3,11 +3,14 @@
 #include "GUI.h"
 #include "Enemy.h"
 
-Hero::Hero(Game& game, sf::Color color, float size, int speed, std::string name) 
+Hero::Hero(Game& game, sf::Color color, float size, float speed, std::string name) 
 	: Character{ game, size, speed, 100, name, color }, XP{ 0 }, mana{ 100 }, level{ 1 }, mana_regen{5.22}, health_regen{2.38}
 {
 	Character::name.setFillColor(sf::Color::Green);
 	Character::name.setCharacterSize(20);
+	
+	body.setPosition(0,200);
+	setInnerBodyPos();
 }
 
 bool Hero::update(float deltaTime)

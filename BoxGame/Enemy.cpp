@@ -3,7 +3,7 @@
 #include "Projectile.h"
 #include "Disappearing_Character.h"
 
-Enemy::Enemy(Game& game, sf::Color color, float size, int speed, float health, size_t damage, std::string name)
+Enemy::Enemy(Game& game, sf::Color color, float size, float speed, float health, size_t damage, std::string name)
 	: Character{ game, size, speed, health, name, color }
 {
 	Character::name.setFillColor(color);
@@ -16,8 +16,6 @@ Enemy::Enemy(Game& game, sf::Color color, float size, int speed, float health, s
 	edge.setFillColor		(sf::Color::Black);
 	edge.setOutlineThickness(1);
 	edge.setOutlineColor(sf::Color(100, 100, 100));
-
-	body.setPosition(-200,-200);
 }
 
 bool Enemy::update(float deltaTime)
@@ -26,7 +24,6 @@ bool Enemy::update(float deltaTime)
 
 	if (game.player->changed_movement)
 	{
-		game.player->changed_movement = false;
 		startPosition = body.getPosition();
 		x = 0;
 	}

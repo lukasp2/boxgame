@@ -1,4 +1,3 @@
-#include <fstream>
 #include <iostream>
 
 #include "Game.h"
@@ -16,11 +15,10 @@ Game::Game(sf::RenderWindow& window) : State{ window }
 {
 	read_options();
 	read_settings();
+	read_spawns();
 
 	player = std::make_shared<Hero_1>(*this);
 	entities.push_back(player);
-
-	entities.push_back(std::make_unique<Warrior>(*this));
 
 	user_interface = std::make_unique<GUI>(*this);
 }
@@ -86,8 +84,15 @@ State* Game::update()
 		// return game over state
 	}
 
+	// check if level is not complete and if its time for next spawn
+	if (!level_complete() && next_spawn == static_cast<int>(spawn_clock.getElapsedTime().asSeconds()))
+	{
+		spawn_enemy();
+	}
+
 	for (auto it = entities.begin(); it != entities.end(); )
 	{
+		// check collision
 		for (auto it2 = entities.begin(); it2 != entities.end(); ++it2)
 		{
 			if (it2 != it)
@@ -96,6 +101,7 @@ State* Game::update()
 			}
 		}
 		
+		// update
 		if ((*it)->update(deltaTime))
 		{
 			it = entities.erase(it);
@@ -106,6 +112,7 @@ State* Game::update()
 		}
 	}
 
+	// update interface
 	user_interface->update();
 
 	return nullptr;
@@ -126,8 +133,49 @@ void Game::render()
 
 	window.display();
 }
+//////////////
 
-// for interface maniulation
+void Game::read_spawns()
+{
+	spawn_stream.open("spawns.txt");
+
+	if (!spawn_stream)
+	{
+		std::cerr << "unable to open spawns.txt";
+		exit(1);
+	}
+
+	spawn_stream >> next_spawn;
+}
+
+void Game::spawn_enemy()
+{
+	char junk{};
+	std::string enemy_type{};
+
+	spawn_stream >> junk;
+	spawn_stream >> enemy_type;
+	spawn_stream >> junk;
+	
+	// the location on which the enemy spawns
+	float place{};				
+	sf::Vector2f pos{};
+	spawn_stream >> place;
+	pos.x = place;
+	spawn_stream >> junk;
+	spawn_stream >> place;
+	pos.y = place;
+	
+	if (enemy_type == "Warrior")
+	{
+		entities.push_back(std::make_unique<Warrior>(*this, pos));
+	}
+
+	// the seconds after which the enemy will spawn
+	spawn_stream >> next_spawn;
+}
+
+// for interface manipulation
 void Game::read_options()
 {
 	/*
@@ -175,4 +223,31 @@ void Game::read_options()
 void Game::read_settings()
 {
 
+}
+
+bool Game::level_complete() 
+{
+	if (next_spawn == -1)
+	{
+		int enemy_count{};
+
+		for (auto&& it : entities)
+		{
+			if (Enemy* e = dynamic_cast<Enemy*>(&(*it)))
+			{
+				enemy_count++;
+			}
+		}
+
+		if (enemy_count == 0)
+		{
+			// level complete
+			spawn_clock.restart();
+			spawn_stream >> next_spawn;
+
+			return true;
+		}
+	}
+
+	return false;
 }
