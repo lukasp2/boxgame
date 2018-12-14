@@ -89,13 +89,13 @@ void Hero::onCollision(Entity& otherEntity)
 {
 	if (Enemy* e = dynamic_cast<Enemy*>(&otherEntity))
 	{
-		health -= e->getDamage();
+		health -= e->melee_attack();
 	}
 }
 
 void Hero::recieve_XP()
 {
-	XP += 10;
+	XP += 100 / (30 * level);
 }
 
 void Hero::level_up()
@@ -106,7 +106,7 @@ void Hero::level_up()
 	mana_regen *= 1.2;
 	health_regen *= 1.2;
 
-	XP = 0;
+	XP -= 100;
 }
 
 bool Hero::can_upgrade(int& ability_level)

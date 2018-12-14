@@ -105,7 +105,7 @@ void Hero_1::upgrade_Q()
 {
 	if (can_upgrade(q.level))
 	{
-		q.mana_cost += 5;
+		q.mana_cost += 2;
 		q.damage += 20 * q.level;
 	}
 }
@@ -115,7 +115,7 @@ void Hero_1::upgrade_W()
 	//w.jump = 
 	if (can_upgrade(w.level))
 	{
-		w.mana_cost += 7;
+		w.mana_cost += 4;
 		w.flash_length += 20 * w.level;
 	}
 }
@@ -125,7 +125,7 @@ void Hero_1::upgrade_E()
 	//e.heal =
 	if (can_upgrade(e.level))
 	{
-		e.mana_cost += 10;
+		e.mana_cost += 5;
 		e.heal += 20 * e.level;
 	}
 }
@@ -135,7 +135,7 @@ void Hero_1::upgrade_R()
 	//r.damage = 
 	if (can_upgrade(r.level))
 	{
-		r.mana_cost += 15;
+		r.mana_cost += 10;
 		r.damage += 20 * r.level;
 	}
 }

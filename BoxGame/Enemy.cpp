@@ -4,11 +4,12 @@
 #include "Disappearing_Character.h"
 
 Enemy::Enemy(Game& game, sf::Color color, float size, float speed, float health, size_t damage, std::string name)
-	: Character{ game, size, speed, health, name, color }
+	: Character{ game, size, speed, health, name, color }, damage{ damage }, melee_cooldown_clock{}, melee_cooldown{ 1 }
 {
 	Character::name.setFillColor(color);
 	Character::name.setCharacterSize(15);
 
+	// should not be here. enemy_healthbar.cpp
 	healthBar.setFillColor	(sf::Color::Red);
 	healthBar.setSize		(sf::Vector2f{ 45, 4 });
 	
@@ -16,6 +17,7 @@ Enemy::Enemy(Game& game, sf::Color color, float size, float speed, float health,
 	edge.setFillColor		(sf::Color::Black);
 	edge.setOutlineThickness(1);
 	edge.setOutlineColor(sf::Color(100, 100, 100));
+	//
 }
 
 bool Enemy::update(float deltaTime)
@@ -29,7 +31,7 @@ bool Enemy::update(float deltaTime)
 	}
 	Character::move();
 
-	//update_more()?
+	update_more();
 
 	healthBar.setScale(float(health) / float(max_health), 1);
 
@@ -55,4 +57,15 @@ void Enemy::draw_more()
 void Enemy::onCollision(Entity& otherEntity)
 {
 
+}
+
+size_t Enemy::melee_attack()
+{
+	if (melee_cooldown <= melee_cooldown_clock.getElapsedTime().asSeconds())
+	{
+		melee_cooldown_clock.restart();
+		return damage;
+	}
+
+	return 0;
 }

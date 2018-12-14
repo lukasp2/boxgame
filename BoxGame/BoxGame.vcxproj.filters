@@ -126,6 +126,9 @@
     <ClCompile Include="Mini_Healthbar.cpp">
       <Filter>Source Files\GUI\GUI_Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Ranger.cpp">
+      <Filter>Source Files\Entities\Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resources.h">
@@ -214,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="Mini_Healthbar.h">
       <Filter>Header Files\GUI\GUI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Ranger.h">
+      <Filter>Header Files\Entities\Characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
