@@ -1,6 +1,6 @@
-5 sec: Ranger lvl 1 @ -300, -300
-6 sec: Ranger lvl 1 @ -300, -300
-6 sec: Ranger lvl 1 @ -300, -300
+2 sec: Ranger lvl 1 @ -300, -300
+2 sec: Ranger lvl 1 @ -300, -300
+2 sec: Ranger lvl 1 @ -300, -300
 8 sec: Ranger lvl 1 @ -300, -300
 10 sec: Ranger lvl 1 @ -300, -300
 12 sec: Warrior lvl 1 @ -300, -300

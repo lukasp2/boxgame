@@ -4,7 +4,7 @@ bool Damage_Text::update()
 {
 	Fading_Text::update();
 
-	text.setPosition(text.getPosition().x, text.getPosition().y - 0.1 );
+	text.setPosition(text.getPosition().x, text.getPosition().y - 0.1f );
 
 	return false;
 }

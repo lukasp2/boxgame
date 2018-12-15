@@ -22,13 +22,9 @@ public:
 protected:
 	Menu(sf::RenderWindow& window) : State{ window } {}
 
-	float VIEW_HEIGHT{ 1800.0f };
-	sf::View menuView{ sf::Vector2f(900.0f, 800.0f), sf::Vector2f(VIEW_HEIGHT, VIEW_HEIGHT) };
-
 	sf::Text header; //"Main Menu", "Game Paused", "Highscore" etc..
+	
 	std::vector<sf::Text> textVector;	
 	int selection{ 0 };
-
-	sf::Event evnt;
 };
 

@@ -3,20 +3,9 @@
 - när man går tilbaka till menyn efter att ha varit i en undermeny så borde man "stå" på samma val som man gjorde när man gick in
 
 - ha en cooldown i hero
-- kills, current wave
-
-- damagetext (vit text)
-
-- inför fading text? 
-
-class Fading_Text : public Timed_Text
-{
-	Fading_Text(Game& game, int total_life_length, int start_fade_at, std::string txt, sf::Color color, sf::Vector2f& position )
-	: Timed_Text{ game, txt, color, position, total_life_lenght }
-
-
-
-}
-
-
+- current wave
+- game over
 - fiender undviker projektiler
+- fiender rör sig olika (baserat på level/ typ)
+
+nästa wave initieras innan den förra avslutats om man dödar det näst sista enemyn innan den sista spawnat klart!!

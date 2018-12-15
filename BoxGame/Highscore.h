@@ -8,9 +8,9 @@ class Highscore : public State
 public:
 	Highscore(sf::RenderWindow& window);
 	
-	virtual void process_input();
-	virtual State* update();
-	virtual void render();
+	void process_input() override;
+	State* update() override;
+	void render() override;
 
 private:
 	struct Options

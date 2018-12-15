@@ -136,6 +136,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Fading_Text.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Game_Over.cpp" />
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="GUI_Object.cpp" />
     <ClCompile Include="Healthbar.cpp" />
@@ -150,6 +151,7 @@
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="Mini_Healthbar.cpp" />
     <ClCompile Include="MovingObject.cpp" />
+    <ClCompile Include="Pause.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Ranger.cpp" />
     <ClCompile Include="Static_Projectile.cpp" />
@@ -175,6 +177,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Fading_Text.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Game_Over.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="GUI_Object.h" />
     <ClInclude Include="Healthbar.h" />
@@ -188,6 +191,7 @@
     <ClInclude Include="Hero.h" />
     <ClInclude Include="Mini_Healthbar.h" />
     <ClInclude Include="MovingObject.h" />
+    <ClInclude Include="Pause.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Quit.h" />
     <ClInclude Include="Ranger.h" />

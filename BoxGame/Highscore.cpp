@@ -15,7 +15,8 @@
 #define CHAR_SIZE 20	//text size
 #define NUM_SCORES 10	//numeber of highscores to be displayed
 
-Highscore::Highscore(sf::RenderWindow& window) : State{ window }
+Highscore::Highscore(sf::RenderWindow& window) 
+	: State{ window }
 {
 	header.setFont(courier_font);
 	header.setCharacterSize(CHAR_SIZE);

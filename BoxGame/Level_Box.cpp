@@ -37,11 +37,13 @@ bool Level_Box::update()
 
 	if (character.getUpgradesAvailable() > 0)
 	{
-		level_box.setFillColor(sf::Color(150,120,0));
+		level_box.setFillColor(sf::Color(200,200,0)); //150,120
+		//level_text.setFillColor(sf::Color::Black);
 	}
 	else
 	{
 		level_box.setFillColor(level_box_color);
+		//level_text.setFillColor(sf::Color::White);
 	}
 
 	return character.getHealth() <= 0;

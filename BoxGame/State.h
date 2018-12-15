@@ -32,7 +32,6 @@ protected:
 };
 
 /*
-nice alias to use:
 template <typename T>
 using u_ptr = std::unique_ptr<T>;
 

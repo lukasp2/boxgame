@@ -10,15 +10,3 @@ Text::Text(Game& game, sf::Vector2f position, size_t size, std::string str, sf::
 	text.setPosition(position);
 	text.setString(str);
 }
-
-void Text::draw()
-{
-	game.window.draw(text);
-}
-
-bool Text::update()
-{
-	text.setString("kills " + std::to_string(game.player->get_kills()));
-
-	return false;
-}

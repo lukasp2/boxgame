@@ -168,6 +168,12 @@
     <ClCompile Include="Fading_Text.cpp">
       <Filter>Source Files\GUI\GUI_Objects\Text</Filter>
     </ClCompile>
+    <ClCompile Include="Game_Over.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Pause.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resources.h">
@@ -286,6 +292,12 @@
     </ClInclude>
     <ClInclude Include="Fading_Text.h">
       <Filter>Header Files\GUI\GUI_Objects\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Game_Over.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Pause.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

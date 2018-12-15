@@ -6,9 +6,9 @@
 #include "Quit.h"
 #include "Controls.h"
 
-#define X_POS 100.0f
-#define Y_POS 0.0f
-#define CHAR_SIZE 35
+#define X_POS -400.0f
+#define Y_POS -400.0f
+#define CHAR_SIZE 20
 
 Main_Menu::Main_Menu(sf::RenderWindow& window) 
 	: Menu{ window }
@@ -147,6 +147,6 @@ void Main_Menu::render()
 	
 	window.display();
 	
-	window.setView(menuView);
+	window.setView(view);
 }
 

@@ -1,8 +1,10 @@
 #include <iostream>
 
 #include "Game.h"
+#include "Game_Over.h"
 #include "Menu.h"
 #include "Quit.h"
+#include "Pause.h"
 #include "GUI.h"
 #include "Wall.h"
 #include "Entity.h"
@@ -71,20 +73,23 @@ State* Game::update()
 	if (option.pause)
 	{
 		option.pause = false;
-		// return pauseState;
+		
+		render();
+		state_ptr = std::make_unique<Pause>(window, this);
+		return state_ptr.get();
 	}
 
 	if (option.quit)
 	{
-		option.quit = false;
 		state_ptr = std::make_unique<Quit>(window);
 		return state_ptr.get();
 	}
 
 	if (player->getHealth() <= 0)
 	{
-		option.gameover = false;
-		// return game over state
+		render();
+		state_ptr = std::make_unique<Game_Over>(window);
+		return state_ptr.get();
 	}
 
 	// spawns waves

@@ -19,14 +19,28 @@ bool Healthbar::update()
 	float health = static_cast<float>(game.player->getHealth());
 	float max_health = static_cast<float>(game.player->getMaxHealth());
 
-	bar.setScale( health / max_health, 1);
+	if (health > 0)
+	{
+		bar.setScale( health / max_health, 1);
+	}
+	else
+	{
+		bar.setScale(0, 1);
+	}
 	
 	if (health < 100)
 	{
 		std::stringstream ss;
 		ss << std::setprecision(1) << std::fixed << game.player->get_health_reg();
-
-		healthtext.setString(std::to_string(static_cast<int>(health)) + " / " + std::to_string(static_cast<int>(max_health)) + " ( +" + ss.str() + "/sec )");
+		
+		if (health < 0)
+		{
+			healthtext.setString("0 / " + std::to_string(static_cast<int>(max_health)) + " ( +" + ss.str() + "/sec )");
+		}
+		else
+		{
+			healthtext.setString(std::to_string(static_cast<int>(health)) + " / " + std::to_string(static_cast<int>(max_health)) + " ( +" + ss.str() + "/sec )");
+		}
 	}
 	else
 	{
