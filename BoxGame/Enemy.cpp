@@ -3,6 +3,7 @@
 #include "Projectile.h"
 
 #include "GUI.h"
+#include "Damage_Text.h"
 #include "Disappearing_Character.h"
 
 Enemy::Enemy(Game& game, sf::Vector2f& position, sf::Color color, int level, float size, float speed, float health, size_t damage, std::string name)
@@ -14,6 +15,12 @@ Enemy::Enemy(Game& game, sf::Vector2f& position, sf::Color color, int level, flo
 	// use a function setPosition which also sets InnerBodyPos
 	body.setPosition(position);
 	setInnerBodyPos();
+}
+
+void Enemy::damage_char(int damage)
+{
+	health -= damage;
+	game.user_interface->add(std::make_unique<Damage_Text>(game, std::to_string(damage), sf::Color::White, body.getPosition()));
 }
 
 bool Enemy::update(float deltaTime)

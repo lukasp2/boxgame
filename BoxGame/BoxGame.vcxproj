@@ -129,10 +129,12 @@
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Controls.cpp" />
+    <ClCompile Include="Damage_Text.cpp" />
     <ClCompile Include="Disappearing_Character.cpp" />
     <ClCompile Include="Enemy_Name.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Fading_Text.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="GUI_Object.cpp" />
@@ -166,10 +168,12 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="Controls.h" />
+    <ClInclude Include="Damage_Text.h" />
     <ClInclude Include="Disappearing_Character.h" />
     <ClInclude Include="Enemy_Name.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Fading_Text.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="GUI_Object.h" />

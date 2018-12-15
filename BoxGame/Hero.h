@@ -18,6 +18,7 @@ public:
 	void	proccess_input(sf::Event event);
 	void	onCollision(Entity& otherEntity) override;
 
+	void	damage_char(int damage) override;
 	void	on_kill();
 	virtual void level_up();
 

@@ -1,5 +1,5 @@
 #include "Wave_Text.h"
-
+/*
 bool Wave_Text::update()
 {
 	if (clock.getElapsedTime().asSeconds() > 1)
@@ -38,3 +38,4 @@ void Wave_Text::draw()
 		game.window.draw(text);
 	}
 }
+*/

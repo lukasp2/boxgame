@@ -16,7 +16,7 @@ public:
 	sf::Vector2f	getPosition()				{ return body.getPosition();}
 	void			setInnerBodyPos();
 
-	void			damage_char(int damage)		{ health -= damage;			}
+	virtual void	damage_char(int damage)		{ health -= damage;			}
 	double			getHealth()					{ return health;			}
 	double			getMaxHealth()				{ return max_health;		}
 	int				getLevel()					{ return level;				}

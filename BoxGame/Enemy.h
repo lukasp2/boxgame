@@ -11,6 +11,7 @@ class Enemy : public Character
 public:
 	Enemy(Game& game, sf::Vector2f& position, sf::Color color, int level, float size, float speed, float health, size_t damage, std::string name);
 
+	void damage_char(int damage);// { health -= damage; }
 	virtual bool update(float deltaTime) override;
 	virtual void update_more() {};
 	virtual void draw_more() override;

@@ -1,6 +1,7 @@
 #include "Hero.h"
 #include "Game.h"
 #include "GUI.h"
+#include "Damage_Text.h"
 #include "Enemy.h"
 
 Hero::Hero(Game& game, sf::Color color, float size, float speed, std::string name) 
@@ -90,7 +91,16 @@ void Hero::onCollision(Entity& otherEntity)
 {
 	if (Enemy* e = dynamic_cast<Enemy*>(&otherEntity))
 	{
-		health -= e->melee_attack();
+		damage_char(e->melee_attack());
+	}
+}
+
+void Hero::damage_char(int damage)
+{
+	if (damage != 0)
+	{
+		health -= damage;
+		game.user_interface->add(std::make_unique<Damage_Text>(game, std::to_string(damage), sf::Color::Red, body.getPosition()));
 	}
 }
 

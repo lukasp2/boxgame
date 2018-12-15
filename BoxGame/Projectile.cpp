@@ -2,6 +2,8 @@
 #include "Enemy.h"
 #include "Hero.h"
 #include "Game.h"
+#include "Damage_Text.h"
+#include "GUI.h"
 
 Projectile::Projectile(Game& game, sf::Vector2f& velocity, sf::Vector2f& origin, sf::CircleShape& body, size_t damage, size_t range, enum type t)
 	: MovingObject{ game, velocity }, damage{ damage }, range{ range }, t{ t }
