@@ -9,6 +9,9 @@ public:
 	void update_more() override;
 
 private:
+	size_t scale_damage(int level, size_t base_damage) override;
+	float scale_health(int level, float base_health) override;
+
 	sf::Clock shoot_cooldown_clock;
 	int shoot_cooldown;
 

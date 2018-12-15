@@ -1,22 +1,20 @@
 #include "Timed_Text.h"
 
 Timed_Text::Timed_Text(Game& game, std::string txt, sf::Color color, sf::Vector2f position, size_t size, float lifelength)
-	: GUI_Object{ game }, lifelength{ lifelength }
+	: Text{ game, position, size, txt, color }, lifelength{ lifelength }
 {
-	sf::Text text;
-	text.setString(txt);
-	text.setCharacterSize(size);
-	text.setPosition(position);
-	text.setFillColor(color);
-	text.setFont(game.courier_font);
-}
 
-void Timed_Text::draw()
-{
-	game.window.draw(text);
 }
 
 bool Timed_Text::update()
 {
-	return clock.getElapsedTime() > sf::Time(sf::seconds(lifelength));
+	if ( lifelength < 255 && text.getFillColor().a != 0) //clock.getElapsedTime().asSeconds() 
+	{
+		sf::Color color{ text.getFillColor() };
+		color.a -= 1;
+
+		text.setFillColor(color);
+	}
+	
+	return lifelength-- == 0; //clock.getElapsedTime().asSeconds() > lifelength;
 }

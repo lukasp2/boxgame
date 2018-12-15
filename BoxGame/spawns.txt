@@ -1,12 +1,33 @@
-2 sec: Ranger lvl 11 @ -500, -500
-3 sec: Ranger lvl 2 @ 500, -500
-5 sec: Warrior lvl 6 @ 500, 300
-5 sec: Warrior lvl 8 @ -300, 300
--1
-2 sec: Ranger lvl 2 @ -500, -500
-3 sec: Ranger lvl 4 @ 500, -500
-5 sec: Ranger lvl 5 @ 500, 300
+2 sec: Ranger lvl 1 @ -400, -400
+3 sec: Ranger lvl 1 @ 400, -400
+5 sec: Warrior lvl 1 @ 400, 300
+5 sec: Warrior lvl 1 @ -300, 300
+-1 Wave 2
+2 sec: Ranger lvl 1 @ -400, -400
+3 sec: Ranger lvl 2 @ 400, -500
+5 sec: Ranger lvl 3 @ 500, 300
 5 sec: Ranger lvl 2 @ -300, 300
-5 sec: Warrior lvl 3 @ 500, 300
-5 sec: Warrior lvl 2 @ -300, 300
--1
+5 sec: Warrior lvl 2 @ 500, 200
+5 sec: Warrior lvl 1 @ -200, 100
+-1 Wave 3
+2 sec: Ranger lvl 4 @ -400, -400
+3 sec: Ranger lvl 5 @ 400, -500
+5 sec: Ranger lvl 5 @ 500, 300
+5 sec: Ranger lvl 4 @ -300, 300
+5 sec: Warrior lvl 2 @ 500, 200
+5 sec: Warrior lvl 3 @ -200, 100
+-1 Wave 4
+2 sec: Ranger lvl 8 @ -400, -400
+3 sec: Ranger lvl 9 @ 400, -500
+5 sec: Ranger lvl 6 @ 500, 300
+5 sec: Ranger lvl 6 @ -300, 300
+5 sec: Warrior lvl 7 @ 500, 200
+5 sec: Warrior lvl 12 @ -200, 100
+-1 Wave 5
+2 sec: Ranger lvl 16 @ -400, -400
+3 sec: Ranger lvl 16 @ 400, -500
+5 sec: Ranger lvl 16 @ 500, 300
+5 sec: Ranger lvl 16 @ -300, 300
+5 sec: Warrior lvl 16 @ 500, 200
+5 sec: Warrior lvl 16 @ -200, 100
+-1 Wave 6 comming soon ...

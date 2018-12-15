@@ -6,6 +6,7 @@
 #include "Healthbar.h"
 #include "Mini_Healthbar.h"
 #include "Manabar.h"
+#include "Kills_Text.h"
 #include "XPbar.h"
 #include "Level_Box.h"
 #include "Hero.h"
@@ -27,11 +28,15 @@ GUI::GUI(Game& game) : game{ game }
 	GUI_Objects.push_back( std::make_unique<Button>(game, "E", sf::Vector2f(10, 320), game.player->e_ptr, sf::Keyboard::Key::E) );
 	GUI_Objects.push_back( std::make_unique<Button>(game, "R", sf::Vector2f(90, 320), game.player->r_ptr, sf::Keyboard::Key::R) );
 
+	//Lägg i character ist?:
 	// mini healthbar
 	GUI_Objects.push_back(std::make_unique<Mini_Healthbar>(game, *game.player, sf::Vector2f(45, 4), sf::Color(0, 235, 0)));
 
 	// level box
 	GUI_Objects.push_back(std::make_unique<Level_Box>(game, *game.player));
+
+	//kills text
+	GUI_Objects.push_back(std::make_unique<Kills_Text>(game));
 }
 
 void GUI::proccess_input(sf::Event event)
@@ -49,7 +54,7 @@ void GUI::draw()
 		object->draw();
 	}
 
-	game.window.draw(game.getClock().get_as_text());
+	game.window.draw(system_clock.get_as_text());
 }
 
 void GUI::update()
@@ -65,4 +70,9 @@ void GUI::update()
 			++it;
 		}
 	}
+}
+
+void GUI::add(std::unique_ptr<GUI_Object> p)
+{
+	GUI_Objects.push_back(std::move(p));
 }

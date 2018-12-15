@@ -11,3 +11,6 @@
 - level up visual
 - kills, current wave
 - apperaing_characer
+
+
+//game.add(std::make_unique<Wave_text>("Wave 1"));

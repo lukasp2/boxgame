@@ -3,8 +3,8 @@
 #include "Projectile.h"
 #include "Disappearing_Character.h"
 
-Enemy::Enemy(Game& game, sf::Color color, float size, float speed, float health, size_t damage, std::string name)
-	: Character{ game, size, speed, health, name, color },
+Enemy::Enemy(Game& game, sf::Vector2f& position, sf::Color color, int level, float size, float speed, float health, size_t damage, std::string name)
+	: Character{ game, size, speed, health, level, name, color },
 	hpBar{game, *this, sf::Vector2f(45,4), sf::Color::Red},
 	lvlBox{game, *this},
 	damage{ damage }, 
@@ -13,6 +13,9 @@ Enemy::Enemy(Game& game, sf::Color color, float size, float speed, float health,
 {
 	Character::name.setFillColor(color);
 	Character::name.setCharacterSize(15);
+
+	body.setPosition(position);
+	setInnerBodyPos();
 }
 
 bool Enemy::update(float deltaTime)
@@ -36,7 +39,7 @@ bool Enemy::update(float deltaTime)
 
 	if (health <= 0)
 	{
-		game.player->recieve_XP();
+		game.player->on_kill();
 		game.add( std::make_shared<Disappearing_Character>(game, body, body.getOutlineColor(), 40));
 	}
 	
@@ -47,6 +50,7 @@ void Enemy::draw_more()
 {
 	lvlBox.draw();
 	hpBar.draw();
+	game.window.draw(name);
 }
 
 void Enemy::onCollision(Entity& otherEntity)

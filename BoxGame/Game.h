@@ -28,8 +28,6 @@ public:
 	std::shared_ptr<Hero> player;
 	//
 
-	Clock getClock() { return system_clock; }
-
 private:
 	std::vector< std::shared_ptr<Entity> > entities;
 	
@@ -39,9 +37,6 @@ private:
 	// tracking time of one frame
 	sf::Clock frame_clock{};
 	float deltaTime{};
-	
-	// game clock
-	Clock system_clock{};
 	
 	// spawn clock
 	sf::Clock spawn_clock{};
@@ -53,6 +48,8 @@ private:
 	void read_settings();
 	void read_options();
 	void read_spawns();
+	void spawn_waves();
+	void next_wave();
 	bool level_complete();
 	
 	struct Options

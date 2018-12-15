@@ -18,7 +18,7 @@ public:
 	void	proccess_input(sf::Event event);
 	void	onCollision(Entity& otherEntity) override;
 
-	void	recieve_XP();
+	void	on_kill();
 	virtual void level_up();
 
 	bool	changed_movement;
@@ -29,10 +29,12 @@ public:
 	double	getXP()				{ return XP;			}
 	double	get_mana_reg()		{ return mana_regen;	}
 	double	get_health_reg()	{ return health_regen;	}
+	int		get_kills()			{ return kills; }
 
 protected:
-	double	XP{ 0 };
-	double	mana{ 100 };
+	double	XP{};
+	double	mana{};
+	int		kills{};
 
 	double mana_regen{};
 	double health_regen{};

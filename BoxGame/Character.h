@@ -5,7 +5,7 @@
 class Character : public Entity
 {
 public:
-	Character(Game& game, float size, float speed, double health, std::string name, sf::Color color);
+	Character(Game& game, float size, float speed, double health, int level, std::string name, sf::Color color);
 
 	virtual bool	update(float deltaTime) = 0;
 	void			move();

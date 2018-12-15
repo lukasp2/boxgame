@@ -9,7 +9,7 @@
 class Enemy : public Character
 {
 public:
-	Enemy(Game& game, sf::Color color, float size, float speed, float health, size_t damage, std::string name);
+	Enemy(Game& game, sf::Vector2f& position, sf::Color color, int level, float size, float speed, float health, size_t damage, std::string name);
 
 	virtual bool update(float deltaTime) override;
 	virtual void update_more() {};
@@ -18,6 +18,10 @@ public:
 	void onCollision(Entity& otherEntity) override;
 
 	size_t melee_attack();
+
+protected:
+	virtual size_t scale_damage(int level, size_t base_damage) = 0;
+	virtual float scale_health(int level, float base_health) = 0;
 
 private:
 	Mini_Healthbar hpBar;

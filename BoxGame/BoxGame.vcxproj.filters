@@ -43,6 +43,18 @@
     <Filter Include="Source Files\GUI\GUI_Objects">
       <UniqueIdentifier>{22b5fc57-4b10-4884-8ba4-701fac711712}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GUI\GUI_Objects\Text">
+      <UniqueIdentifier>{e8b6d3b3-c3f8-4634-a341-8980e1b4dd58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI\GUI_Objects\Bar">
+      <UniqueIdentifier>{c564dca5-e0ef-4af0-b6e0-e39bc1d7e933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI\GUI_Objects\Bar">
+      <UniqueIdentifier>{5585b3b6-822d-4961-88be-b27d7e35d2e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI\GUI_Objects\Text">
+      <UniqueIdentifier>{0f3fdaf2-e1fa-4b3d-a1db-291d7984c247}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -105,35 +117,44 @@
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\GUI\GUI_Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Bar.cpp">
-      <Filter>Source Files\GUI\GUI_Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Timed_Text.cpp">
-      <Filter>Source Files\GUI\GUI_Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Healthbar.cpp">
-      <Filter>Source Files\GUI\GUI_Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Manabar.cpp">
-      <Filter>Source Files\GUI\GUI_Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="XPbar.cpp">
-      <Filter>Source Files\GUI\GUI_Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Clock.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mini_Healthbar.cpp">
-      <Filter>Source Files\GUI\GUI_Objects</Filter>
     </ClCompile>
     <ClCompile Include="Ranger.cpp">
       <Filter>Source Files\Entities\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="Static_Projectile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Level_Box.cpp">
       <Filter>Source Files\GUI\GUI_Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Static_Projectile.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Source Files\GUI\GUI_Objects\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Kills_Text.cpp">
+      <Filter>Source Files\GUI\GUI_Objects\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Timed_Text.cpp">
+      <Filter>Source Files\GUI\GUI_Objects\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Wave_Text.cpp">
+      <Filter>Source Files\GUI\GUI_Objects\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Bar.cpp">
+      <Filter>Source Files\GUI\GUI_Objects\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="Healthbar.cpp">
+      <Filter>Source Files\GUI\GUI_Objects\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="Manabar.cpp">
+      <Filter>Source Files\GUI\GUI_Objects\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="XPbar.cpp">
+      <Filter>Source Files\GUI\GUI_Objects\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="Mini_Healthbar.cpp">
+      <Filter>Source Files\GUI\GUI_Objects\Bar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,41 +218,50 @@
     <ClInclude Include="GUI_Object.h">
       <Filter>Header Files\GUI\GUI_Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Bar.h">
-      <Filter>Header Files\GUI\GUI_Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Header Files\GUI\GUI_Objects</Filter>
     </ClInclude>
     <ClInclude Include="Abilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Timed_Text.h">
-      <Filter>Header Files\GUI\GUI_Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Healthbar.h">
-      <Filter>Header Files\GUI\GUI_Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="XPbar.h">
-      <Filter>Header Files\GUI\GUI_Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Manabar.h">
-      <Filter>Header Files\GUI\GUI_Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Clock.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mini_Healthbar.h">
-      <Filter>Header Files\GUI\GUI_Objects</Filter>
     </ClInclude>
     <ClInclude Include="Ranger.h">
       <Filter>Header Files\Entities\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Static_Projectile.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Level_Box.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GUI\GUI_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Wave_Text.h">
+      <Filter>Header Files\GUI\GUI_Objects\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Kills_Text.h">
+      <Filter>Header Files\GUI\GUI_Objects\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Bar.h">
+      <Filter>Header Files\GUI\GUI_Objects\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="Healthbar.h">
+      <Filter>Header Files\GUI\GUI_Objects\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="Manabar.h">
+      <Filter>Header Files\GUI\GUI_Objects\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="Mini_Healthbar.h">
+      <Filter>Header Files\GUI\GUI_Objects\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Header Files\GUI\GUI_Objects\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Timed_Text.h">
+      <Filter>Header Files\GUI\GUI_Objects\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="XPbar.h">
+      <Filter>Header Files\GUI\GUI_Objects\Bar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

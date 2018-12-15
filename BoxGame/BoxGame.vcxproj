@@ -137,6 +137,7 @@
     <ClCompile Include="Healthbar.cpp" />
     <ClCompile Include="Hero_1.cpp" />
     <ClCompile Include="Highscore.cpp" />
+    <ClCompile Include="Kills_Text.cpp" />
     <ClCompile Include="Level_Box.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Main_Menu.cpp" />
@@ -148,9 +149,11 @@
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Ranger.cpp" />
     <ClCompile Include="Static_Projectile.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="Timed_Text.cpp" />
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="Warrior.cpp" />
+    <ClCompile Include="Wave_Text.cpp" />
     <ClCompile Include="XPbar.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +172,7 @@
     <ClInclude Include="Healthbar.h" />
     <ClInclude Include="Hero_1.h" />
     <ClInclude Include="Highscore.h" />
+    <ClInclude Include="Kills_Text.h" />
     <ClInclude Include="Level_Box.h" />
     <ClInclude Include="Main_Menu.h" />
     <ClInclude Include="Manabar.h" />
@@ -182,9 +186,11 @@
     <ClInclude Include="Resources.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Static_Projectile.h" />
+    <ClInclude Include="Text.h" />
     <ClInclude Include="Timed_Text.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Warrior.h" />
+    <ClInclude Include="Wave_Text.h" />
     <ClInclude Include="XPbar.h" />
   </ItemGroup>
   <ItemGroup>

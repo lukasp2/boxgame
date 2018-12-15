@@ -17,8 +17,12 @@ public:
 	void draw();
 	void update();
 
+	void add(std::unique_ptr<GUI_Object> p);
+
 protected:
-	std::vector<std::unique_ptr<GUI_Object>> GUI_Objects;
-	
+	std::vector<std::unique_ptr<GUI_Object>> GUI_Objects;	
 	Game& game;
+
+private:
+	Clock system_clock{};
 };

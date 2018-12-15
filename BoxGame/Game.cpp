@@ -9,6 +9,7 @@
 #include "Warrior.h"
 #include "Ranger.h"
 #include "Hero_1.h"
+#include "Wave_Text.h"
 
 Game::~Game() {}
 
@@ -85,11 +86,8 @@ State* Game::update()
 		// return game over state
 	}
 
-	// check if level is not complete and if its time for next spawn
-	if (!level_complete() && next_spawn == static_cast<int>(spawn_clock.getElapsedTime().asSeconds()))
-	{
-		spawn_enemy();
-	}
+	// spawns waves
+	spawn_waves();
 
 	for (auto it = entities.begin(); it != entities.end(); )
 	{
@@ -162,6 +160,32 @@ void Game::read_spawns()
 	spawn_stream >> next_spawn;
 }
 
+void Game::spawn_waves()
+{
+	bool complete{ level_complete() };
+
+	if (!complete && next_spawn == static_cast<int>(spawn_clock.getElapsedTime().asSeconds()))
+	{
+		spawn_enemy();
+	}
+	else if (complete)
+	{
+		next_wave();
+	}
+}
+
+void Game::next_wave()
+{
+	std::string wave;	
+	std::getline(spawn_stream, wave);
+	
+	user_interface->add(std::make_unique<Wave_Text>(*this, wave));
+
+	spawn_clock.restart();
+
+	spawn_stream >> next_spawn;
+}
+
 void Game::spawn_enemy()
 {
 	// "2 sec: Ranger lvl 11 @ -500, -500"
@@ -215,14 +239,7 @@ bool Game::level_complete()
 			}
 		}
 
-		if (enemy_count == 0)
-		{
-			// level complete
-			spawn_clock.restart();
-			spawn_stream >> next_spawn;
-
-			return true;
-		}
+		return enemy_count == 0;
 	}
 
 	return false;
