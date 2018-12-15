@@ -24,9 +24,6 @@ protected:
 	virtual float scale_health(int level, float base_health) = 0;
 
 private:
-	Mini_Healthbar hpBar;
-	Level_Box lvlBox;
-
 	size_t damage{};
 	sf::Clock melee_cooldown_clock;
 	int melee_cooldown;

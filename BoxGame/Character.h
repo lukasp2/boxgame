@@ -21,6 +21,10 @@ public:
 	double			getMaxHealth()				{ return max_health;		}
 	int				getLevel()					{ return level;				}
 	int				getUpgradesAvailable()		{ return upgrades_avalible; }
+	sf::CircleShape getBody()					{ return body;				}
+	float			getRadius()					{ return body.getRadius();	}
+	void			setRadius(float radius)		{ body.setRadius(radius);	}
+	std::string		getName()					{ return name.getString(); }
 
 protected:
 	sf::Text		name;

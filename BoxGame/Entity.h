@@ -16,7 +16,10 @@ public:
 	void			checkCollision(Entity& otherEntity);
 	virtual void	onCollision(Entity& otherEntity) {};
 
-	sf::Vector2f	getPosition() { return body.getPosition(); }
+	//ta bort, ha i character
+	//sf::Vector2f	getPosition() { return body.getPosition(); }
+	
+	Game&			getGame() { return game; }
 
 protected:
 	Game& game;

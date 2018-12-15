@@ -34,6 +34,9 @@ protected:
 /*
 nice alias to use:
 template <typename T>
-using ptr = std::unique_ptr<T>;
+using u_ptr = std::unique_ptr<T>;
+
+template <typename T>
+using make_ptr = std::make_unique<T>;
 */
 

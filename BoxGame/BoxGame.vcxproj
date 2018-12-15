@@ -122,6 +122,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Appearing_Character.cpp" />
     <ClCompile Include="Bar.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -129,6 +130,7 @@
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Controls.cpp" />
     <ClCompile Include="Disappearing_Character.cpp" />
+    <ClCompile Include="Enemy_Name.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -158,12 +160,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abilities.h" />
+    <ClInclude Include="Appearing_Character.h" />
     <ClInclude Include="Bar.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="Controls.h" />
     <ClInclude Include="Disappearing_Character.h" />
+    <ClInclude Include="Enemy_Name.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />

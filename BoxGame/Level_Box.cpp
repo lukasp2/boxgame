@@ -44,7 +44,7 @@ bool Level_Box::update()
 		level_box.setFillColor(level_box_color);
 	}
 
-	return false;
+	return character.getHealth() <= 0;
 }
 
 void Level_Box::draw()

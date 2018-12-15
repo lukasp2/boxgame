@@ -37,6 +37,7 @@ void Projectile::onCollision(Entity& otherEntity)
 		{
 			e->damage_char(damage);
 		}
+		hit = true;
 	}
 
 	if (Hero* h = dynamic_cast<Hero*>(&otherEntity))
@@ -45,7 +46,6 @@ void Projectile::onCollision(Entity& otherEntity)
 		{
 			h->damage_char(damage);
 		}
+		hit = true;
 	}
-
-	hit = true;
 }

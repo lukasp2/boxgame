@@ -6,6 +6,7 @@
 #include "Healthbar.h"
 #include "Mini_Healthbar.h"
 #include "Manabar.h"
+#include "Wave_Text.h"
 #include "Kills_Text.h"
 #include "XPbar.h"
 #include "Level_Box.h"
@@ -34,6 +35,8 @@ GUI::GUI(Game& game) : game{ game }
 
 	// level box
 	GUI_Objects.push_back(std::make_unique<Level_Box>(game, *game.player));
+
+	GUI_Objects.push_back(std::make_unique<Wave_Text>(game, "Wave 1"));
 
 	//kills text
 	GUI_Objects.push_back(std::make_unique<Kills_Text>(game));

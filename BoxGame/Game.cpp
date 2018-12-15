@@ -6,6 +6,7 @@
 #include "GUI.h"
 #include "Wall.h"
 #include "Entity.h"
+#include "Appearing_Character.h"
 #include "Warrior.h"
 #include "Ranger.h"
 #include "Hero_1.h"
@@ -213,12 +214,14 @@ void Game::spawn_enemy()
 	
 	if (enemy_type == "Warrior")
 	{
-		entities.push_back(std::make_unique<Warrior>(*this, pos, level));
+		//add(std::make_unique<Warrior>(*this, pos, level));
+		add(std::make_shared<Appearing_Character>(std::make_unique<Warrior>(*this, pos, level)));
 	}
 
 	if (enemy_type == "Ranger")
 	{
-		entities.push_back(std::make_unique<Ranger>(*this, pos, level));
+		//add(std::make_unique<Ranger>(*this, pos, level));
+		add(std::make_shared<Appearing_Character>(std::make_unique<Ranger>(*this, pos, level)));
 	}
 
 	// get the seconds after which the next enemy will spawn

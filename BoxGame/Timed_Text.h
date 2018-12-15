@@ -9,6 +9,6 @@ public:
 
 	bool update() override;
 
-private:
+protected:
 	float lifelength;
 };

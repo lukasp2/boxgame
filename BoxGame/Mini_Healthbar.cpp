@@ -15,7 +15,7 @@ bool Mini_Healthbar::update()
 	
 	bar.setScale(float(character.getHealth()) / float(character.getMaxHealth()), 1);
 
-	return false;
+	return character.getHealth() <= 0;
 }
 
 void Mini_Healthbar::draw()
