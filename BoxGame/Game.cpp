@@ -170,8 +170,9 @@ void Game::spawn_waves()
 {
 	bool complete{ level_complete() };
 
-	if (!complete && next_spawn == static_cast<int>(spawn_clock.getElapsedTime().asSeconds()))
+	if (!complete && next_spawn < spawn_clock.getElapsedTime().asSeconds() && next_spawn > 0)
 	{
+		std::cout << "next_spawn: " << next_spawn << "  " << "clock: " << spawn_clock.getElapsedTime().asSeconds() << std::endl;
 		spawn_enemy();
 	}
 	else if (complete)
@@ -182,7 +183,7 @@ void Game::spawn_waves()
 
 void Game::next_wave()
 {
-	std::string wave;	
+	std::string wave;
 	std::getline(spawn_stream, wave);
 	
 	user_interface->add(std::make_unique<Wave_Text>(*this, wave));

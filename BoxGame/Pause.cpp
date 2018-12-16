@@ -105,7 +105,6 @@ void Pause::process_input()
 	}
 
 	header.setFillColor(c);
-
 }
 
 State* Pause::update()

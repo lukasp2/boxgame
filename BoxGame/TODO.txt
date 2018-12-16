@@ -4,8 +4,9 @@
 
 - ha en cooldown i hero
 - current wave
-- game over
 - fiender undviker projektiler
 - fiender rör sig olika (baserat på level/ typ)
 
+bugs:
+resize av window fungerar inte mellan states
 nästa wave initieras innan den förra avslutats om man dödar det näst sista enemyn innan den sista spawnat klart!!

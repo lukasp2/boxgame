@@ -1,17 +1,12 @@
-2 sec: Ranger lvl 1 @ -300, -300
-2 sec: Ranger lvl 1 @ -300, -300
-2 sec: Ranger lvl 1 @ -300, -300
-8 sec: Ranger lvl 1 @ -300, -300
-10 sec: Ranger lvl 1 @ -300, -300
-12 sec: Warrior lvl 1 @ -300, -300
-14 sec: Warrior lvl 1 @ -300, -300
+2.2 sec: Ranger lvl 1 @ -300, -300
+4.4 sec: Ranger lvl 1 @ -300, -300
 -1 Wave 2
 5 sec: Ranger lvl 1 @ -400, -400
-7 sec: Ranger lvl 2 @ 400, -500
-8 sec: Ranger lvl 3 @ 500, 300
-9 sec: Ranger lvl 2 @ -300, 300
-10 sec: Warrior lvl 2 @ 500, 200
-11 sec: Warrior lvl 1 @ -200, 100
+5.2 sec: Ranger lvl 2 @ 400, -300
+5.3 sec: Ranger lvl 3 @ 500, 300
+5.4 sec: Ranger lvl 2 @ -300, 300
+5.5 sec: Warrior lvl 2 @ 400, 200
+5.6 sec: Warrior lvl 1 @ -200, 100
 -1 Wave 3
 5 sec: Ranger lvl 4 @ -400, -400
 7 sec: Ranger lvl 5 @ 400, -500

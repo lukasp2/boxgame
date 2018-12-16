@@ -41,7 +41,7 @@ private:
 	// spawn clock
 	sf::Clock spawn_clock{};
 	std::ifstream spawn_stream;
-	int next_spawn;
+	float next_spawn;
 	void spawn_enemy();
 
 	// helpers
