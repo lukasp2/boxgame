@@ -99,6 +99,34 @@ void Hero_1::R()
 	if (mana >= r.mana_cost && r.level > 0)
 	{
 
+		float delta_y = body.getPosition().y + game.window.getSize().y / 2 - sf::Mouse::getPosition(game.window).y;
+		float delta_x = body.getPosition().x + game.window.getSize().x / 2 - sf::Mouse::getPosition(game.window).x;
+
+		float radians = atan2(delta_y, delta_x);
+		float degrees = static_cast<float>(180 / PI * radians);
+
+		float x = -std::cos(radians);
+		float y = -std::sin(radians);
+		sf::Vector2f velocity_1{ q.static_proj.getVelocity() * x, q.static_proj.getVelocity() * y };
+
+		x = -std::cos(radians + 0.2f);
+		y = -std::sin(radians + 0.2f);
+		sf::Vector2f velocity_2{ q.static_proj.getVelocity() * x, q.static_proj.getVelocity() * y };
+		
+		x = -std::cos(radians - 0.2f);
+		y = -std::sin(radians - 0.2f);
+		sf::Vector2f velocity_3{ q.static_proj.getVelocity() * x, q.static_proj.getVelocity() * y };
+		
+		sf::Vector2f origin{ body.getPosition().x + 2 * size * x, body.getPosition().y + 2 * size * y };
+
+		Projectile p1{ game, r.static_proj, velocity_1, origin, Projectile::type::friendly };
+		Projectile p2{ game, r.static_proj, velocity_2, origin, Projectile::type::friendly };
+		Projectile p3{ game, r.static_proj, velocity_3, origin, Projectile::type::friendly };
+
+		game.add(std::make_unique<Projectile>(p1));
+		game.add(std::make_unique<Projectile>(p2));
+		game.add(std::make_unique<Projectile>(p3));
+
 		mana -= r.mana_cost;
 	}
 }
@@ -108,7 +136,7 @@ void Hero_1::upgrade_Q()
 	if (can_upgrade(q.level))
 	{
 		q.mana_cost += 2;
-		w.cooldown *= 0.8f;
+		q.cooldown *= 0.8f;
 		q.static_proj.setDamage(20 * q.level);
 	}
 }
@@ -140,7 +168,7 @@ void Hero_1::upgrade_R()
 	if (can_upgrade(r.level))
 	{
 		r.mana_cost += 10;
-		r.damage += 20 * r.level;
+		r.static_proj.setDamage(20 * r.level);
 	}
 }
 

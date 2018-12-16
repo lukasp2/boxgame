@@ -42,8 +42,8 @@ private:
 
 	struct r : public ability
 	{
-		r() : ability{ 45, 3, 0 }, damage{ 200 } {}
-		int	damage{ };
+		r() : ability{ 45, 3, 0 }, static_proj{ 2000, 1000, 300, 4.0f, sf::Color::Magenta } {}
+		Static_Projectile static_proj;
 	}; 
 	r r{};
 };

@@ -2,9 +2,8 @@ fix:
 - när man går tilbaka till menyn efter att ha varit i en undermeny så borde man "stå" på samma val som man gjorde när man gick in
 - resize av window fungerar inte mellan states
 
-- fiender rör sig olika (baserat på level/ typ)
-
-- implementera E och R
+- implementera E
 - skicka in score i Game Over, skriv till fil
-- fiende status GUI
 - score dekrementeras med livsförlust
+- fiender rör sig olika (baserat på level/ typ)
+- fiende status GUI
