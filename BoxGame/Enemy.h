@@ -28,4 +28,6 @@ private:
 	size_t damage{};
 	sf::Clock melee_cooldown_clock;
 	int melee_cooldown;
+
+	bool avoid_projectile{ false };
 };

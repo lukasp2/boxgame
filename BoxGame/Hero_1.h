@@ -21,7 +21,7 @@ public:
 private:
 	struct q : public ability
 	{
-		q() : ability{ 5, 100, 0 }, static_proj{ 800, 35, 1000, 4.0f, sf::Color::Green } {}
+		q() : ability{ 5, 100, 0 }, static_proj{ 800, 35, 400, 4.0f, sf::Color::Green } {}
 		Static_Projectile static_proj;
 	};
 	q q{};

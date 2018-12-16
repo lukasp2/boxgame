@@ -12,7 +12,7 @@ Appearing_Character::Appearing_Character(std::shared_ptr<Character> character)
 
 bool Appearing_Character::update(float deltaTime)
 {
-	character->setRadius(character->getRadius() + 0.2f);
+	character->setRadius(character->getRadius() + 0.1f);
 	
 	if (character->getRadius() > intended_radius)
 	{

@@ -22,6 +22,7 @@ public:
 
 	// adds an entity to the queue
 	void add(std::shared_ptr<Entity> ptr);
+	std::vector< std::shared_ptr<Entity> >& getEntities() { return entities; }
 
 	// private
 	std::unique_ptr<GUI> user_interface;

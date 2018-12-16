@@ -8,7 +8,9 @@ class Projectile : public MovingObject
 public:
 	enum class type { friendly, hostile };
 	
-	//~Projectile() = default;
+	Projectile(Game& game, Static_Projectile& proj, sf::Vector2f& velocity, sf::Vector2f& origin, enum type t);
+
+	/*
 	Projectile(Game& game, 
 		sf::Vector2f& velocity, 
 		sf::Vector2f& origin, 
@@ -16,18 +18,15 @@ public:
 		size_t damage, 
 		size_t range,
 		enum type t);
-
-	Projectile(Game& game,
-		Static_Projectile& proj,
-		sf::Vector2f& velocity,
-		sf::Vector2f& origin,
-		enum type t);
+	*/
 
 	bool update (float deltaTime);
 	void draw()	override { game.window.draw(body); }
 	void onCollision(Entity& otherEntity) override;
 
+	sf::Vector2f getVelocity() { return velocity; }
 	size_t getDamage()	{ return damage; }
+	type getType() { return t; }
 
 private:
 	type t;

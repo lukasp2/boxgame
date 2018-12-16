@@ -13,7 +13,7 @@ public:
 	virtual void	draw_more() {};
 
 	// getters & setters
-	sf::Vector2f	getPosition()				{ return body.getPosition();}
+	//sf::Vector2f	getPosition()				{ return body.getPosition();}
 	void			setInnerBodyPos();
 
 	virtual void	damage_char(int damage)		{ health -= damage;			}

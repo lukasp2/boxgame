@@ -5,7 +5,7 @@
 #include "Enemy.h"
 
 Hero::Hero(Game& game, sf::Color color, float size, float speed, std::string name) 
-	: Character{ game, size, speed, 100, 1, name, color }, XP{ 0 }, mana{ 100 }, mana_regen{5.22}, health_regen{2.38}
+	: Character{ game, size, speed, 100, 1, name, color }, XP{ 0 }, mana{ 100 }, mana_regen{9.22}, health_regen{1.38}
 {
 	Character::name.setFillColor(sf::Color::Green);
 	Character::name.setCharacterSize(20);

@@ -170,9 +170,8 @@ void Game::spawn_waves()
 {
 	bool complete{ level_complete() };
 
-	if (!complete && next_spawn < spawn_clock.getElapsedTime().asSeconds() && next_spawn > 0)
+	if (!complete && next_spawn < spawn_clock.getElapsedTime().asSeconds() && next_spawn >= 0)
 	{
-		std::cout << "next_spawn: " << next_spawn << "  " << "clock: " << spawn_clock.getElapsedTime().asSeconds() << std::endl;
 		spawn_enemy();
 	}
 	else if (complete)
@@ -220,13 +219,11 @@ void Game::spawn_enemy()
 	
 	if (enemy_type == "Warrior")
 	{
-		//add(std::make_unique<Warrior>(*this, pos, level));
 		add(std::make_shared<Appearing_Character>(std::make_unique<Warrior>(*this, pos, level)));
 	}
 
-	if (enemy_type == "Ranger")
+	else if (enemy_type == "Ranger")
 	{
-		//add(std::make_unique<Ranger>(*this, pos, level));
 		add(std::make_shared<Appearing_Character>(std::make_unique<Ranger>(*this, pos, level)));
 	}
 
@@ -236,10 +233,12 @@ void Game::spawn_enemy()
 
 bool Game::level_complete() 
 {
+	// all enemies in the waves has spawned
 	if (next_spawn == -1)
 	{
+		// no enemies left on the screen
 		int enemy_count{};
-
+		
 		for (auto&& it : entities)
 		{
 			if (Enemy* e = dynamic_cast<Enemy*>(&(*it)))
@@ -248,7 +247,22 @@ bool Game::level_complete()
 			}
 		}
 
-		return enemy_count == 0;
+		if (enemy_count == 0)
+		{
+			// no enemy is currently spawning
+			int appearing_count{};
+
+			for (auto&& it : entities)
+			{
+				if (Appearing_Character* e = dynamic_cast<Appearing_Character*>(&(*it)))
+				{
+					appearing_count++;
+				}
+			}
+			
+			return appearing_count == 0;
+		}
+
 	}
 
 	return false;
