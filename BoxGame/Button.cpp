@@ -21,7 +21,8 @@ Button::Button(Game& game, std::string attackName, sf::Vector2f position, abilit
 	sf::RectangleShape cd_box;
 	cd_box.setSize(sf::Vector2f(38, 38));
 	cd_box.setPosition(position.x + 1, position.y + 1);
-	cd_box.setFillColor(sf::Color(15,15,15)); // set to 35,35,35
+	cd_box.setFillColor(sf::Color(55,55,55));
+	cd_box.setScale(1,0);
 	shapes.push_back(cd_box);
 
 	// the smaller boxes
@@ -85,7 +86,17 @@ bool Button::update()
 		shapes[0].setOutlineColor(sf::Color(90, 0, 0));
 	}
 
-	//update cooldown thingy
+	//
+	float cd{ a->cooldown - a->clock.getElapsedTime().asSeconds()};
+	
+	if (cd >= 0)
+	{
+		shapes[1].setScale(1, (a->cooldown - a->clock.getElapsedTime().asSeconds()) / a->cooldown);
+	}
+	else
+	{
+		shapes[1].setScale(1, 0);
+	}
 
 	mana_costs.setString(std::to_string(a->mana_cost));
 

@@ -152,7 +152,7 @@ void Game::add(std::shared_ptr<Entity> ptr)
 }
 
 //////////////
-
+//"open_spawn_file"
 void Game::read_spawns()
 {
 	spawn_stream.open("spawns.txt");
@@ -186,6 +186,7 @@ void Game::next_wave()
 	std::getline(spawn_stream, wave);
 	
 	user_interface->add(std::make_unique<Wave_Text>(*this, wave));
+	user_interface->incWave();
 
 	spawn_clock.restart();
 
@@ -228,7 +229,7 @@ void Game::spawn_enemy()
 	}
 
 	// get the seconds after which the next enemy will spawn
-	spawn_stream >> next_spawn;
+	 spawn_stream >> next_spawn;
 }
 
 bool Game::level_complete() 

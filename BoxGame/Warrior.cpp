@@ -1,7 +1,7 @@
 #include "Warrior.h"
 
 Warrior::Warrior(Game& game, sf::Vector2f& position, int level)
-	: Enemy{ game, position, sf::Color::Red, level, 20.0f, 0.7f, scale_health(level, 150), scale_damage(level, 10), "Warrior" }
+	: Enemy{ game, position, sf::Color::Red, level, 20.0f, 0.7f, scale_health(level, 950), scale_damage(level, 25), "Warrior" }
 {													// size, speed, health, damage
 }
 

@@ -2,25 +2,9 @@
 
 struct ability
 {
-	ability(int mana_cost, float cooldown, int level) : mana_cost{ mana_cost }, cooldown{ cooldown }, level{ level } {}
+	ability(int mana_cost, float cooldown, int level) : mana_cost{ mana_cost }, cooldown{ cooldown }, level{ level }, clock{} {}
 	int mana_cost;
 	int level;
 	float cooldown;
+	sf::Clock clock;
 };
-
-/*
-struct shoot_ability : public ability
-{
-	shoot_ability(int mana_cost, size_t cooldown, float velocity, size_t damage, size_t range)
-		: ability{ mana_cost, cooldown },
-		velocity{ velocity },
-		damage{ damage },
-		range{ range }
-	{}
-
-	float velocity;
-	size_t damage;
-	size_t range;
-	sf::CircleShape projectileShape;
-};
-*/

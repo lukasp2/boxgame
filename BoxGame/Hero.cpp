@@ -42,7 +42,7 @@ bool Hero::update(float deltaTime)
 		mana += mana_regen * deltaTime;
 	}
 
-	if (health < 100)
+	if (health < max_health)
 	{
 		health += health_regen * deltaTime;
  	}
@@ -104,8 +104,9 @@ void Hero::damage_char(int damage)
 	}
 }
 
-void Hero::on_kill()
+void Hero::on_kill(Character& entity)
 {
+	score += 10 * entity.getLevel();
 	XP += 100 / (3 * level);
 	kills++;
 }
@@ -118,6 +119,7 @@ void Hero::level_up()
 		upgrades_avalible++;
 	}
 
+	max_health *= 1.2;
 	mana_regen *= 1.2;
 	health_regen *= 1.2;
 

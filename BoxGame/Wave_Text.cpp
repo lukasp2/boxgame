@@ -1,41 +1,6 @@
 #include "Wave_Text.h"
-/*
-bool Wave_Text::update()
+
+Wave_Text::Wave_Text(Game& game, std::string wave)
+	: Fading_Text{ game, wave, sf::Color(255,255,255,0), sf::Vector2f(150,-150), 18, 855, 600, 1, 1, 1 }
 {
-	if (clock.getElapsedTime().asSeconds() > 1)
-	{
-		show_text = true;
-	}
-
-	if (show_text)
-	{
-		lifelength--;
-
-		if (lifelength > TIME_ALIVE - 255 && text.getFillColor().a < 254)
-		{
-			sf::Color color{ text.getFillColor() };
-			color.a += 1;
-
-			text.setFillColor(color);
-		}
-	}
-		
-	if (lifelength < 255 && text.getFillColor().a != 0) //&& clock.getElapsedTime().asSeconds() > 0.01; clock.restart();
-	{
-		sf::Color color{ text.getFillColor() };
-		color.a -= 1;
-
-		text.setFillColor(color);
-	}
-
-	return lifelength == 0;
 }
-
-void Wave_Text::draw()
-{
-	if (show_text)
-	{
-		game.window.draw(text);
-	}
-}
-*/

@@ -154,11 +154,13 @@
     <ClCompile Include="Pause.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Ranger.cpp" />
+    <ClCompile Include="Score_Text.cpp" />
     <ClCompile Include="Static_Projectile.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Timed_Text.cpp" />
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="Warrior.cpp" />
+    <ClCompile Include="Waves.cpp" />
     <ClCompile Include="Wave_Text.cpp" />
     <ClCompile Include="XPbar.cpp" />
   </ItemGroup>
@@ -196,12 +198,14 @@
     <ClInclude Include="Quit.h" />
     <ClInclude Include="Ranger.h" />
     <ClInclude Include="Resources.h" />
+    <ClInclude Include="Score_Text.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Static_Projectile.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Timed_Text.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Warrior.h" />
+    <ClInclude Include="Waves.h" />
     <ClInclude Include="Wave_Text.h" />
     <ClInclude Include="XPbar.h" />
   </ItemGroup>

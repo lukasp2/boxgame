@@ -3,8 +3,8 @@
 #include <sstream>
 #include <iomanip>
 
-Manabar::Manabar(Game & game, sf::Vector2f position, sf::Vector2f size, sf::Color color)
-	: Bar{ game, position, size, color }
+Manabar::Manabar(Game& game)
+	: Bar{ game, sf::Vector2f(-200, 403), sf::Vector2f(400, 10), sf::Color(0,0,160, 255) }
 {
 	manatext.setFont(game.courier_font);
 	manatext.setCharacterSize(13);
@@ -16,8 +16,8 @@ Manabar::Manabar(Game & game, sf::Vector2f position, sf::Vector2f size, sf::Colo
 
 bool Manabar::update()
 {
-	float mana = float(game.player->getMana());
-	bar.setScale(float(game.player->getMana()) / float(100.0), 1);
+	float mana = float(game.player->get_mana());
+	bar.setScale(float(game.player->get_mana()) / float(100.0), 1);
 
 	if (mana < 100)
 	{

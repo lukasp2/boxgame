@@ -4,7 +4,7 @@
 class Manabar : public Bar
 {
 public:
-	Manabar(Game& game, sf::Vector2f position, sf::Vector2f size, sf::Color color);
+	Manabar(Game& game);
 	
 	bool update() override;
 	void draw() override;

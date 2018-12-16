@@ -16,7 +16,7 @@ Hero_1::Hero_1(Game& game) : Hero { game, sf::Color::Green, 20.0f, 1.0f, "Rolf" 
 
 void Hero_1::Q()
 {
-	if (mana >= q.mana_cost && q.level > 0)
+	if (mana >= q.mana_cost && q.level > 0 && q.clock.getElapsedTime().asSeconds() > q.cooldown)
 	{
 		float delta_y = body.getPosition().y + game.window.getSize().y / 2 - sf::Mouse::getPosition(game.window).y;
 		float delta_x = body.getPosition().x + game.window.getSize().x / 2 - sf::Mouse::getPosition(game.window).x;
@@ -34,13 +34,14 @@ void Hero_1::Q()
 
 		game.add(std::make_unique<Projectile>(p));
 
+		q.clock.restart();
 		mana -= q.mana_cost;
 	}
 }
 
 void Hero_1::W()
 {
-	if (mana >= w.mana_cost && w.level > 0)
+	if (mana >= w.mana_cost && w.level > 0 && w.clock.getElapsedTime().asSeconds() > w.cooldown)
 	{
 		changed_movement = false;
 
@@ -79,6 +80,7 @@ void Hero_1::W()
 		// for the enemy to know we have changed location not based on mouse input
 		changed_movement = true;
 
+		w.clock.restart();
 		mana -= w.mana_cost;
 	}
 }
@@ -106,6 +108,7 @@ void Hero_1::upgrade_Q()
 	if (can_upgrade(q.level))
 	{
 		q.mana_cost += 2;
+		w.cooldown *= 0.8f;
 		q.static_proj.setDamage(20 * q.level);
 	}
 }
@@ -116,6 +119,7 @@ void Hero_1::upgrade_W()
 	if (can_upgrade(w.level))
 	{
 		w.mana_cost += 4;
+		w.cooldown *= 0.8f;
 		w.flash_length += 20 * w.level;
 	}
 }

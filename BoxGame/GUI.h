@@ -18,10 +18,13 @@ public:
 	void update();
 
 	void add(std::unique_ptr<GUI_Object> p);
+	int getWave() { return wave; }
+	void incWave() { wave++; }
 
 protected:
 	std::vector<std::unique_ptr<GUI_Object>> GUI_Objects;	
 	Game& game;
+	int wave{ 1 };
 
 private:
 	Clock system_clock{};

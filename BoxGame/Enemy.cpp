@@ -96,7 +96,7 @@ bool Enemy::update(float deltaTime)
 	
 	if (health <= 0)
 	{
-		game.player->on_kill();
+		game.player->on_kill(*this);
 		game.add( std::make_shared<Disappearing_Character>(game, body, body.getOutlineColor(), 40));
 	}
 	

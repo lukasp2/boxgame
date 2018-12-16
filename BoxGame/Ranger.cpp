@@ -6,10 +6,10 @@
 #define PI 3.14159265
 
 Ranger::Ranger(Game& game, sf::Vector2f& position, int level)
-	: Enemy{ game, position, sf::Color::Red, level, 20.0f, 0.7f, scale_health(level, 100), scale_damage(level, 7), "Ranger" }, // body color, size, speed, health, melee damage
+	: Enemy{ game, position, sf::Color::Red, level, 20.0f, 0.7f, scale_health(level, 600), scale_damage(level, 7), "Ranger" }, // body color, size, speed, health, melee damage
 	shoot_cooldown{ 1 },
 	shoot_cooldown_clock{}, 
-	static_proj{ 200, 10, 700, 4.0f, sf::Color::Red } // velocity, damage, range, radius, outline color
+	static_proj{ 200, 20, 700, 4.0f, sf::Color::Red } // velocity, damage, range, radius, outline color
 {
 }
 

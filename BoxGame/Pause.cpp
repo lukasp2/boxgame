@@ -22,19 +22,19 @@ Pause::Pause(sf::RenderWindow& window, Game* ptr)
 	opt.setCharacterSize(CHAR_SIZE);
 	opt.setString("Resume");
 	opt.setFillColor(sf::Color(255, 255, 255, 0));
-	opt.setPosition(X_POS - 200, Y_POS + 100);
+	opt.setPosition(X_POS - 185, Y_POS + 100);
 	textVector.push_back(opt);
 
 	opt.setFont(courier_font);
 	opt.setCharacterSize(CHAR_SIZE);
 	opt.setString("Restart");
 	opt.setFillColor(sf::Color(0, 255, 0, 0));
-	opt.setPosition(X_POS, Y_POS + 100);
+	opt.setPosition(X_POS + 5, Y_POS + 100);
 	textVector.push_back(opt);
 
 	opt.setString("Main Menu");
 	opt.setFillColor(sf::Color(0, 255, 0, 0));
-	opt.setPosition(X_POS + 200, Y_POS + 100);
+	opt.setPosition(X_POS + 205, Y_POS + 100);
 	textVector.push_back(opt);
 }
 

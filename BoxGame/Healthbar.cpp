@@ -3,8 +3,8 @@
 #include <sstream>
 #include <iomanip>
 
-Healthbar::Healthbar(Game& game, sf::Vector2f position, sf::Vector2f size, sf::Color color) 
-	: Bar {game, position, size, color}
+Healthbar::Healthbar(Game& game) 
+	: Bar {game, sf::Vector2f(-200, 380), sf::Vector2f(400, 20), sf::Color(0, 160, 0, 255) }
 {
 	healthtext.setFont(game.courier_font);
 	healthtext.setCharacterSize(13);
@@ -28,7 +28,7 @@ bool Healthbar::update()
 		bar.setScale(0, 1);
 	}
 	
-	if (health < 100)
+	if (health < max_health)
 	{
 		std::stringstream ss;
 		ss << std::setprecision(1) << std::fixed << game.player->get_health_reg();

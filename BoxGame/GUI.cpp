@@ -6,7 +6,9 @@
 #include "Healthbar.h"
 #include "Mini_Healthbar.h"
 #include "Manabar.h"
+#include "Waves.h"
 #include "Wave_Text.h"
+#include "Score_Text.h"
 #include "Kills_Text.h"
 #include "XPbar.h"
 #include "Level_Box.h"
@@ -15,31 +17,38 @@
 GUI::GUI(Game& game) : game{ game }
 {
 	// healthbar
-	GUI_Objects.push_back(std::make_unique<Healthbar>(game, sf::Vector2f(-200, 380), sf::Vector2f(400, 20), sf::Color(0,160,0, 255)));
+	GUI_Objects.push_back(std::make_unique<Healthbar>(game));
 	
 	// manabar
-	GUI_Objects.push_back(std::make_unique<Manabar>(game, sf::Vector2f(-200, 403), sf::Vector2f(400, 10), sf::Color(0,0,160, 255)));
+	GUI_Objects.push_back(std::make_unique<Manabar>(game));
 
 	// XP-bar
-	GUI_Objects.push_back(std::make_unique<XPbar>(game, sf::Vector2f(-200, 375), sf::Vector2f(400, 2), sf::Color(255, 255, 0, 255)));
+	GUI_Objects.push_back(std::make_unique<XPbar>(game));
 
 	// box displaying Q, W, E, and R-attack
-	GUI_Objects.push_back( std::make_unique<Button>(game, "Q", sf::Vector2f(-150, 320), game.player->q_ptr, sf::Keyboard::Key::Q) );
-	GUI_Objects.push_back( std::make_unique<Button>(game, "W", sf::Vector2f(-70, 320), game.player->w_ptr, sf::Keyboard::Key::W) );
-	GUI_Objects.push_back( std::make_unique<Button>(game, "E", sf::Vector2f(10, 320), game.player->e_ptr, sf::Keyboard::Key::E) );
-	GUI_Objects.push_back( std::make_unique<Button>(game, "R", sf::Vector2f(90, 320), game.player->r_ptr, sf::Keyboard::Key::R) );
+	GUI_Objects.push_back( std::make_unique<Button>(game, "Q", sf::Vector2f(-140, 320), game.player->q_ptr, sf::Keyboard::Key::Q) );
+	GUI_Objects.push_back( std::make_unique<Button>(game, "W", sf::Vector2f(-60, 320), game.player->w_ptr, sf::Keyboard::Key::W) );
+	GUI_Objects.push_back( std::make_unique<Button>(game, "E", sf::Vector2f(20, 320), game.player->e_ptr, sf::Keyboard::Key::E) );
+	GUI_Objects.push_back( std::make_unique<Button>(game, "R", sf::Vector2f(100, 320), game.player->r_ptr, sf::Keyboard::Key::R) );
 
-	//Lägg i character ist?:
 	// mini healthbar
 	GUI_Objects.push_back(std::make_unique<Mini_Healthbar>(game, *game.player, sf::Vector2f(45, 4), sf::Color(0, 235, 0)));
 
 	// level box
 	GUI_Objects.push_back(std::make_unique<Level_Box>(game, *game.player));
+	
+	// wave text
+	GUI_Objects.push_back(std::make_unique<Waves>(game));
 
+	// fading wave text
 	GUI_Objects.push_back(std::make_unique<Wave_Text>(game, "Wave 1"));
 
-	//kills text
+	// kills text
 	GUI_Objects.push_back(std::make_unique<Kills_Text>(game));
+
+
+	// score text
+	GUI_Objects.push_back(std::make_unique<Score_Text>(game));
 }
 
 void GUI::proccess_input(sf::Event event)

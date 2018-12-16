@@ -19,23 +19,25 @@ public:
 	void	onCollision(Entity& otherEntity) override;
 
 	void	damage_char(int damage) override;
-	void	on_kill();
+	void	on_kill(Character& entity);
 	virtual void level_up();
 
 	bool	changed_movement;
 	bool	can_upgrade(int& level);
 
 	//getters & setters
-	double	getMana()			{ return mana;			}
+	double	get_mana()			{ return mana;			}
 	double	getXP()				{ return XP;			}
 	double	get_mana_reg()		{ return mana_regen;	}
 	double	get_health_reg()	{ return health_regen;	}
-	int		get_kills()			{ return kills; }
+	int		get_kills()			{ return kills;			}
+	int		get_score()			{ return score;			}
 
 protected:
 	double	XP{};
 	double	mana{};
 	int		kills{};
+	int		score{};
 
 	double mana_regen{};
 	double health_regen{};
