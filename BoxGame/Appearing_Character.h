@@ -12,6 +12,5 @@ public:
 
 private:
 	std::shared_ptr<Character> character;
-	float intended_radius;
 };
 
