@@ -6,6 +6,7 @@
 #include "Game.h"
 #include "GUI_Object.h"
 #include "Timed_Text.h"
+#include "Character.h"
 
 class GUI
 {
@@ -18,6 +19,8 @@ public:
 	void update();
 
 	void add(std::unique_ptr<GUI_Object> p);
+	void add(Character& character);
+
 	int getWave() { return wave; }
 	void incWave() { wave++; }
 

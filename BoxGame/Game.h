@@ -39,20 +39,24 @@ private:
 	sf::Clock frame_clock{};
 	float deltaTime{};
 	
-	// spawn clock
+	// for spawns
 	sf::Clock spawn_clock{};
-	std::ifstream spawn_stream;
 	float next_spawn;
 	void spawn_enemy();
+	std::ifstream spawn_stream;
 
 	// helpers
+	void open_spawn_file();
 	void read_settings();
 	void read_options();
-	void read_spawns();
-	void spawn_waves();
+
+	void check_spawns();
+	void update_entities();
+	void add_entities();
 	void next_wave();
+	bool check_state();
 	bool level_complete();
-	
+
 	struct Options
 	{
 		bool pause{ false };
@@ -61,6 +65,7 @@ private:
 	};
 	Options option{};
 
+	// not yet implemented:
 	struct Controls
 	{
 		Controls() : Q{ 16 }, W{ 22 }, E{ 4 }, R{ 17 }, LAlt{ 39 } {}

@@ -7,3 +7,7 @@ fix:
 - score dekrementeras med livsförlust
 - fiender rör sig olika (baserat på level/ typ)
 - fiende status GUI
+
+- enemy_calculator finns i Game som beräknar vart spelaren är påväg
+- rangers skjuter dit du är påväg men följer efter dig som vanligt
+- warriors går dit du är påväg

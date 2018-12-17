@@ -17,7 +17,7 @@ public:
 	virtual void	onCollision(Entity& otherEntity) {};
 
 	sf::Vector2f	getPosition() { return body.getPosition(); }
-	sf::Vector2f	getWindowPosition() { return sf::Vector2f{ body.getPosition().x - game.window.getSize().x / 2, body.getPosition().y - game.window.getSize().y / 2 }; }
+	
 	Game&			getGame() { return game; }
 
 protected:

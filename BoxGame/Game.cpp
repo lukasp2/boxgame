@@ -1,17 +1,18 @@
-#include <iostream>
+#include <iostream> // cerr
 
 #include "Game.h"
 #include "Game_Over.h"
 #include "Menu.h"
 #include "Quit.h"
 #include "Pause.h"
-#include "GUI.h"
-#include "Wall.h"
+
 #include "Entity.h"
-#include "Appearing_Character.h"
+#include "Hero_1.h"
 #include "Warrior.h"
 #include "Ranger.h"
-#include "Hero_1.h"
+#include "Appearing_Character.h"
+
+#include "GUI.h"
 #include "Wave_Text.h"
 
 Game::~Game() {}
@@ -19,8 +20,10 @@ Game::~Game() {}
 Game::Game(sf::RenderWindow& window) : State{ window }
 {
 	read_options();
+
 	read_settings();
-	read_spawns();
+	
+	open_spawn_file();
 
 	player = std::make_shared<Hero_1>(*this);
 	entities.push_back(player);
@@ -63,68 +66,24 @@ void Game::process_input()
 
 State* Game::update()
 {
-	// prevents a bug
 	deltaTime = frame_clock.restart().asSeconds();
+
 	if (deltaTime > 1.0f / 20.0f)
 	{
 		deltaTime = 1.0f / 20.0f;
 	}
 
-	if (option.pause)
+	if (check_state())
 	{
-		option.pause = false;
-		
-		render();
-		state_ptr = std::make_unique<Pause>(window, this);
 		return state_ptr.get();
 	}
+	
+	check_spawns();
 
-	if (option.quit)
-	{
-		state_ptr = std::make_unique<Quit>(window);
-		return state_ptr.get();
-	}
-
-	if (player->getHealth() <= 0)
-	{
-		render();
-		state_ptr = std::make_unique<Game_Over>(window);
-		return state_ptr.get();
-	}
-
-	// spawns waves
-	spawn_waves();
-
-	for (auto it = entities.begin(); it != entities.end(); )
-	{
-		// check collision
-		for (auto it2 = entities.begin(); it2 != entities.end(); ++it2)
-		{
-			if (it2 != it)
-			{
-				((*it)->checkCollision(*(*it2)));
-			}
-		}
-		
-		// update
-		if ((*it)->update(deltaTime))
-		{
-			it = entities.erase(it);
-		}
-		else
-		{
-			it++;
-		}
-	}
-
-	// add new entities to entity vector
-	while (!add_queue.empty())
-	{
-		entities.push_back(add_queue.front());
-		add_queue.pop();
-	}
-
-	// update interface
+	update_entities();
+	
+	add_entities();
+	
 	user_interface->update();
 
 	return nullptr;
@@ -146,14 +105,76 @@ void Game::render()
 	window.display();
 }
 
+bool Game::check_state()
+{
+	if (option.pause)
+	{
+		option.pause = false;
+
+		render();
+		state_ptr = std::make_unique<Pause>(window, this);
+		return true;
+	}
+
+	else if (option.quit)
+	{
+		state_ptr = std::make_unique<Quit>(window);
+		return true;
+	}
+
+	else if (player->getHealth() <= 0)
+	{
+		render();
+		state_ptr = std::make_unique<Game_Over>(window);
+		return true;
+	}
+
+	return false;
+}
+
+void Game::update_entities()
+{
+	for (auto it = entities.begin(); it != entities.end(); )
+	{
+		// collision
+		for (auto it2 = entities.begin(); it2 != entities.end(); ++it2)
+		{
+			if (it2 != it)
+			{
+				((*it)->checkCollision(*(*it2)));
+			}
+		}
+
+		// movement
+		if ((*it)->update(deltaTime))
+		{
+			it = entities.erase(it);
+		}
+		else
+		{
+			it++;
+		}
+	}
+}
+
+// add new entities to entity vector
+void Game::add_entities()
+{
+	while (!add_queue.empty())
+	{
+		entities.push_back(add_queue.front());
+		add_queue.pop();
+	}
+}
+
+// add entites to queue
 void Game::add(std::shared_ptr<Entity> ptr)
 {
 	add_queue.push(ptr);
 }
 
-//////////////
-//"open_spawn_file"
-void Game::read_spawns()
+// open the file specifying spawns
+void Game::open_spawn_file()
 {
 	spawn_stream.open("spawns.txt");
 
@@ -166,7 +187,8 @@ void Game::read_spawns()
 	spawn_stream >> next_spawn;
 }
 
-void Game::spawn_waves()
+// check if new enemies should be added or level is complete
+void Game::check_spawns()
 {
 	bool complete{ level_complete() };
 
@@ -180,6 +202,7 @@ void Game::spawn_waves()
 	}
 }
 
+// initiates the next wave of enemies
 void Game::next_wave()
 {
 	std::string wave;
@@ -193,9 +216,10 @@ void Game::next_wave()
 	spawn_stream >> next_spawn;
 }
 
+// spawns an enemy
 void Game::spawn_enemy()
 {
-	// "2 sec: Ranger lvl 11 @ -500, -500"
+	// format: "5 sec: Warrior lvl 1 @ 100, 200"
 
 	// enemy type
 	std::string junk{};
@@ -209,7 +233,7 @@ void Game::spawn_enemy()
 	spawn_stream >> level;
 	spawn_stream >> junk;
 
-	// the location on which the enemy spawns
+	// the location on which the enemy should spawn
 	float place{};				
 	sf::Vector2f pos{};
 	spawn_stream >> place;
@@ -228,16 +252,15 @@ void Game::spawn_enemy()
 		add(std::make_shared<Appearing_Character>(std::make_unique<Ranger>(*this, pos, level)));
 	}
 
-	// get the seconds after which the next enemy will spawn
 	 spawn_stream >> next_spawn;
 }
 
+// checks if all enemies are killed
 bool Game::level_complete() 
 {
 	// all enemies in the waves has spawned
 	if (next_spawn == -1)
 	{
-		// no enemies left on the screen
 		int enemy_count{};
 		
 		for (auto&& it : entities)
@@ -248,9 +271,9 @@ bool Game::level_complete()
 			}
 		}
 
+		// no enemies are left on the screen
 		if (enemy_count == 0)
 		{
-			// no enemy is currently spawning
 			int appearing_count{};
 
 			for (auto&& it : entities)
@@ -261,6 +284,7 @@ bool Game::level_complete()
 				}
 			}
 			
+			// no enemy is currently spawning
 			return appearing_count == 0;
 		}
 

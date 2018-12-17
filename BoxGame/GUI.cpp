@@ -5,6 +5,7 @@
 #include "Button.h"
 #include "Healthbar.h"
 #include "Mini_Healthbar.h"
+#include "Enemy_Name.h"
 #include "Manabar.h"
 #include "Waves.h"
 #include "Wave_Text.h"
@@ -46,7 +47,6 @@ GUI::GUI(Game& game) : game{ game }
 	// kills text
 	GUI_Objects.push_back(std::make_unique<Kills_Text>(game));
 
-
 	// score text
 	GUI_Objects.push_back(std::make_unique<Score_Text>(game));
 }
@@ -87,4 +87,11 @@ void GUI::update()
 void GUI::add(std::unique_ptr<GUI_Object> p)
 {
 	GUI_Objects.push_back(std::move(p));
+}
+
+void GUI::add(Character& character)
+{
+	add(std::make_unique<Mini_Healthbar>(game, character, sf::Vector2f(45, 4), sf::Color::Red));
+	add(std::make_unique<Level_Box>(game, character));
+	add(std::make_unique<Enemy_Name>(game, character));
 }
