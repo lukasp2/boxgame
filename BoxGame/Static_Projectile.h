@@ -11,7 +11,7 @@ public:
 	size_t			getRange()		{ return range;		}
 	float			getVelocity()	{ return velocity;	}
 
-	void setDamage(size_t increment) { damage += increment; }
+	void setDamage(size_t new_damage) { damage = new_damage; }
 
 private:
 	sf::CircleShape shape;

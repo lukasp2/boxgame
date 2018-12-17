@@ -35,15 +35,15 @@ private:
 
 	struct e : public ability
 	{
-		e() : ability{ 20, 3, 0 }, heal{ 200 } {}
-		int	heal{ };
+		e() : ability{ 20, 3, 0 }, static_proj{ 2000, 800, 300, 4.0f, sf::Color::Green } {}
+		Static_Projectile static_proj;
 	}; 
 	e e{};
 
 	struct r : public ability
 	{
-		r() : ability{ 45, 3, 0 }, static_proj{ 2000, 1000, 300, 4.0f, sf::Color::Magenta } {}
-		Static_Projectile static_proj;
+		r() : ability{ 45, 3, 0 }, heal { 20 } {}
+		int heal;
 	}; 
 	r r{};
 };

@@ -11,3 +11,6 @@ fix:
 - enemy_calculator finns i Game som beräknar vart spelaren är påväg
 - rangers skjuter dit du är påväg men följer efter dig som vanligt
 - warriors går dit du är påväg
+
+- gör en menu drawer / text drawer klass för att skriva ut menyerna 
+- gör spelet till ett minigame spel, man kan välja att spela med waves eller mer som lol
