@@ -142,6 +142,7 @@
     <ClCompile Include="Healthbar.cpp" />
     <ClCompile Include="Hero_1.cpp" />
     <ClCompile Include="Highscore.cpp" />
+    <ClCompile Include="Dummy.cpp" />
     <ClCompile Include="Kills_Text.cpp" />
     <ClCompile Include="Level_Box.cpp" />
     <ClCompile Include="main.cpp" />
@@ -152,6 +153,7 @@
     <ClCompile Include="Mini_Healthbar.cpp" />
     <ClCompile Include="MovingObject.cpp" />
     <ClCompile Include="Pause.cpp" />
+    <ClCompile Include="Practice.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Ranger.cpp" />
     <ClCompile Include="Score_Text.cpp" />
@@ -185,6 +187,7 @@
     <ClInclude Include="Healthbar.h" />
     <ClInclude Include="Hero_1.h" />
     <ClInclude Include="Highscore.h" />
+    <ClInclude Include="Dummy.h" />
     <ClInclude Include="Kills_Text.h" />
     <ClInclude Include="Level_Box.h" />
     <ClInclude Include="Main_Menu.h" />
@@ -194,6 +197,7 @@
     <ClInclude Include="Mini_Healthbar.h" />
     <ClInclude Include="MovingObject.h" />
     <ClInclude Include="Pause.h" />
+    <ClInclude Include="Practice.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Quit.h" />
     <ClInclude Include="Ranger.h" />

@@ -23,7 +23,7 @@ Game::Game(sf::RenderWindow& window) : State{ window }
 
 	read_settings();
 	
-	open_spawn_file();
+	open_spawn_file("spawns.txt");
 
 	player = std::make_shared<Hero_1>(*this);
 	entities.push_back(player);
@@ -174,13 +174,13 @@ void Game::add(std::shared_ptr<Entity> ptr)
 }
 
 // open the file specifying spawns
-void Game::open_spawn_file()
+void Game::open_spawn_file(std::string file)
 {
-	spawn_stream.open("spawns.txt");
+	spawn_stream.open(file);
 
 	if (!spawn_stream)
 	{
-		std::cerr << "unable to open spawns.txt";
+		std::cerr << "unable to open " + file;
 		exit(1);
 	}
 

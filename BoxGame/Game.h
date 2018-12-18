@@ -29,12 +29,13 @@ public:
 	std::shared_ptr<Hero> player;
 	//
 
-private:
+protected:
+	// all entities currently on the screen
 	std::vector< std::shared_ptr<Entity> > entities;
 	
 	// new entities that has been added to the game during update
 	std::queue< std::shared_ptr<Entity> > add_queue;
-	
+
 	// tracking time of one frame
 	sf::Clock frame_clock{};
 	float deltaTime{};
@@ -42,11 +43,11 @@ private:
 	// for spawns
 	sf::Clock spawn_clock{};
 	float next_spawn;
-	void spawn_enemy();
+	virtual void spawn_enemy();
 	std::ifstream spawn_stream;
 
 	// helpers
-	void open_spawn_file();
+	void open_spawn_file(std::string file);
 	void read_settings();
 	void read_options();
 
@@ -65,7 +66,7 @@ private:
 	};
 	Options option{};
 
-	// not yet implemented:
+	// not yet implemented
 	struct Controls
 	{
 		Controls() : Q{ 16 }, W{ 22 }, E{ 4 }, R{ 17 }, LAlt{ 39 } {}
@@ -76,6 +77,7 @@ private:
 		int LAlt;
 	};
 
+	// not yet implemented
 	struct Settings
 	{
 		bool display_healthbar;

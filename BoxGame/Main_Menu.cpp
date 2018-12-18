@@ -5,6 +5,7 @@
 #include "Highscore.h"
 #include "Quit.h"
 #include "Controls.h"
+#include "Practice.h"
 
 #define X_POS -400.0f
 #define Y_POS -400.0f
@@ -20,7 +21,6 @@ Main_Menu::Main_Menu(sf::RenderWindow& window)
 	header.setPosition(X_POS, Y_POS);
 
 	sf::Text opt;
-
 	for (size_t i{ 1 }; i < 5; ++i)
 	{
 		opt = header;
@@ -29,20 +29,21 @@ Main_Menu::Main_Menu(sf::RenderWindow& window)
 		{
 			case 1:
 				opt.setString("start game");
+				opt.setFillColor(sf::Color::White);
 				break;
 			case 2:
-				opt.setString("highscore");
+				opt.setString("practice");
 				break;
 			case 3:
-				opt.setString("controls");
+				opt.setString("highscore");
 				break;
 			case 4:
+				opt.setString("controls");
+				break;
+			case 5:
 				opt.setString("quit");
 				break;
 		}		
-		
-		if ( i == 1) opt.setFillColor(sf::Color::White);
-		else opt.setFillColor(sf::Color::Green);
 
 		opt.setPosition(X_POS, Y_POS + 5 * i + CHAR_SIZE * i);
 		
@@ -82,12 +83,15 @@ void Main_Menu::process_input()
 					option.start = true;
 					break;
 				case 1:
-					option.highscore = true;
+					option.practice = true;
 					break;
 				case 2:
-					option.controls = true;
+					option.highscore = true;
 					break;
 				case 3:
+					option.controls = true;
+					break;
+				case 4:
 					option.quit = true;
 					break;
 				}
@@ -106,7 +110,13 @@ State* Main_Menu::update()
 
 		state_ptr = std::make_unique<Game>(window);
 		//state_ptr->Game::player = std::make_unique<Hero_1>(*state_ptr);
+		return state_ptr.get();
+	}
 
+	if (option.practice)
+	{
+		option.practice = false;
+		state_ptr = std::make_unique<Practice>(window);
 		return state_ptr.get();
 	}
 

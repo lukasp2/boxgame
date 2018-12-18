@@ -180,6 +180,12 @@
     <ClCompile Include="Score_Text.cpp">
       <Filter>Source Files\GUI\GUI_Objects\Text</Filter>
     </ClCompile>
+    <ClCompile Include="Practice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dummy.cpp">
+      <Filter>Source Files\Entities\Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resources.h">
@@ -302,14 +308,20 @@
     <ClInclude Include="Game_Over.h">
       <Filter>Header Files\States</Filter>
     </ClInclude>
-    <ClInclude Include="Pause.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Waves.h">
       <Filter>Header Files\GUI\GUI_Objects\Text</Filter>
     </ClInclude>
     <ClInclude Include="Score_Text.h">
       <Filter>Header Files\GUI\GUI_Objects\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Pause.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Practice.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Dummy.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

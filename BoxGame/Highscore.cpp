@@ -120,10 +120,13 @@ void Highscore::render()
 	window.clear(sf::Color::Black);
 
 	window.draw(header);
+
 	window.draw(bottom);
 
 	for (sf::Text text : scoreVector)
+	{
 		window.draw(text);
+	}
 
 	window.display();
 

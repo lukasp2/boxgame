@@ -14,9 +14,10 @@ private:
 	struct Options
 	{
 		bool start{ false };
-		bool quit{ false };
+		bool practice{ false };
 		bool highscore{ false };
 		bool controls{ false };
+		bool quit{ false };
 	};
 	Options option;
 };

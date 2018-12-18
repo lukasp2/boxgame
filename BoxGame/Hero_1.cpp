@@ -89,6 +89,24 @@ void Hero_1::E()
 {
 	if (mana >= e.mana_cost && e.level > 0)
 	{
+		double lost_health = max_health - health;
+		if (lost_health > e.heal)
+		{
+			health += e.heal;
+		}
+		else
+		{
+			health = max_health;
+		}
+
+		mana -= e.mana_cost;
+	}
+}
+
+void Hero_1::R()
+{
+	if (mana >= r.mana_cost && r.level > 0)
+	{
 		float delta_y = body.getPosition().y + game.window.getSize().y / 2 - sf::Mouse::getPosition(game.window).y;
 		float delta_x = body.getPosition().x + game.window.getSize().x / 2 - sf::Mouse::getPosition(game.window).x;
 
@@ -109,32 +127,13 @@ void Hero_1::E()
 		
 		sf::Vector2f origin{ body.getPosition().x + 2 * size * x, body.getPosition().y + 2 * size * y };
 
-		Projectile p1{ game, e.static_proj, velocity_1, origin, Projectile::type::friendly };
-		Projectile p2{ game, e.static_proj, velocity_2, origin, Projectile::type::friendly };
-		Projectile p3{ game, e.static_proj, velocity_3, origin, Projectile::type::friendly };
+		Projectile p1{ game, r.static_proj, velocity_1, origin, Projectile::type::friendly };
+		Projectile p2{ game, r.static_proj, velocity_2, origin, Projectile::type::friendly };
+		Projectile p3{ game, r.static_proj, velocity_3, origin, Projectile::type::friendly };
 
 		game.add(std::make_unique<Projectile>(p1));
 		game.add(std::make_unique<Projectile>(p2));
 		game.add(std::make_unique<Projectile>(p3));
-
-		mana -= e.mana_cost;
-	}
-}
-
-void Hero_1::R()
-{
-	if (mana >= r.mana_cost && r.level > 0)
-	{
-		double lost_health = max_health - health;
-
-		if (lost_health > r.heal)
-		{
-			health += r.heal;
-		}
-		else
-		{
-			health = max_health;
-		}
 
 		mana -= r.mana_cost;
 	}
@@ -165,7 +164,7 @@ void Hero_1::upgrade_E()
 	if (can_upgrade(e.level))
 	{
 		e.mana_cost += 5;
-		e.static_proj.setDamage(static_cast<size_t>(e.static_proj.getDamage() * 1.2f));
+		e.heal = static_cast<int>(e.heal * 1.5f);
 	}
 }
 
@@ -174,6 +173,6 @@ void Hero_1::upgrade_R()
 	if (can_upgrade(r.level))
 	{
 		r.mana_cost += 10;
-		r.heal *= 2;
+		r.static_proj.setDamage(static_cast<size_t>(r.static_proj.getDamage() * 1.2f));
 	}
 }
